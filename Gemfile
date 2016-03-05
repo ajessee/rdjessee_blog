@@ -29,7 +29,7 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'sqlite3'
-  gem 'byebug'
+  gem 'byebug', '~> 8.2.2'
   gem 'pry'
   gem 'faker'
   gem 'rspec-rails'
