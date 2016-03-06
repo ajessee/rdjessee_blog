@@ -14,9 +14,9 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-host: /var/run/postgresql
+# host: /var/run/postgresql
 # host: /tmp
-# host: localhost
+host: localhost
 
 default: &default
   adapter: sqlite3
