@@ -21,3 +21,8 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Ignore Spring files.
+/spring/*.pid
+
+
