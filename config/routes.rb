@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'welcome/welcome'
+  get 'welcome' => 'welcome#welcome'
+
+  get 'about' => 'welcome#about'
 
   get 'users/new'
 
