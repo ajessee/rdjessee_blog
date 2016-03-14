@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
+  root 'welcome#welcome'
+
   get 'welcome' => 'welcome#welcome'
 
   get 'about' => 'welcome#about'
 
   get 'users/new'
-
-  root 'welcome#welcome'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
