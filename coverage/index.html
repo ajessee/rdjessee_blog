@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.10.0/application.js' type='text/javascript'></script>    
     <link href='./assets/0.10.0/application.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" type="image/png" href="./assets/0.10.0/favicon_yellow.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.10.0/favicon_red.png" />
     <link rel="icon" type="image/png" href="./assets/0.10.0/favicon.png" />
   </head>
   
@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-03-14T21:18:12-04:00">2016-03-14T21:18:12-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-03-14T23:10:29-04:00">2016-03-14T23:10:29-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="yellow">88.89%</span></span>
+    (<span class="covered_percent"><span class="red">66.67%</span></span>
      covered at
      <span class="covered_strength">
-       <span class="red">
-         0.89
+       <span class="green">
+         2.36
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>3</b> files in total.
-    <b>9</b> relevant lines. 
+    <b>2</b> files in total.
+    <b>12</b> relevant lines. 
     <span class="green"><b>8</b> lines covered</span> and
-    <span class="red"><b>1</b> lines missed </span>
+    <span class="red"><b>4</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -51,33 +51,23 @@
     <tbody>
       
       <tr>
-        <td class="strong"><a href="#62660cbd83d263a4de5b591e6580c3e85b9f2123" class="src_link" title="app/controllers/application_controller.rb">app/controllers/application_controller.rb</a></td>
+        <td class="strong"><a href="#381fa5cb10634c97042473aff039935e7d95b9f4" class="src_link" title="app/models/user.rb">app/models/user.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>5</td>
-        <td>2</td>
-        <td>2</td>
+        <td>9</td>
+        <td>7</td>
+        <td>7</td>
         <td>0</td>
-        <td>1.0</td>
-      </tr>
-      
-      <tr>
-        <td class="strong"><a href="#fd4bde1e1b5ee0a14ca8399f460ba85a81bef854" class="src_link" title="app/controllers/users_controller.rb">app/controllers/users_controller.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>4</td>
-        <td>2</td>
-        <td>2</td>
-        <td>0</td>
-        <td>1.0</td>
+        <td>3.9</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#5ffbe42702937c7a8e5dac976e528e0c28ca6f00" class="src_link" title="spec/support/utilities.rb">spec/support/utilities.rb</a></td>
-        <td class="red strong">80.0 %</td>
+        <td class="red strong">20.0 %</td>
         <td>8</td>
         <td>5</td>
-        <td>4</td>
         <td>1</td>
-        <td>0.8</td>
+        <td>4</td>
+        <td>0.2</td>
       </tr>
       
     </tbody>
@@ -96,13 +86,13 @@
     
       <div class="source_files">
       
-        <div class="source_table" id="62660cbd83d263a4de5b591e6580c3e85b9f2123">
+        <div class="source_table" id="381fa5cb10634c97042473aff039935e7d95b9f4">
   <div class="header">
-    <h3>app/controllers/application_controller.rb</h3>
+    <h3>app/models/user.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>2</b> relevant lines. 
-      <span class="green"><b>2</b> lines covered</span> and
+      <b>7</b> relevant lines. 
+      <span class="green"><b>7</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -113,70 +103,52 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class ApplicationController &lt; ActionController::Base</code>
+          <code class="ruby">class User &lt; ActiveRecord::Base</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="2">
+        <li class="covered" data-hits="21" data-linenumber="2">
+          <span class="hits">21</span>
           
-          
-          <code class="ruby">  # Prevent CSRF attacks by raising an exception.</code>
+          <code class="ruby">  before_save { self.email = email.downcase }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="3">
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  # For APIs, you may want to use :null_session instead.</code>
+          <code class="ruby">  validates :name, presence: true, length: { maximum: 50 }</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">  protect_from_forgery with: :exception</code>
+          <code class="ruby">  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
-          
-          
-          <code class="ruby">end</code>
-        </li>
-      
-    </ol>
-  </pre>
-</div>
-      
-        <div class="source_table" id="fd4bde1e1b5ee0a14ca8399f460ba85a81bef854">
-  <div class="header">
-    <h3>app/controllers/users_controller.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
-    <div>
-      <b>2</b> relevant lines. 
-      <span class="green"><b>2</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
-    </div>
-  </div>
-  
-  <pre>
-    <ol>
-      
-        <li class="covered" data-hits="1" data-linenumber="1">
+        <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">class UsersController &lt; ApplicationController</code>
+          <code class="ruby">  validates :email, presence: true, length: { maximum: 255 },</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="2">
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">                    format: { with: VALID_EMAIL_REGEX }, uniqueness: true</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
           <span class="hits">1</span>
           
-          <code class="ruby">  def new</code>
+          <code class="ruby">  has_secure_password</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="3">
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">  validates :password, presence: true, length: { minimum: 6 }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="4">
+        <li class="never" data-hits="" data-linenumber="9">
           
           
           <code class="ruby">end</code>
@@ -189,11 +161,11 @@
         <div class="source_table" id="5ffbe42702937c7a8e5dac976e528e0c28ca6f00">
   <div class="header">
     <h3>spec/support/utilities.rb</h3>
-    <h4><span class="red">80.0 %</span> covered</h4>
+    <h4><span class="red">20.0 %</span> covered</h4>
     <div>
       <b>5</b> relevant lines. 
-      <span class="green"><b>4</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
+      <span class="green"><b>1</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
   </div>
   
@@ -206,14 +178,14 @@
           <code class="ruby">def full_title(page_title)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="2">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="2">
+          
           
           <code class="ruby">  base_title = &quot;RDJ Blog&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="3">
+          
           
           <code class="ruby">  if page_title.empty?</code>
         </li>
@@ -230,8 +202,8 @@
           <code class="ruby">  else</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="6">
+          
           
           <code class="ruby">    &quot;#{base_title} | #{page_title}&quot;</code>
         </li>

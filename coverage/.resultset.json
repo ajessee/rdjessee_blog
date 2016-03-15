@@ -3,28 +3,26 @@
     "coverage": {
       "/home/andre/Desktop/rdjessee_blog/spec/support/utilities.rb": [
         1,
-        1,
-        1,
+        0,
+        0,
         0,
         null,
-        1,
+        0,
         null,
         null
       ],
-      "/home/andre/Desktop/rdjessee_blog/app/controllers/users_controller.rb": [
+      "/home/andre/Desktop/rdjessee_blog/app/models/user.rb": [
+        1,
+        21,
         1,
         1,
-        null,
-        null
-      ],
-      "/home/andre/Desktop/rdjessee_blog/app/controllers/application_controller.rb": [
         1,
         null,
-        null,
+        1,
         1,
         null
       ]
     },
-    "timestamp": 1458004692
+    "timestamp": 1458011429
   }
 }
