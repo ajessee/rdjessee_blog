@@ -1,0 +1,16 @@
+<% provide(:title, "Users: #{@users.count}") %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <% @users.each do |user| %>
+      <h1>
+        ID: <%= user.id %>
+      </h1>
+      <h1>
+        Name: <%= user.name %>
+      </h1>
+      <br>
+      <% end %>
+    </section>
+  </aside>
+</div>
