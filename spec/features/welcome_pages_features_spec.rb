@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.feature "Content check", :type => :feature do
   let(:base_title) { "RDJ Blog" }
 

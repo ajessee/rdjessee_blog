@@ -2,10 +2,12 @@ Rails.application.routes.draw do
 
   root 'welcome#welcome'
 
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
   get 'welcome' => 'welcome#welcome'
-
   get 'about' => 'welcome#about'
-
   get 'signup' => 'users#new'
 
   resources :users
