@@ -18,13 +18,11 @@ RSpec.feature "Authentication", :type => :feature do
   end
 
   scenario "with valid information" do
-    visit "/login"
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
-    click_button "Log in"
+    log_in user
 
     expect(page).to have_title("#{base_title} | #{user.name}")
     expect(page).to have_link("Profile", href: user_path(user))
+    expect(page).to have_link("Settings", href: edit_user_path(user))
     expect(page).to have_link("Log out", href: logout_path)
     expect(page).to_not have_link('Sign up', href: logout_path)
     expect(page).to_not have_link('Log in', href: login_path)
