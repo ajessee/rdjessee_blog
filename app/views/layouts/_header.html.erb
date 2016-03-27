@@ -1,11 +1,11 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "RDJ Blog", root_path, id: "rdj" %>
+    <%= link_to "Ralph Donald Jessee", root_path, id: "rdj" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "About",   about_path %></li>
         <% if logged_in? %>
-          <li><%= link_to "Users", '#' %> </li>
+          <li><%= link_to "Users", users_path %> </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
