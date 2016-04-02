@@ -10,22 +10,30 @@ User.create!(name:  "Andre Jessee",
              email: "andre.isaac.jessee@gmail.com",
              password:              "password",
              password_confirmation: "password",
-             admin: true)
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
 
 User.create!(name:  "David Jessee",
              email: "david.jessee@gmail.com",
              password:              "password",
-             password_confirmation: "password")
+             password_confirmation: "password",
+             activated: true,
+             activated_at: Time.zone.now)
 
 User.create!(name:  "Don Jessee",
              email: "rdj@gmail.com",
              password:              "password",
-             password_confirmation: "password")
+             password_confirmation: "password",
+             activated: true,
+             activated_at: Time.zone.now)
 
 User.create!(name:  "Catherine Sarwar",
              email: "catjessee@gmail.com",
              password:              "password",
-             password_confirmation: "password")
+             password_confirmation: "password",
+             activated: true,
+             activated_at: Time.zone.now)
 
 99.times do |n|
   name  = Faker::Name.name
