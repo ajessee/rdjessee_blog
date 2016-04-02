@@ -2,7 +2,7 @@ require 'json'
 
 class EmailResponsesController < ApplicationController
 
-  skip_authorization_check
+  # skip_authorization_check
   skip_before_action :verify_authenticity_token
 
   before_action :log_incoming_message
