@@ -89,7 +89,7 @@ Rails.application.configure do
         :authentication       => :login,
         :port                 => 25,
         :openssl_verify_mode  => 'none',
-        :enable_starttls_auto => false
+        :enable_starttls_auto => true
         # :tls                  => true,
   }
 end
