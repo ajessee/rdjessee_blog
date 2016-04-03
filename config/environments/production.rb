@@ -86,10 +86,10 @@ Rails.application.configure do
         :password             => ENV['AWS_SES_SECRET'],
         :address              => "email-smtp.us-east-1.amazonaws.com",
         :domain               => "amazonaws.com",
-        :openssl_verify_mode  => 'none',
         :authentication       => :login,
         :port                 => 25,
-        :tls                  => true,
-        :enable_starttls_auto => false
+        :enable_starttls_auto => true
+        # :tls                  => true,
+        # :openssl_verify_mode  => 'none',
   }
 end
