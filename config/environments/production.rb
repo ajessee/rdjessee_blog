@@ -82,7 +82,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'ralphdonaldjessee.com' }
   config.action_mailer.smtp_settings = {
         :address              => "email-smtp.us-east-1.amazonaws.com",
-        :port                 => 25,
+        :port                 => 587,
         :domain               => "amazonaws.com",
         :user_name            => ENV['AWS_SES_USERNAME'],
         :password             => ENV['AWS_SES_SECRET'],
