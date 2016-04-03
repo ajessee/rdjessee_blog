@@ -88,8 +88,8 @@ Rails.application.configure do
         :domain               => "amazonaws.com",
         :authentication       => :login,
         :port                 => 25,
+        :openssl_verify_mode  => 'none',
         :enable_starttls_auto => true
         # :tls                  => true,
-        # :openssl_verify_mode  => 'none',
   }
 end
