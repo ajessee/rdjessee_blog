@@ -78,17 +78,18 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'ralphdonaldjessee.com' }
   config.action_mailer.smtp_settings = {
-        :address              => "email-smtp.us-east-1.amazonaws.com",
-        :port                 => 25,
-        :openssl_verify_mode  => 'none',
-        :domain               => "amazonaws.com",
         :user_name            => ENV['AWS_SES_USERNAME'],
         :password             => ENV['AWS_SES_SECRET'],
+        :address              => "email-smtp.us-east-1.amazonaws.com",
+        :domain               => "amazonaws.com",
+        :openssl_verify_mode  => 'none',
         :authentication       => :login,
-        :enable_starttls_auto => false,
-        # :tls                  => true
+        :port                 => 25,
+        :tls                  => true,
+        :enable_starttls_auto => false
   }
 end
