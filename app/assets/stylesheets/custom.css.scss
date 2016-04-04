@@ -32,6 +32,7 @@ textarea {
   }
 }
 
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -63,14 +64,17 @@ p {
 
 #rdj {
   float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
+  font-size: 2em;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
+  letter-spacing: 2px;
+  padding-top: 5px;
   font-weight: bold;
   font-family: 'Crimson Text', serif;
+  position: absolute;
+  left: 41%;
+  margin-left: -50px !important;  /* 50% of your logo width */
+  display: block;
 }
 
 #rdj:hover {
@@ -115,11 +119,27 @@ aside {
   margin-top: 15px;
 }
 
+
 /* Pictures */
 
 #grandpa_sits {
-  height: 40%;
-  width: 40%;
+    margin: auto;
+      min-height: 100%;
+      min-width: 1em;
+      width: 100%;
+    height: auto;
+      position: fixed;
+      left: 0em;
+      top: 0em;
+}
+
+#lifetime {
+  font-family: 'Niconne', cursive;
+  font-size: 4em;
+  color: white;
+  position: absolute;
+  left: 26%;
+  margin-top: 40%;
 }
 
 /* forms */
@@ -186,6 +206,53 @@ input {
   @include box_sizing;
 }
 
+/* stories */
+
+.stories {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
+}
+
 /*
 font-family: 'Raleway', sans-serif;
 font-family: 'Roboto Slab', serif;
@@ -193,4 +260,5 @@ font-family: 'Noto Sans', sans-serif;
 font-family: 'Crimson Text', serif;
 font-family: 'Source Serif Pro', serif;
 font-family: 'Varela', sans-serif;
+font-family: 'Niconne', cursive;
 */
