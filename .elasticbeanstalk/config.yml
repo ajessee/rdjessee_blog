@@ -3,7 +3,7 @@ branch-defaults:
     environment: rdjessee-blog-env
 global:
   application_name: rdjessee_blog
-  default_ec2_keyname: null
+  default_ec2_keyname: rdj
   default_platform: 64bit Amazon Linux 2015.09 v2.0.8 running Ruby 2.2 (Puma)
   default_region: us-east-1
   profile: eb-cli
