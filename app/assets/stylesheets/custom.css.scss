@@ -64,21 +64,22 @@ p {
 
 #rdj {
   float: left;
-  font-size: 2em;
+  font-size: 2.7em;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
-  padding-top: 5px;
+  padding-top: 0px;
   font-weight: bold;
   font-family: 'Crimson Text', serif;
   position: absolute;
-  left: 41%;
-  margin-left: -50px !important;  /* 50% of your logo width */
+  left: 39%;
+  margin-left: -50px !important;
   display: block;
+  text-decoration: none;
 }
 
 #rdj:hover {
-  color: red;
+  color: grey;
   text-decoration: none;
 }
 
