@@ -9,7 +9,7 @@
   <link href='https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Niconne|Noto+Sans|Crimson+Text|Source+Serif+Pro|Varela' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div class="container">
+  <!-- <div class="container"> -->
     <% flash.each do |message_type, message | %>
       <div class="alert alert-<%= message_type %>">
         <%= message %>
@@ -18,6 +18,6 @@
     <%= render 'layouts/header' %>
     <%= yield %>
     <%= debug(params) if Rails.env.development? %>
-  </div>
+  <!-- </div> -->
 </body>
 </html>
