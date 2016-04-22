@@ -15,6 +15,12 @@ $( document ).ready(function() {
       showDivs(slideIndex += 1);
     });
 
+  $( "button.w3-btn.demo" ).click(function(event) {
+      event.preventDefault()
+      var n = this.textContent;
+      showDivs(slideIndex = n);
+    });
+
   function showDivs(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
