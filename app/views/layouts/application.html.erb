@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
-  <link href='https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab|Niconne|Noto+Sans|Crimson+Text|Source+Serif+Pro|Varela' rel='stylesheet' type='text/css'>
-</head>
-<body>
-  <!-- Getting rid of container to make background image full screen -->
-  <div class="container">
-    <% flash.each do |message_type, message | %>
-      <div class="alert alert-<%= message_type %>">
-        <%= message %>
-      </div>
-    <% end %>
+  <head>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/meta' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <title> <%= full_title(yield(:title)) %> </title>
+    <%= render 'layouts/fonts' %>
+    <%= render 'layouts/shim' %>
     <%= render 'layouts/header' %>
-    <%= yield %>
-    <!--<%= debug(params) if Rails.env.development? %> -->
-  </div>
-</body>
+  </head>
+  <body>
+      <%= yield %>
+    <%= javascript_include_tag 'application' %>
+  </body>
 </html>

@@ -1,0 +1,117 @@
+/* Styling Depending on Desktop or Mobile */
+/* Desktop */
+@media (min-width: 768px) {
+
+  $pantoneOrange: #FF6C2F;
+  $pantoneCoolGrey: #53565A;
+
+  /* Reduce Padding for Stephanie Who? Section on desktop*/
+  #stephanie_who {
+    padding-top: 50px;
+  }
+
+  .intro-text-spacing {
+    margin-bottom: 10% !important;
+    margin-top: 8% !important;
+  }
+
+  .bullet-spacing {
+    margin-bottom: 10px !important;
+  }
+
+  .navbar-expanded {
+    display: none;
+  }
+
+  .navbar-inverse .navbar-brand img {
+    margin-top: -24px;
+    height: 67px;
+  }
+
+  #headerLogo {
+    width: 100%;
+  }
+
+  #a_giraffe {
+    height: 100vh;
+  }
+
+  #user_show {
+    height: 100vh;
+  }
+
+  #lead_show {
+    height: 100vh;
+  }
+
+  #giraffeSectionLogo{
+    margin-top: -20px;
+  }
+
+  .padding-signin {
+    padding-top: 70px !important;
+    padding-left: 70px !important;
+  }
+
+  .desktop-hide {
+    display: none;
+  }
+
+  .portfolio-carousel .item {
+      padding: 60px 55px 155px;
+  }
+
+  textarea.form-control {
+    height: 5em;
+    font-family: NexaLight;
+  }
+
+  .vert-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+
+  .testimonials-carousel .item {
+      padding: 0 !important;
+  }
+
+  #quote_1 {
+    font-family: MajestiBannerBoldItalic;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 3em;
+    line-height: 120%;
+  }
+
+  #quote_1_author {
+    font-family: MajestiBannerBold;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 3em;
+  }
+
+  #quote_2 {
+    font-family: MajestiBannerBoldItalic;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 3em;
+    line-height: 120%;
+  }
+
+  #quote_2_author {
+    font-family: MajestiBannerBold;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 3em;
+  }
+
+  header .scroll-down .btn {
+    color: white;
+    border: none;
+    height: 100px;
+    width: 100px;
+    line-height: 50px;
+    padding: 0;
+    letter-spacing: normal;
+    font-size: 25px;
+  }
+
+}

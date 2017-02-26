@@ -1,0 +1,51 @@
+<section id="blog">
+    <div class="container text-center wow fadeIn">
+        <h2>Stories</h2>
+        <hr class="colored">
+        <p>My Grandfather wrote stories. Here they are.</p>
+        <div class="row content-row">
+            <div class="col-lg-12">
+                <div class="portfolio-filter">
+                    <ul id="filters" class="clearfix">
+                        <li>
+                            <span class="filter active" data-filter="all">All</span>
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".identity">Thoughts</span>
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".graphic">Leadership</span>
+                        </li>
+                        <li>
+                            <span class="filter" data-filter=".web">Management</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="portfoliolist">
+                    <% @stories.each do |story| %>
+                        <!-- NOTE: You can add more items to the grid, or remove items you don't need! -->
+                        <!-- Grid Item 1 -->
+                        <div class="mix identity" title="Client Name">
+                            <div class="portfolio-wrapper">
+                            <%= link_to image_tag(story.thumbnail, alt: story.id, class: "img-responsive"),  story_path(story.id)  %>
+                            
+                                <!-- <img src="assets/images/agency/portfolio/grid/grid-1.jpg" alt=""> -->
+                                <div class="caption">
+                                    <div class="caption-text">
+                                        <a class="text-title"><%= story.title %></a>
+                                        <span class="text-category"><%= story.category %></span>
+                                    </div>
+                                    <div class="caption-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 

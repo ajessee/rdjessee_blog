@@ -1,0 +1,147 @@
+/* Mobile */
+
+@media (max-width: 767px) {
+
+  $pantoneOrange: #FF6C2F;
+  $pantoneCoolGrey: #53565A;
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h4.h4-mobile {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  h4.mobile-hide {
+    display: none;
+  }
+
+  ul.no-bullet-mobile {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  p.bullet-mobile {
+    font-size: 1.2em;
+    text-align: left;
+  }
+
+  p.nexa-light {
+  text-align: center;
+  }
+
+  p.nexa-bold {
+  text-align: center;
+  }
+
+  p.mobile-smaller{
+    font-size: 1.4em;
+  }
+
+  .intro-text-spacing {
+    margin-bottom: 3% !important;
+    margin-top: 5% !important;
+  }
+
+  .bullet-spacing {
+    margin-bottom: 5px !important;
+  }
+
+  .navbar-expanded {
+    display: none;
+  }
+
+  .mobile-full {
+    height: 100%;
+  }
+
+  section {
+    padding: 1em 0;
+  }
+
+  #headerLogo {
+    width: 91%;
+  }
+
+  #giraffeSectionLogo{
+    height: 50%;
+    width: 50%;
+  }
+
+  #knowYourPowerLogo {
+    height: 50%;
+    width: 50%;
+  }
+
+  #page-top {
+    height: 100vh;
+  }
+
+  .cta-quote {
+    height: 100vh;
+  }
+
+  .padding-signin {
+    padding-top: 50px !important;
+    padding-left: 60px !important;
+  }
+
+  .padding-arrow {
+    padding-top: 8px !important;
+    padding-left: 45px !important;
+  }
+
+  .vert-center {
+    height: 100vh;
+    padding-top: 135px;
+  }
+
+
+  #quote_1 {
+    font-family: MajestiBannerBoldItalic;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 2em;
+    line-height: 120%;
+  }
+
+  #quote_1_author {
+    font-family: MajestiBannerBold;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 2em;
+  }
+
+  #quote_2 {
+    font-family: MajestiBannerBoldItalic;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 2em;
+    line-height: 120%;
+  }
+
+  #quote_2_author {
+    font-family: MajestiBannerBold;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 2em;
+  }
+
+  header .scroll-down .btn {
+    color: $pantoneOrange;
+    border: none;
+    height: 75px;
+    width: 75px;
+    line-height: 50px;
+    padding: 0;
+    letter-spacing: normal;
+    font-size: 20px;
+  }
+
+  .input-group {
+    margin-bottom: 40px;
+  }
+
+}

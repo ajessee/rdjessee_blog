@@ -6,8 +6,10 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @stories = @user.stories.paginate(page: params[:page])
+    # debugger
+    @story = Story.find(params[:id])
+    # @user = User.find(params[:id])
+    # @stories = @user.stories.paginate(page: params[:page])
   end
 
   def create

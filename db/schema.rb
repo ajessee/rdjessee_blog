@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409214547) do
+ActiveRecord::Schema.define(version: 20170225221613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20160409214547) do
     t.integer  "decade"
     t.integer  "age"
     t.boolean  "recording?",   default: false
+    t.string   "thumbnail"
+    t.string   "category"
   end
 
   add_index "stories", ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at", using: :btree

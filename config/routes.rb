@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'welcome' => 'welcome#welcome'
   get 'about' => 'welcome#about'
   get 'signup' => 'users#new'
+  get 'blog' => 'stories#index'
 
   post 'email_responses/bounce' => 'email_responses#bounce'
   post 'email_responses/complaint' => 'email_responses#complaint'

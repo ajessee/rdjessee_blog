@@ -11,6 +11,20 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
+//= require classie.js
+//= require cbpAnimatedHeader.js
+//= require jquery.easing.min.js
+//= require jquery.magnific-popup.min.js
+//= require jquery.mixitup.min.js
+//= require owl.carousel.js
+//= require core.js
+//= require transition.js
+//= require background.js
+//= require wow.min.js
+//= require contact_me.js
+//= require jqBootstrapValidation.js
+//= require vitality.js
 //= require jquery_ujs
-//= require bootstrap
 //= require_tree .
+

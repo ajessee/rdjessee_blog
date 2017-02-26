@@ -10,6 +10,15 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require docs.min
+ *= require owl.carousel
+ *= require owl.theme
+ *= require owl.transitions
+ *= require magnific-popup
+ *= require background
+ *= require animate.min
+ *= require device-mockups.min
+ *= require vitality-red
  *= require_tree .
  *= require_self
  */

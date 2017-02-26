@@ -1,0 +1,348 @@
+@import 'bootstrap';
+/* RDJ Specfic */
+
+h1.rochester {
+  font-family: 'Rochester', cursive;
+  font-size: 7em;
+  letter-spacing: -0.7px;
+  margin-bottom: 5px;
+  text-transform: none;
+  text-align: center;
+}
+
+/* General Styling */
+
+$pantoneOrange: #FF6C2F;
+$pantoneCoolGrey: #53565A;
+
+h1 {
+  font-family: MajestiBannerBold;
+  font-size: 4em;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: none;
+}
+
+h2 {
+  font-family: MajestiBannerHeavy;
+  font-size: 3em;
+  letter-spacing: .5px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: none;
+}
+
+h3 {
+  font-family: MajestiBannerBook;
+  font-size: 3em;
+  letter-spacing: .5px;
+  margin-bottom: 15px;
+  text-transform: none;
+}
+
+h4 {
+  font-family: MajestiBannerMedium;
+  font-size: 3em;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  text-transform: none;
+}
+
+h5 {
+  font-family: NexaLight;
+  font-size: 1.5em;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  text-transform: none;
+}
+
+h6 {
+  font-family: MajestiBannerMedium;
+  font-size: 2em;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-transform: none;
+}
+
+p {
+  font-family: MajestiBannerLight;
+  font-size: 22px;
+}
+
+p.majesti-book {
+  font-family: MajestiBannerBook;
+  font-size: 2em;
+  letter-spacing: -0.7px;
+  margin-bottom: 5px;
+  text-transform: none;
+  text-align: center;
+}
+
+p.nexa-bold {
+  font-family: NexaBold;
+  font-size: 2em;
+  letter-spacing: -0.7px;
+  margin-bottom: 10px;
+  text-transform: none;
+  text-align: left;
+}
+
+p.nexa-light-center {
+  font-family: NexaLight;
+  font-size: 2em;
+  letter-spacing: -0.7px;
+  margin-bottom: 10px;
+  text-transform: none;
+  text-align: center;
+}
+
+p.nexa-light {
+  font-family: NexaLight;
+  font-size: 1.9em;
+  letter-spacing: -0.7px;
+  margin-bottom: 20px;
+  text-transform: none;
+  text-align: left;
+}
+
+
+.nexa-light {
+  font-family: NexaLight;
+  font-size: 1em;
+  letter-spacing: -0.7px;
+  text-transform: none;
+  text-align: left;
+}
+
+p.bigger {
+  font-size: 2em;
+}
+
+p.smaller {
+  font-size: 1.4em;
+  text-align: center;
+}
+
+p.center {
+  text-align: center;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.shadow {
+  -webkit-filter: drop-shadow( 2px 2px 3px white );
+  filter: drop-shadow( 2px 2px 3px white ); /* Same syntax as box-shadow */
+}
+
+.shadow2 {
+  -webkit-filter: drop-shadow(-4px 3px 4px #000);
+  filter: drop-shadow(-4px 3px 4px #000); /* Same syntax as box-shadow */
+}
+
+#stephanieMain {
+  margin-top: 5%;
+}
+
+#user_login {
+  height: 100vh;
+}
+
+#admin {
+  height: 100vh;
+}
+
+#flash {
+  margin: -3% 10% -12% 10%;
+  text-align: center;
+}
+
+#footerLogo {
+  height: 75px;
+}
+
+footer.footer {
+  padding: 25px 0 20px;
+}
+
+.top-space-5-percent{
+  margin-top: 5%;
+}
+
+hr.colored {
+  border-color: $pantoneOrange;
+}
+
+.details {
+  font-size: 35px; 
+}
+
+.float-right {
+  float: right;
+}
+
+.white_text {
+  color: white;
+}
+
+.orange {
+  color: $pantoneOrange;
+}
+
+.portfolio-carousel {
+  padding: 0;
+  color: black;
+  background-color: white;
+}
+
+.modal-content {
+  background-color: $pantoneCoolGrey;
+}
+
+.modal-header {
+  font-family: NexaBold;
+  font-size: 1em;
+  text-align: center;
+  color: $pantoneOrange;
+}
+
+.modal-body {
+  font-family: NexaLight;
+  font-size: .5em;
+  color: $pantoneOrange;
+}
+
+.closeModal {
+  color: black;
+}
+
+.center-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.testimonials .testimonials-carousel .owl-controls .owl-prev {
+  left: -25px;
+}
+
+.testimonials .testimonials-carousel .owl-controls .owl-next {
+  right: -25px;
+}
+
+
+/* Navbar Styling */
+
+.navbar-inverse {
+  background-color: $pantoneCoolGrey;
+  border-color: $pantoneCoolGrey;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  font-family: NexaBold;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+  font-family: NexaBold;
+  font-size: 20px;
+  color: $pantoneOrange;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  color: #fff;
+  background-color: $pantoneOrange;
+}
+
+/* forms */
+
+.input-group-lg > .input-group-btn > .btn {
+  font-family: MajestiBannerHeavy;
+  text-transform: none;
+}
+
+.input-group .form-control {
+  font-family: NexaBold;
+}
+
+textarea.form-control {
+  color: $pantoneOrange;
+}
+
+.floating-label-form-group-with-value label {
+  text-align: left;
+}
+
+.floating-label-form-group input {
+  font-family: NexaLight;
+  color: $pantoneOrange;
+  text-align: left;
+}
+
+.portfolio-carousel .owl-controls .owl-prev,
+.portfolio-carousel .owl-controls .owl-next {
+  background-color: $pantoneOrange !important;
+  color: white !important;
+}
+
+.testimonials .testimonials-carousel .owl-controls .owl-prev,
+.testimonials .testimonials-carousel .owl-controls .owl-next {
+  background-color: gray !important;
+}
+
+.btn-outline-dark {
+  font-family: NexaBold;
+  color: black;
+  font-size: 1.5em;
+  text-transform: none;
+  background: $pantoneOrange;
+  border-color: $pantoneOrange;
+  outline: none;
+  border-radius: 20px !important;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus {
+  color: $pantoneCoolGrey;
+}
+
+.input-group-lg > .input-group-btn > .btn {
+  background-color: $pantoneOrange;
+  border-color: $pantoneOrange;
+}
+
+.bg-coolGrey { 
+  background-color: $pantoneCoolGrey;
+}
+
+#error_explanation {
+  color: $pantoneCoolGrey;
+  ul {
+    color: $pantoneOrange;
+    font-size: 1.5em;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    background-color: $pantoneCoolGrey;
+  }
+}
+
+.alert-danger, .alert-success {
+    background-color: $pantoneOrange;
+    border-color: black;
+    color: black;
+    font-size: 2em;
+    text-align: center;
+}

@@ -1,0 +1,61 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+/* fonts */
+
+@font-face {
+font-family: NexaBold;
+src: font-url("Nexa-Bold.otf") format("opentype");
+}
+
+@font-face {
+font-family: NexaLight;
+src: font-url("Nexa-Light.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerBold;
+src: font-url("Majesti-Banner-Bold.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerBoldItalic;
+src: font-url("Majesti-Banner-BoldItalic.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerBook;
+src: font-url("Majesti-Banner-Book.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerBookItalic;
+src: font-url("Majesti-Banner-BookItalic.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerHeavy;
+src: font-url("Majesti-Banner-Heavy.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerLight;
+src: font-url("Majesti-Banner-Light.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerLightItalic;
+src: font-url("Majesti-Banner-LightItalic.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerMedium;
+src: font-url("Majesti-Banner-Medium.otf") format("opentype");
+}
+
+@font-face {
+font-family: MajestiBannerMediumItalic;
+src: font-url("Majesti-Banner-MediumItalic.otf") format("opentype");
+}
