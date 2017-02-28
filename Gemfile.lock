@@ -338,6 +338,8 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.6)
+    trix (0.10.1)
+      rails
     trollop (2.1.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -382,6 +384,7 @@ DEPENDENCIES
   shoulda-matchers
   simplecov
   spring
+  trix
   uglifier (>= 1.3.0)
   web-console
   will_paginate

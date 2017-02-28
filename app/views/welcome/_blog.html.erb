@@ -2,50 +2,21 @@
     <div class="container text-center wow fadeIn">
         <h2>Stories</h2>
         <hr class="colored">
-        <p>My Grandfather wrote stories. Here they are.</p>
-        <div class="row content-row">
-            <div class="col-lg-12">
-                <div class="portfolio-filter">
-                    <ul id="filters" class="clearfix">
-                        <li>
-                            <span class="filter active" data-filter="all">All</span>
-                        </li>
-                        <li>
-                            <span class="filter" data-filter=".identity">Thoughts</span>
-                        </li>
-                        <li>
-                            <span class="filter" data-filter=".graphic">Leadership</span>
-                        </li>
-                        <li>
-                            <span class="filter" data-filter=".web">Management</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <p>My Grandfather wrote stories. Here are three random ones for you to read.</p>
         <div class="row">
-            <div class="col-lg-12">
-                <div id="portfoliolist">
-                    <% @stories.each do |story| %>
-                        <!-- NOTE: You can add more items to the grid, or remove items you don't need! -->
-                        <!-- Grid Item 1 -->
-                        <div class="mix identity" title="Client Name">
-                            <div class="portfolio-wrapper">
-                            <%= link_to image_tag(story.thumbnail, alt: story.id, class: "img-responsive"),  story_path(story.id)  %>
-                            
-                                <!-- <img src="assets/images/agency/portfolio/grid/grid-1.jpg" alt=""> -->
-                                <div class="caption">
-                                    <div class="caption-text">
-                                        <a class="text-title"><%= story.title %></a>
-                                        <span class="text-category"><%= story.category %></span>
-                                    </div>
-                                    <div class="caption-bg"></div>
-                                </div>
-                            </div>
-                        </div>
-                    <% end %>
+            <% @stories.each do |story| %>
+              <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                  <img src="<%= asset_path(story.thumbnail) %>" alt="<%= story.id %>">
+                  <div class="caption">
+                    <h3><%= story.title %></h3>
+                    <p> <%= story.category %> </p>
+                    <p><a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a></p>
+                  </div>
                 </div>
-            </div>
+              </div>
+            <% end %>
         </div>
+    <a href=" <%= stories_path %> " class="btn btn-success" role="button">Full Blog List</a>
     </div>
 </section> 

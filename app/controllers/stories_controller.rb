@@ -12,6 +12,20 @@ class StoriesController < ApplicationController
     # @stories = @user.stories.paginate(page: params[:page])
   end
 
+  def edit
+    @story = Story.find(params[:id])
+  end
+
+  def update
+    @story = Story.find(params[:id])
+    if @story.update_attributes(story_params)
+      flash[:success] = "Story updated"
+      redirect_to @story
+    else
+      render 'edit'
+    end 
+  end
+
   def create
     @story = current_user.stories.build(story_params)
     if @story.save
@@ -31,7 +45,7 @@ class StoriesController < ApplicationController
   private
 
     def story_params
-      params.require(:story).permit(:title, :content, :year_written, :decade, :age, :recording?)
+      params.require(:story).permit(:title, :content, :year_written, :decade, :age, :recording?, :thumbnail, :category)
     end
 
      def correct_user

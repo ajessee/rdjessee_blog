@@ -9,7 +9,21 @@
   </aside>
 </div> -->
 
+
+
 <section id="blog">
-  <span class="title"><%= @story.title %></span>
-  <span class="content"><%= @story.content %></span>
+<!-- Flash Section -->
+<% if !flash.empty? %>
+    <%= render 'shared/flash' %>
+<% end %>
+    <div class="container-fluid">
+    <a href=" <%= edit_story_path(@story.id) %> " class="btn btn-success" role="button">Edit Blog</a>
+        <div class="row">
+            <div class="col-lg-12 wow fadeIn">
+              <h4><%= @story.title.html_safe %></h4>
+              <hr class="colored">
+              <h6><%= @story.content.html_safe %></h6>
+            </div>
+        </div>
+    </div>
 </section> 
