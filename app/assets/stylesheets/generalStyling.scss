@@ -1,5 +1,13 @@
 @import 'bootstrap';
+
+$pantoneOrange: #FF6C2F;
+$pantoneCoolGrey: #53565A;
+
 /* RDJ Specfic */
+
+.bg-coolGrey { 
+  background-color: $pantoneCoolGrey;
+}
 
 h1.rochester {
   font-family: 'Rochester', cursive;
@@ -17,8 +25,7 @@ h1.rochester {
 
 /* General Styling */
 
-$pantoneOrange: #FF6C2F;
-$pantoneCoolGrey: #53565A;
+
 
 h1 {
   font-family: MajestiBannerBold;
@@ -243,8 +250,8 @@ hr.colored {
 /* Navbar Styling */
 
 .navbar-inverse {
-  background-color: $pantoneCoolGrey;
-  border-color: $pantoneCoolGrey;
+  background-color: black;
+  border-color: black;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -257,14 +264,14 @@ hr.colored {
 .navbar-inverse .navbar-nav > li > a:hover {
   font-family: NexaBold;
   font-size: 20px;
-  color: $pantoneOrange;
+  color: red;
   font-weight: bold;
   background-color: transparent;
 }
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-  color: #fff;
-  background-color: $pantoneOrange;
+  color: black;
+  background-color: white;
 }
 
 /* forms */

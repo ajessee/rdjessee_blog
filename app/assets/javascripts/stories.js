@@ -1,24 +1,18 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$(document).ready(function(){
-   // cache the window object
-   $window = $(window);
+// $(document).ready(function(){
+//   $('.pagination > li > a').on("click", function(event){
+//     debugger;
+//     event.preventDefault();
+//     var self = $(this)
+//     $.ajax({
+//       method: "get",
+//       url: $(this).attr("href"),
+//     })
+//     .done(function(data){
+//       $('#blog_full').html(data);
+//     });
 
-   $('section[data-type="background"]').each(function(){
-     // declare the variable to affect the defined data-type
-     var $scroll = $(this);
-
-      $(window).scroll(function() {
-        // HTML5 proves useful for helping with creating JS functions!
-        // also, negative value because we're scrolling upwards
-        var yPos = -($window.scrollTop() / $scroll.data('speed'));
-
-        // background position
-        var coords = '50% '+ yPos + 'px';
-
-        // move the background
-        $scroll.css({ backgroundPosition: coords });
-      }); // end window scroll
-   });  // end section function
-}); // close out script
+//   });
+// });

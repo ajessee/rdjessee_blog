@@ -5,6 +5,10 @@ class StoriesController < ApplicationController
   def new
   end
 
+  def index
+    @stories = Story.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
+  end
+
   def show
     # debugger
     @story = Story.find(params[:id])
