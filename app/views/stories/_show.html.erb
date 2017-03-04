@@ -1,0 +1,33 @@
+<section id="blog_full">
+<!-- Flash Section -->
+<% if !flash.empty? %>
+    <%= render 'shared/flash' %>
+<% end %>
+    <div class="container-fluid text-center">
+    <div>
+    <p>
+      <%= link_to 'Most Recent', "/stories/sort?sort=alphabetical", class: "btn btn-primary", role: "button" %>
+    </p>
+
+      <button type="button" class="btn btn-primary active">Primary</button>
+
+    </div>
+    <%= will_paginate @stories %>
+    <div class="row">
+            <% @stories.each do |story| %>
+              <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                  <img src="<%= asset_path(story.thumbnail) %>" alt="<%= story.id %>">
+                  <div class="caption">
+                    <h3><%= story.title %></h3>
+                    <p> <%= story.category %> </p>
+                    <p><%= truncate(story.content, length: 125, omission: '...') %></p>
+                    <p><a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+        </div>
+    </div>
+
+</section> 

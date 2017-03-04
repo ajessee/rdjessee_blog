@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   post 'email_responses/bounce' => 'email_responses#bounce'
   post 'email_responses/complaint' => 'email_responses#complaint'
 
+  get 'stories/sort' => 'stories#sort'
+
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
