@@ -32,7 +32,6 @@ class UsersController < ApplicationController
 
   def update
     if request.xhr?
-      debugger
       @user = User.find(params[:id])
       if @user[params[:attributeToUpdate]].to_s != params[:attributeValue].downcase
         params[:attributeValue].downcase == "true" ? adminValue = 1 : adminValue = 0

@@ -1,0 +1,42 @@
+<section id="blog_new">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 wow fadeIn">
+            <%= form_for(@story) do |f| %>
+              <%= render 'shared/error_messages', object: f.object %>
+              <div>
+                <%= f.label :title %>
+                <%= f.text_field :title, class: 'form-control' %>
+              </div>
+              <div>
+                <%= f.label :content %>
+                <%= f.text_area :content, size: "30x10", class: 'form-control make-big' %>
+              </div>
+              <div>
+                <%= f.label :category %>
+                <%= f.text_field :category, class: 'form-control' %>
+              </div>
+              <div>
+                <%= f.label :thumbnail %>
+                <%= f.text_field :thumbnail, class: 'form-control' %>
+              </div>
+              <div>
+                <%= f.label :year_written %>
+                <%= f.select :year_written, (1980..2017).to_a, class: 'form-control' %>
+              </div>
+              <div>
+                <%= f.label :decade %>
+                <%= f.select :decade, ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th"], class: 'form-control' %>
+              </div>
+              <div>
+              <%= f.label :age %>
+              <%= f.select :age, (1..93).to_a, class: 'form-control' %>
+              </div>
+              <div>
+                <%= f.submit "Submit Story", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</section> 

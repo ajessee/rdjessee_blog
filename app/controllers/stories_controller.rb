@@ -3,6 +3,7 @@ class StoriesController < ApplicationController
   before_action :correct_user,   only: [:destroy, :edit]
 
   def new
+    @story = Story.new
   end
 
   def index
@@ -90,7 +91,7 @@ class StoriesController < ApplicationController
       flash[:success] = "Story created!"
       render :show
     else
-      render 'static_pages/home'
+      render 'welcome/home'
     end
   end
 
