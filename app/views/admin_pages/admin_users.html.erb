@@ -1,0 +1,39 @@
+
+<section id="admin_users">
+
+  <div class="container-fluid text-center">
+
+    <h1>Users</h1>
+    <p>You can click into fields to edit values. You will see the cell turn green if you have sucessfully updated it.</p>
+    <%= will_paginate @users%>
+    <table class="table table-bordered">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Admin?</th>
+        <th>Activated?</th>
+        <th>Date Created</th>
+        <th>Date Updated</th>
+      </tr>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td contenteditable='true' userID='<%= user.id %>' attributeToUpdate='admin'>
+          <select name="value" id="tellMe">
+            <option value="1" <%= "selected" if user.admin? %> >True</option>
+            <option value="0" <%= "selected" if !user.admin? %>>False</option>
+          </select></td>
+          <td contenteditable='true' userID='<%= user.id %>' attributeToUpdate='activated'><%= user.activated %></td>
+          <td><%= user.created_at %></td>
+          <td><%= user.updated_at %></td>
+        </tr>
+        <% end %>
+      </table>
+
+    </div>
+
+  </section>
+

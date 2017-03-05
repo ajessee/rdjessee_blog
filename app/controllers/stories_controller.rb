@@ -61,13 +61,27 @@ class StoriesController < ApplicationController
   end
 
   def update
-    @story = Story.find(params[:id])
-    if @story.update_attributes(story_params)
-      flash[:success] = "Story updated"
-      redirect_to @story
+
+    if request.xhr?
+      @story = Story.find(params[:id])
+      if @story[params[:attributeToUpdate]].to_s != params[:attributeValue]
+        if @story.update_attributes(params[:attributeToUpdate] => params[:attributeValue])
+          flash[:success] = "Story updated"
+          @value = @story[params[:attributeToUpdate]]
+          render plain: "Change"
+        end
+      end
     else
-      render 'edit'
-    end 
+      @story = Story.find(params[:id])
+      if @story.update_attributes(story_params)
+        flash[:success] = "Story updated"
+        redirect_to @story
+      else
+        render 'edit'
+      end 
+
+    end
+
   end
 
   def create

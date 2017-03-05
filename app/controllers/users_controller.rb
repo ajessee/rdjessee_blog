@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit]
   before_action :admin_user, only: :destroy
 
   def index
@@ -31,12 +31,26 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @user
+    if request.xhr?
+      debugger
+      @user = User.find(params[:id])
+      if @user[params[:attributeToUpdate]].to_s != params[:attributeValue].downcase
+        params[:attributeValue].downcase == "true" ? adminValue = 1 : adminValue = 0
+        if @user.update_attributes(params[:attributeToUpdate] => adminValue)
+          flash[:success] = "User updated"
+          @value = @user[params[:attributeToUpdate]]
+          render plain: "Change"
+        end
+      end
+      render plain: "No Change"
     else
-      render 'edit'
+      @user = User.find(params[:id])
+      if @user.update_attributes(user_params)
+        flash[:success] = "Profile updated"
+        redirect_to @user
+      else
+        render 'edit'
+      end
     end
   end
 

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   post 'email_responses/bounce' => 'email_responses#bounce'
   post 'email_responses/complaint' => 'email_responses#complaint'
 
+  get '/admin',   to: 'admin_pages#main'
+  get '/admin/users',   to: 'admin_pages#admin_users'
+  get '/admin/stories',   to: 'admin_pages#admin_stories'
+
   get 'stories/sort' => 'stories#sort'
 
   resources :users

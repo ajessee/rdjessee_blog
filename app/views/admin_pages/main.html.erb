@@ -1,0 +1,14 @@
+<section id="admin_panel">
+<% provide(:title, @user.name) %>
+<div>
+
+</div>
+<div class="row">
+  <div class="col-md-12">
+  <%= gravatar_for @user %>
+  <h4>Hi <%= @user.name %>. This is your admin panel.</h4>
+    <%= link_to 'Users', admin_users_path, class: "btn btn-default", role: "button" %>
+    <%= link_to 'Stories', admin_stories_path, class: "btn btn-default", role: "button" %>
+  </div>
+</div>
+</section>
