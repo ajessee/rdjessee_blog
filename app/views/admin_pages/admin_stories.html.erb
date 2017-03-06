@@ -8,14 +8,15 @@
     <%= will_paginate @stories %>
     <table class="table table-bordered">
       <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Year Written</th>
-        <th>Age</th>
-        <th>Decade</th>
-        <th>Category</th>
-        <th>Date Created</th>
-        <th>Date Updated</th>
+        <th class="text-center">ID</th>
+        <th class="text-center">Title</th>
+        <th class="text-center">Year Written</th>
+        <th class="text-center">Age</th>
+        <th class="text-center">Decade</th>
+        <th class="text-center">Category</th>
+        <th class="text-center">Delete</th>
+        <th class="text-center">Date Created</th>
+        <th class="text-center">Date Updated</th>
       </tr>
       <% @stories.each do |story| %>
       <tr>
@@ -25,8 +26,10 @@
         <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='age'><%= story.age %></td>
         <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='decade'><%= story.decade %></td>
         <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='category'><%= story.category %></td>
-        <td><%= story.created_at %></td>
-        <td><%= story.updated_at %></td>
+        <td><%= link_to "Delete", story, method: :delete, class: "btn btn-danger",
+                                  data: { confirm: "This story took a while to write. Are you sure?" } %></td>
+        <td><%= time_ago_in_words(story.created_at) %> ago</td>
+        <td><%= time_ago_in_words(story.updated_at) %> ago</td>
       </tr>
       <% end %>
     </table>

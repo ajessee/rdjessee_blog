@@ -41,7 +41,6 @@ class UsersController < ApplicationController
           render plain: "Change"
         end
       end
-      render plain: "No Change"
     else
       @user = User.find(params[:id])
       if @user.update_attributes(user_params)
@@ -56,7 +55,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to admin_users_path
   end
 
   private
