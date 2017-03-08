@@ -6,11 +6,11 @@
               <%= render 'shared/error_messages', object: f.object %>
               <div>
                 <%= f.label :title %>
-                <%= f.text_field :title, class: 'form-control' %>
+                <%= f.trix_editor :title, class: 'form-control' %>
               </div>
               <div>
                 <%= f.label :content %>
-                <%= f.text_area :content, size: "30x10", class: 'form-control make-big' %>
+                <%= f.trix_editor :content, size: "30x10", class: 'form-control make-big' %>
               </div>
               <div>
                 <%= f.label :year_written %>
