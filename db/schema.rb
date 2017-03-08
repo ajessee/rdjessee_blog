@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225221613) do
+ActiveRecord::Schema.define(version: 20170308002802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "email_responses", force: :cascade do |t|
     t.string   "email"
@@ -24,22 +33,36 @@ ActiveRecord::Schema.define(version: 20170225221613) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.string   "url"
+    t.text     "caption"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
+
   create_table "stories", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "year_written"
     t.integer  "decade"
     t.integer  "age"
-    t.boolean  "recording?",   default: false
     t.string   "thumbnail"
-    t.string   "category"
   end
 
   add_index "stories", ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at", using: :btree
   add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -58,5 +81,7 @@ ActiveRecord::Schema.define(version: 20170225221613) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "comments", "users"
+  add_foreign_key "pictures", "users"
   add_foreign_key "stories", "users"
 end

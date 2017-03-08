@@ -7,51 +7,36 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @stories = Story.all.order(title: :asc).paginate(:page => params[:page], :per_page => 3)
+    @stories = Story.three_random_stories(params[:page])
     @active_button = "alphabetical"
-    age_array = []
-    year_array = []
-    decade_array = []
-    Story.find_each do |story|
-      age_array.push(story.age)
-      year_array.push(story.year_written)
-      decade_array.push(story.decade)
-    end
-    @ages = age_array.sort.uniq!
-    @years = year_array.sort.uniq!
-    @decades = decade_array.sort.uniq!
+    Story.get_metadata
+    @ages = Story.all_ages
+    @years = Story.all_years
+    @decades = Story.all_decades
   end
 
   def sort
-    age_array = []
-    year_array = []
-    decade_array = []
-    Story.find_each do |story|
-      age_array.push(story.age)
-      year_array.push(story.year_written)
-      decade_array.push(story.decade)
-    end
-    @ages = age_array.sort.uniq!
-    @years = year_array.sort.uniq!
-    @decades = decade_array.sort.uniq!
+    Story.get_metadata
+    @ages = Story.all_ages
+    @years = Story.all_years
+    @decades = Story.all_decades
     case params[:sort]
     when "year_written"
       @active_button = "year"
-      @stories = Story.where(year_written: params[:year].to_i).paginate(:page => params[:page], :per_page => 3)
+      @stories = Story.order_by_year(params[:year], params[:page])
       render 'index'
     when "decade"
       @active_button = "decade"
-      @stories = Story.where(decade: params[:decade].to_i).paginate(:page => params[:page], :per_page => 3)
+      @stories = Story.order_by_decade(params[:decade], params[:page])
       render 'index'
     when "age"
       @active_button = "age"
-      @stories = Story.where(age: params[:age].to_i).paginate(:page => params[:page], :per_page => 3)
+      @stories = Story.order_by_age(params[:age] , params[:page])
       render 'index'
     end
   end
 
   def show
-    # debugger
     @story = Story.find(params[:id])
     # @user = User.find(params[:id])
     # @stories = @user.stories.paginate(page: params[:page])
@@ -104,7 +89,7 @@ class StoriesController < ApplicationController
   private
 
     def story_params
-      params.require(:story).permit(:title, :content, :year_written, :decade, :age, :recording?, :thumbnail, :category)
+      params.require(:story).permit(:title, :content, :year_written, :decade, :age, :thumbnail)
     end
 
      def correct_user

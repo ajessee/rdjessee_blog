@@ -2,6 +2,7 @@
 
 $pantoneOrange: #FF6C2F;
 $pantoneCoolGrey: #53565A;
+$brightYellow: #FFCE00;
 
 /* RDJ Specfic */
 
@@ -25,6 +26,14 @@ h1.rochester {
 
 .bottom_padding_20px {
   padding-bottom: 20px;
+}
+
+.alert-danger, .alert-success {
+    background-color: $brightYellow;
+    border-color: black;
+    color: black;
+    font-size: 2em;
+    text-align: center;
 }
 
 /* General Styling */
@@ -355,10 +364,3 @@ textarea.form-control {
   }
 }
 
-.alert-danger, .alert-success {
-    background-color: $pantoneOrange;
-    border-color: black;
-    color: black;
-    font-size: 2em;
-    text-align: center;
-}

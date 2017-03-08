@@ -13,7 +13,6 @@
         <th class="text-center">Year Written</th>
         <th class="text-center">Age</th>
         <th class="text-center">Decade</th>
-        <th class="text-center">Category</th>
         <th class="text-center">Delete</th>
         <th class="text-center">Date Created</th>
         <th class="text-center">Date Updated</th>
@@ -25,7 +24,6 @@
         <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='year_written'><%= story.year_written %></td>
         <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='age'><%= story.age %></td>
         <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='decade'><%= story.decade %></td>
-        <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='category'><%= story.category %></td>
         <td><%= link_to "Delete", story, method: :delete, class: "btn btn-danger",
                                   data: { confirm: "This story took a while to write. Are you sure?" } %></td>
         <td><%= time_ago_in_words(story.created_at) %> ago</td>

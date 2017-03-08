@@ -13,14 +13,6 @@
                 <%= f.text_area :content, size: "30x10", class: 'form-control make-big' %>
               </div>
               <div>
-                <%= f.label :category %>
-                <%= f.text_field :category, class: 'form-control' %>
-              </div>
-              <div>
-                <%= f.label :thumbnail %>
-                <%= f.text_field :thumbnail, class: 'form-control' %>
-              </div>
-              <div>
                 <%= f.label :year_written %>
                 <%= f.select :year_written, (1980..2017).to_a, class: 'form-control' %>
               </div>
@@ -31,6 +23,10 @@
               <div>
               <%= f.label :age %>
               <%= f.select :age, (1..93).to_a, class: 'form-control' %>
+              </div>
+              <div class="picture">
+              <span>Upload thumbnail</span>
+                <%= f.file_field :thumbnail %>
               </div>
               <div>
                 <%= f.submit "Submit Story", class: "btn btn-primary" %>

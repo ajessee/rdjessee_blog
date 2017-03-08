@@ -2,6 +2,17 @@
 /* Desktop */
 @media (min-width: 768px) {
 
+/* RDJ Specific */
+
+  .navbar-inverse .navbar-brand img {
+  margin-top: -14px;
+      height: 57px;
+  }
+
+  .navbar-inverse .navbar-brand {
+    margin-left: -120px;
+  }
+
   $pantoneOrange: #FF6C2F;
   $pantoneCoolGrey: #53565A;
 
@@ -23,10 +34,7 @@
     display: none;
   }
 
-  .navbar-inverse .navbar-brand img {
-    margin-top: -24px;
-    height: 67px;
-  }
+
 
   #headerLogo {
     width: 100%;
