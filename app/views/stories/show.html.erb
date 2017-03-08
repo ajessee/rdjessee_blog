@@ -16,7 +16,9 @@
           <h4><%= @story.title.html_safe %></h4>
         </div>
         <hr class="colored">
-        <h6><%= @story.content.html_safe %></h6>
+        <h6><%= @story.content.html_safe %>
+          <img src=<%= @thumbnail_S3_url %>>
+        </h6>
       </div>
     </div>
   </div>
