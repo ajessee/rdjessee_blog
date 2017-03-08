@@ -75,7 +75,7 @@ class StoriesController < ApplicationController
     if @story.save
       flash[:success] = "Story created!"
       if story_params.has_key?(:thumbnail)
-        @thumbnail_S3_url = "https://s3.amazonaws.com/andre-pictures/uploads/story/thumbnail/" + @story.id + "/" + story_params[:thumbnail].original_filename
+        # @thumbnail_S3_url = "https://s3.amazonaws.com/andre-pictures/uploads/story/thumbnail/" + @story.id + "/" + story_params[:thumbnail].original_filename
       end
       render :show
     else
