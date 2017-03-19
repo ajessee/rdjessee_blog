@@ -9,10 +9,10 @@
 
     <div class="btn-group bottom_padding_20px">
 
-      <%= link_to 'Alphabetical', stories_path, class: "#{'active' if @active_button == 'alphabetical' } btn btn-default", role: "button" %>
+      <%= link_to 'Alphabetical', stories_path, id: "alpha_button", class: "#{'active' if @active_button == 'alphabetical' } btn btn-default", role: "button" %>
 
       <div class="btn-group">
-        <button type="button" class="<%= 'active' if @active_button == 'year' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" id="year_button" class="<%= 'active' if @active_button == 'year' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Year Written <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="btn-group">
-        <button type="button" class="<%= 'active' if @active_button == 'age' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" id="age_button" class="<%= 'active' if @active_button == 'age' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Age <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
@@ -34,7 +34,7 @@
       </div>
 
       <div class="btn-group">
-        <button type="button" class="<%= 'active' if @active_button == 'decade' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" id="decade_button" class="<%= 'active' if @active_button == 'decade' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Decade <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
@@ -44,39 +44,16 @@
         </ul>
       </div>
 
+      <%= link_to 'Tag Cloud', tags_path, id: "tagAjax", class: "#{'active' if @active_button == 'tag' } btn btn-default", role: "button" %>
+
     </div>
 
-    <% if @active_button != 'alphabetical' %>
-    <div class="row">
-      <div class="col-sm-6 col-md-6 col-md-offset-3">
-    <div class="alert alert-info" role="alert">
-      <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that <%= @active_button %> </h6>
-    </div>
-    </div>
-    </div>
-    <% end  %>
+
     
-    <div>
-      <%= will_paginate @stories %>
-    </div>
+    <%= render 'show_stories' %>
 
-    <div class="row">
-      <% @stories.each do |story| %>
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <img src="<%= asset_path(story.thumbnail) %>" alt="<%= story.id %>">
-          <div class="caption">
-            <h3><%= story.title.html_safe %></h3>
-            <p> Age: <%= story.age %> </p>
-            <p> Year Written: <%= story.year_written %> </p>
-            <p> Decade: <%= story.decade %> </p>
-            <p><%= truncate(story.content.html_safe, length: 125, omission: '...') %></p>
-            <p><a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a></p>
-          </div>
-        </div>
-      </div>
-      <% end %>
-    </div>
+
+
   </div>
 
 </section> 

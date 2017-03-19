@@ -17,11 +17,15 @@
             <% @stories.each do |story| %>
               <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
+                <% if Rails.env.development? %>
+                  <img src="<%= story.thumbnail.current_path %>" alt="<%= story.id %>">
+                <% end %>
+                <% if Rails.env.production? %>
                   <img src="<%= asset_path(story.thumbnail) %>" alt="<%= story.id %>">
+                <% end %>
                   <div class="caption">
-                    <h3><%= story.title %></h3>
-                    <p> <%= story.category %> </p>
-                    <p><%= truncate(story.content, length: 125, omission: '...') %></p>
+                    <h3><%= story.title.html_safe %></h3>
+                    <p><%= truncate(story.content.html_safe, length: 125, omission: '...') %></p>
                     <p><a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a></p>
                   </div>
                 </div>

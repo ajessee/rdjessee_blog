@@ -14,17 +14,27 @@
               <%= f.label :year_written %>
               <%= f.text_field :year_written, class: 'form-control' %>
 
-              <%= f.label :category %>
-              <%= f.text_field :category, class: 'form-control' %>
-
               <%= f.label :decade %>
               <%= f.text_field :decade, class: 'form-control' %>
 
               <%= f.label :age %>
               <%= f.text_field :age, class: 'form-control' %>
 
-              <%= f.label :thumbnail %>
-              <%= f.text_field :thumbnail, class: 'form-control' %>
+              <%= f.label :all_tags %>
+              <%= f.text_field :all_tags, class: 'form-control' %>
+
+              <% if @story.thumbnail %>
+              <div>
+                <h5>If you want to change this thumbnail:</h5>
+                <%= image_tag(@story.thumbnail) %>
+                <h5>Upload a new one below</h5>
+                
+              </div>
+              <% end %>
+
+              <div class="picture">
+                <%= f.file_field :thumbnail %>
+              </div>
 
               <%= f.submit "Update Story", class: "btn btn-primary" %>
             <% end %>
