@@ -17,13 +17,12 @@ class PicturesController < ApplicationController
       end
     end
 
-
     def index
-
+      @pictures = Picture.all.order(created_at: :asc).paginate(:page => params[:page], :per_page => 6)
     end
 
     def show
-      @story = Story.find(params[:id])
+      @picture = Picture.find(params[:id])
     end
 
     def edit
@@ -44,7 +43,7 @@ class PicturesController < ApplicationController
     private
 
     def picture_params
-      params.require(:picture).permit(:caption, :url)
+      params.require(:picture).permit(:caption, :url, :user_id)
     end
 
     def correct_user

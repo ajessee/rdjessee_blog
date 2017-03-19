@@ -10,9 +10,24 @@
 
     <div class="row">
       <div class="col-lg-12 wow fadeIn">
-        <div class="text-center">
+        <div>
           <%= image_tag(@picture.url, alt: "Logo", class: "img-responsive center-picture") %>
       </div>
+      <% if !@picture.comments.empty? %>
+      <% @picture.comments.each do |comment| %>
+      <br>
+      <div class="col-lg-8 col-lg-offset-2 wow fadeIn">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= current_user %> says:</h3>
+        </div>
+        <div class="panel-body">
+          <%= comment.content %>
+        </div>
+      </div>
+      </div>
+      <% end %>
+      <% end %>
     </div>
   </div>
 </section> 

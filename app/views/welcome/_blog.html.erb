@@ -2,16 +2,17 @@
   <div class="container text-center wow fadeIn">
     <h2>Stories</h2>
     <hr class="colored">
-    <p>Here is a random sample of three stories Don wrote</p>
+    <p>Here are a few stories Don wrote</p>
 
     <% @stories.each do |story| %>
+    <a href="<%= story_path(story.id) %>" class="blog_links">
     <div class="row panel panel-default">
     <div class="panel-body">
       <div class="col-md-5">
         <div >
           <% if Rails.env.development? %>
             <% if story.thumbnail.path != nil %>
-            <img src="<%= story.thumbnail_identifier %>" alt="<%= story.id %>">
+            <%= image_tag(story.thumbnail_identifier, alt: "Logo", class: "img-responsive center-picture") %>
             <% else %>
             <i class="fa fa-picture-o fa-5x top-margin-15-percent"></i>
             <% end %>
@@ -28,10 +29,7 @@
       <div class="col-md-7">
         <div class="caption">
           <h3><%= story.title.html_safe %></h3>
-          <p> <%= truncate(story.content.html_safe, length: 125, omission: '...') %> </p>
-        </div>
-        <div>
-          <p><a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a></p>
+          <p> <%= truncate(story.content.html_safe, length: 300, omission: '...') %> </p>
         </div>
       </div>
       </div>
@@ -44,6 +42,7 @@
       <% end %>
       
     </div>
+    </a>
     <% end %>
 
     <a href=" <%= stories_path %> " class="btn btn-success" role="button">Full Blog List</a>

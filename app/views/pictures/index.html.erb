@@ -1,12 +1,14 @@
-<section id="show_pictures">
+<section id="pictures_full">
+
+  <!-- Flash Section -->
+  <% if !flash.empty? %>
+  <%= render 'shared/flash' %>
+  <% end %>
+
   <div class="container-fluid text-center">
-    <!-- Flash Section -->
-    <% if !flash.empty? %>
-    <%= render 'shared/flash2' %>
-    <% end %>
-    <h2>Pictures</h2>
-    <hr class="colored">
-    <p>Here is a random sample of pictures</p>
+    <div>
+      <%= will_paginate @pictures %>
+    </div>
 
     <div class="row">
     <% @pictures.each do |picture| %>
@@ -22,4 +24,7 @@
     </a>
       <% end %>
   </div>
+
+  </div>
+
 </section> 
