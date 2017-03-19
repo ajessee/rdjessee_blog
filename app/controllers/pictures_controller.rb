@@ -3,6 +3,7 @@ class PicturesController < ApplicationController
     before_action :correct_user,   only: [:destroy, :edit]
 
     def new
+      debugger
       @picture = current_user.pictures.new
     end
 

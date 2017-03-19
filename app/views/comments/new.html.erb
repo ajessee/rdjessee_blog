@@ -1,0 +1,27 @@
+<section id="comment_new">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 wow fadeIn">
+            <%= form_for(@comment) do |f| %>
+              <%= render 'shared/error_messages', object: f.object %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <% if @commentable.class.to_s == "Picture" %>
+                <%= f.hidden_field :picture_id, value: @commentable.id %>
+                <% elsif @commentable.class.to_s == "Story" %>
+                <%= f.hidden_field :story_id, value: @commentable.id %>
+                <% elsif @commentable.class.to_s == "Comment" %>
+                <%= f.hidden_field :comment_id, value: @commentable.id %>
+                <% end %>
+              <div>
+                <%= f.label :content %>
+                <%= f.trix_editor :content, class: 'form-control' %>
+              </div>
+              <br>
+              <div>
+                <%= f.submit "Submit Comment", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</section> 

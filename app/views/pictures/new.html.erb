@@ -4,6 +4,7 @@
             <div class="col-lg-12 wow fadeIn">
             <%= form_for(@picture) do |f| %>
               <%= render 'shared/error_messages', object: f.object %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
               <div>
                 <%= f.label :caption %>
                 <%= f.trix_editor :caption, class: 'form-control' %>
@@ -11,7 +12,6 @@
               <div class="picture">
                 <%= f.label "Upload picture" %>
                 <%= f.file_field :url %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
               </div>
               <br>
               <div>

@@ -12,22 +12,33 @@
       <div class="col-lg-12 wow fadeIn">
         <div>
           <%= image_tag(@picture.url, alt: "Logo", class: "img-responsive center-picture") %>
-      </div>
-      <% if !@picture.comments.empty? %>
-      <% @picture.comments.each do |comment| %>
-      <br>
-      <div class="col-lg-8 col-lg-offset-2 wow fadeIn">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= current_user %> says:</h3>
         </div>
-        <div class="panel-body">
-          <%= comment.content %>
+        <% if logged_in? %>
+        <div class="text-center" >
+          <br>
+          <%= form_for [@story, Comment.new] do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :picture_id, value: @picture.id %>
+          <%= f.text_area :content, placeholder: "Add a comment" %><br/>
+          <%= f.submit "Add Comment" %>
+          <% end %>
         </div>
+        <% end %>
+        <% if !@picture.comments.empty? %>
+        <% @picture.comments.each do |comment| %>
+        <br>
+        <div class="col-lg-8 col-lg-offset-2 wow fadeIn">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+            <h3 class="panel-title"><%= comment.author.name %> says:</h3>
+            </div>
+            <div class="panel-body">
+              <%= comment.content %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
       </div>
-      </div>
-      <% end %>
-      <% end %>
     </div>
-  </div>
-</section> 
+  </section> 
