@@ -2,26 +2,33 @@
   <div class="container text-center wow fadeIn">
     <h2>Stories</h2>
     <hr class="colored">
-    <p>My Grandfather wrote stories. Here are three random ones for you to read.</p>
+    <p>Here is a random sample of three stories Don wrote</p>
 
     <% @stories.each do |story| %>
     <div class="row panel panel-default">
     <div class="panel-body">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <div >
           <% if Rails.env.development? %>
-          <img src="<%= story.thumbnail_identifier %>" alt="<%= story.id %>">
+            <% if story.thumbnail.path != nil %>
+            <img src="<%= story.thumbnail_identifier %>" alt="<%= story.id %>">
+            <% else %>
+            <i class="fa fa-picture-o fa-5x top-margin-15-percent"></i>
+            <% end %>
           <% end %>
           <% if Rails.env.production? %>
-          <img src="<%= asset_path(story.thumbnail) %>" alt="<%= story.id %>">
+            <% if story.thumbnail %>
+            <img src="<%= asset_path(story.thumbnail) %>" alt="<%= story.id %>">
+            <% else %>
+            <i class="fa fa-user-circle fa-2x"></i>
+            <% end %>
           <% end %>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-7">
         <div class="caption">
           <h3><%= story.title.html_safe %></h3>
           <p> <%= truncate(story.content.html_safe, length: 125, omission: '...') %> </p>
-          <p> Year Written: <%= story.year_written %>, Don's age: <%= story.age %>, Decade: <%= story.decade %>  </p>
         </div>
         <div>
           <p><a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a></p>

@@ -25,11 +25,29 @@ Rails.application.routes.draw do
 
   get 'stories/sort' => 'stories#sort'
 
-  resources :users
+  resources :users do
+    resources :stories
+    resources :comments
+    resources :pictures
+  end
+
+  resources :stories do
+    resources :comments
+    resources :pictures
+  end
+
+  resources :comments do
+    resources :comments
+  end
+
+  resources :pictures do
+    resources :comments
+  end
+  
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :stories
   resources :tags
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

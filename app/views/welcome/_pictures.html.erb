@@ -1,0 +1,20 @@
+<section id="show_pictures">
+  <div class="container-fluid">
+    <!-- Flash Section -->
+    <% if !flash.empty? %>
+    <%= render 'shared/flash2' %>
+    <% end %>
+    <div class="text-center">
+
+    </div>
+
+    <div class="row">
+    <% @pictures.each do |picture| %>
+      <div class="col-lg-4 wow fadeIn">
+        <div class="text-center">
+          <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
+      </div>
+    </div>
+      <% end %>
+  </div>
+</section> 

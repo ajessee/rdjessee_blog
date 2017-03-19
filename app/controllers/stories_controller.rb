@@ -68,7 +68,7 @@ def show
       if @story.update_attributes(story_params)
         @story.strip_divs
         @story.save
-        flash[:success] = "Story updated"
+        flash.now[:success] = "Story updated"
         redirect_to @story
       else
         render 'edit'
@@ -80,11 +80,9 @@ def show
 
   def create
     @story = current_user.stories.build(story_params)
+    @story.strip_divs
     if @story.save
-      flash[:success] = "Story created!"
-      if story_params.has_key?(:thumbnail)
-        # @thumbnail_S3_url = "https://s3.amazonaws.com/andre-pictures/uploads/story/thumbnail/" + @story.id + "/" + story_params[:thumbnail].original_filename
-      end
+      flash.now[:success] = "Story created!"
       render :show
     else
       render 'welcome/home'
@@ -93,7 +91,7 @@ def show
 
   def destroy
     @story.destroy
-    flash[:success] = "Story deleted"
+    flash.now[:success] = "Story deleted"
     redirect_to request.referrer || root_url
   end
 

@@ -11,19 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318205254) do
+ActiveRecord::Schema.define(version: 20170319172923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
   end
 
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
 
   create_table "email_responses", force: :cascade do |t|
     t.string   "email"
@@ -36,12 +37,13 @@ ActiveRecord::Schema.define(version: 20170318205254) do
   create_table "pictures", force: :cascade do |t|
     t.string   "url"
     t.text     "caption"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
   end
 
-  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
+  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
 
   create_table "stories", force: :cascade do |t|
     t.string   "title"
@@ -91,8 +93,6 @@ ActiveRecord::Schema.define(version: 20170318205254) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  add_foreign_key "comments", "users"
-  add_foreign_key "pictures", "users"
   add_foreign_key "stories", "users"
   add_foreign_key "taggings", "stories"
   add_foreign_key "taggings", "tags"
