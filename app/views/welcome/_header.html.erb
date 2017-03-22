@@ -1,26 +1,17 @@
-<!-- <header id="page-top" class="video">
-    <div class="overlay"></div>
-    <div class="intro-content">
-        <%= image_tag("OrangeHorizontal.svg", alt: "Head Up Logo", class: "img-responsive img-centered", id: "headerLogo") %>
-    </div>
-    <div class="scroll-down row">
-        <div class="col-md-12" >
-            <a class="btn page-scroll vert-center padding-arrow" href="#work_with_me"><i class="fa fa-angle-double-down fa-5x"></i></a>
-            <% if logged_in? %>
-            <a class="btn float-right padding-signin" href="/logout" data-method="delete"><i class="fa fa-sign-out fa-1x"></i></a>
-            <% else %>
-            <a class="btn float-right padding-signin" href="/login"><i class="fa fa-sign-in fa-1x"></i></a>
-            <% end %>
-        </div>
-    </div>
-</header> -->
-
 <header id="page-top" class="mobile-full" style="background-color: black">
-    <div class="intro-content">
-    <%= image_tag("rdjesseeLogo.png", alt: "Logo", class: "img-responsive center-block") %>
-    
-    </div>
-    <div class="scroll-down">
-        <a class="btn page-scroll" href="#intro"><i class="fa fa-book fa-2x"></i></a>
+    <div class="container vert-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="MajestiBannerBook" id="typedIn1"></h6>
+                <br>
+                <h6 class="MajestiBannerBook" id="typedIn2"></h6>
+            </div>
+            <div>
+            <%= image_tag("rdjesseeLogo.png", alt: "Logo", class: "img-responsive float-right", id: "rdjesseeSignature") %>
+                
+            </div>
+            <div class="scroll-down" id="scrollDownBook">
+                <a class="btn page-scroll" href="#intro"><i class="fa fa-book fa-2x"></i></a>
+        </div>
     </div>
 </header>

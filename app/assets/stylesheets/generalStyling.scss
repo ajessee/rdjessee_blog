@@ -4,20 +4,117 @@ $pantoneOrange: #FF6C2F;
 $pantoneCoolGrey: #53565A;
 $brightYellow: #FFCE00;
 
-/* RDJ Specfic */
+/* Landing Page */
 
-.bg-coolGrey { 
-  background-color: $pantoneCoolGrey;
+#rdjesseeSignature {
+  display: none;
 }
 
-h1.rochester {
-  font-family: 'Rochester', cursive;
-  font-size: 7em;
+#scrollDownBook {
+  display: none;
+}
+
+h6.MajestiBannerBook {
+  font-family: MajestiBannerBook;
+  font-size: 3.2em;
   letter-spacing: -0.7px;
   margin-bottom: 5px;
   text-transform: none;
-  text-align: center;
+  text-align: left;
+  color: white;
 }
+
+.vert-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
+
+/* Intro Page */
+
+h4 {
+  font-family: MajestiBannerMedium;
+  font-size: 6em;
+  margin-bottom: 20px;
+  text-transform: none;
+}
+
+p.droid-serif {
+    font-family: 'Droid Serif', serif;
+    font-size: 1.7em;
+    letter-spacing: 0px;
+    margin-bottom: 5px;
+    text-transform: none;
+    text-align: left;
+}
+
+hr#pageLine1 {
+  border-top: 3px solid #eeeeee;
+  max-width: 65%;
+  margin: 30px auto;
+  border-color: lightgrey;
+}
+
+#donSmiles {
+  border: 8px solid black;
+}
+
+/* Parallax 1 */
+
+hr#pageLine2 {
+  border-top: 3px solid #eeeeee;
+  max-width: 30%;
+  margin: 30px auto;
+  border-color: white;
+  text-shadow: 5px;
+}
+
+/* Blog */
+
+.box-shadow {
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.border-1px {
+  border: 1px solid black;
+}
+
+.bg-lightGrey { 
+  background-color: lightgrey;
+}
+
+.black {
+  color: black;
+}
+
+.panel-footer {
+  background-color: darkgrey;
+}
+
+hr#pageLine3 {
+  border-top: 3px solid #eeeeee;
+  max-width: 50%;
+  margin: 30px auto;
+  border-color: lightgrey;
+}
+
+#storiesButton {
+  font-family: MajestiBannerMedium;
+  font-size: 2em;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-transform: none;
+}
+
+.alert-info {
+    font-family: MajestiBannerMedium;
+  font-size: 1em;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+}
+
 
 .make-big {
   height: 300px;
@@ -50,8 +147,6 @@ h1.rochester {
 
 /* General Styling */
 
-
-
 h1 {
   font-family: MajestiBannerBold;
   font-size: 4em;
@@ -78,13 +173,7 @@ h3 {
   text-transform: none;
 }
 
-h4 {
-  font-family: MajestiBannerMedium;
-  font-size: 3em;
-  letter-spacing: 1px;
-  margin-bottom: 25px;
-  text-transform: none;
-}
+
 
 h5 {
   font-family: NexaLight;
@@ -219,6 +308,10 @@ hr.colored {
 
 .float-right {
   float: right;
+}
+
+.float-left {
+  float: left;
 }
 
 .white_text {
@@ -356,9 +449,6 @@ textarea.form-control {
   border-color: $pantoneOrange;
 }
 
-.bg-coolGrey { 
-  background-color: $pantoneCoolGrey;
-}
 
 #error_explanation {
   color: $pantoneCoolGrey;

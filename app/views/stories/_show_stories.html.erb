@@ -20,7 +20,7 @@
 
   <% @stories.each do |story| %>
   <a href="<%= story_path(story.id) %>" class="blog_links">
-  <div class="row panel panel-default">
+  <div class="row panel panel-default box-shadow bg-lightGrey">
     <div class="panel-body">
       <div class="col-md-4">
         <div >
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="caption">
+        <div class="caption black">
           <h3><%= story.title.html_safe %></h3>
           <p> <%= truncate(story.content.html_safe, length: 500, omission: '...') %> </p>
         </div>

@@ -1,12 +1,15 @@
 <section id="blog">
   <div class="container text-center wow fadeIn">
-    <h2>Stories</h2>
-    <hr class="colored">
-    <p>Here are a few stories Don wrote</p>
+    <h4>Stories</h4>
+    <hr class="colored" id="pageLine3">
+    <h6>Here are 3 random stories selected for you.</h6>
+    <div>
+    <a href=" <%= stories_path %> " class="btn btn-default btn-lg" id="storiesButton" role="button">Or check out all the stories</a>
+    </div>
 
     <% @stories.each do |story| %>
     <a href="<%= story_path(story.id) %>" class="blog_links">
-    <div class="row panel panel-default">
+    <div class="row panel panel-default box-shadow bg-lightGrey">
     <div class="panel-body">
       <div class="col-md-5">
         <div >
@@ -27,9 +30,9 @@
         </div>
       </div>
       <div class="col-md-7">
-        <div class="caption">
+        <div class="caption black">
           <h3><%= story.title.html_safe %></h3>
-          <p> <%= truncate(story.content.html_safe, length: 300, omission: '...') %> </p>
+          <p class="droid-serif"> <%= truncate(story.content.html_safe, length: 300, omission: '...') %> </p>
         </div>
       </div>
       </div>
@@ -44,7 +47,5 @@
     </div>
     </a>
     <% end %>
-
-    <a href=" <%= stories_path %> " class="btn btn-success" role="button">Full Blog List</a>
   </div>
 </section> 

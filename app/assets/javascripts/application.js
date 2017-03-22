@@ -25,6 +25,7 @@
 //= require contact_me.js
 //= require jqBootstrapValidation.js
 //= require vitality.js
+//= require typed.js
 //= require trix
 //= require jquery_ujs
 //= require_tree .
