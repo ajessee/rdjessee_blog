@@ -1,5 +1,33 @@
 Rails.application.routes.draw do
 
+  get 'recordings/new'
+
+  get 'recordings/index'
+
+  get 'recordings/create'
+
+  get 'recordings/show'
+
+  get 'recordings/edit'
+
+  get 'recordings/destroy'
+
+  get 'recordings/update'
+
+  get 'videos/new'
+
+  get 'videos/index'
+
+  get 'videos/create'
+
+  get 'videos/show'
+
+  get 'videos/edit'
+
+  get 'videos/destroy'
+
+  get 'videos/update'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'

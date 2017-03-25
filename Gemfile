@@ -16,6 +16,7 @@ gem 'aws-sdk-rails'
 gem 'carrierwave'           
 gem 'mini_magick'          
 gem 'fog'  
+gem 'paperclip', '~> 5.0.0'
 gem 'font-awesome-sass'
 
 group :development do
