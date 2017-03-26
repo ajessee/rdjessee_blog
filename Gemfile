@@ -21,6 +21,7 @@ gem 'mini_magick'
 gem 'fog'  
 gem 'font-awesome-sass'
 gem 'simple_form'
+gem "paperclip", "~> 5.0.0"
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
