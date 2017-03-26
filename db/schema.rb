@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325182836) do
+ActiveRecord::Schema.define(version: 20170325193052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,13 +53,12 @@ ActiveRecord::Schema.define(version: 20170325182836) do
   create_table "recordings", force: :cascade do |t|
     t.text     "caption"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "asset_file_name"
-    t.string   "asset_content_type"
-    t.integer  "asset_file_size"
-    t.datetime "asset_updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "year"
+    t.string   "recording"
+    t.integer  "recordable_id"
+    t.string   "recordable_type"
   end
 
   add_index "recordings", ["user_id"], name: "index_recordings_on_user_id", using: :btree
@@ -116,14 +115,13 @@ ActiveRecord::Schema.define(version: 20170325182836) do
     t.text     "caption"
     t.string   "youtube_url"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "asset_file_name"
-    t.string   "asset_content_type"
-    t.integer  "asset_file_size"
-    t.datetime "asset_updated_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.boolean  "youtube"
     t.integer  "year"
+    t.string   "video"
+    t.integer  "videoable_id"
+    t.string   "videoable_type"
   end
 
   add_index "videos", ["user_id"], name: "index_videos_on_user_id", using: :btree

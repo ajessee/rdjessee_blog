@@ -4,12 +4,17 @@ class Story < ActiveRecord::Base
   has_many :tags, through: :taggings
   has_many :pictures, as: :imageable
   has_many :comments, as: :commentable
+  has_many :recordings, as: :recordable
+  has_many :videos, as: :videoable
   validates :user_id, presence: true
   validates :title, presence: true
   validates :content, presence: true
   validates :year_written, numericality: { only_integer: true }
   validates :decade, numericality: { only_integer: true }
   validates :age, numericality: { only_integer: true }
+  accepts_nested_attributes_for :videos, :allow_destroy => true
+  accepts_nested_attributes_for :recordings, :allow_destroy => true
+  accepts_nested_attributes_for :pictures, :allow_destroy => true
   mount_uploader :thumbnail, PictureUploader
 
   @@age_array = []
@@ -57,8 +62,12 @@ class Story < ActiveRecord::Base
   end
 
   def strip_divs
-    self.content = self.content[5..-7]
-    self.title = self.title[5..-7]
+    if self.content[0..4] == "<div>" && self.content[-6..-1] == "</div>"
+      self.content = self.content[5..-7]
+    end
+    if self.title[0..4] == "<div>" && self.title[-6..-1] == "</div>"
+      self.title = self.title[5..-7]
+    end
   end
 
   def all_tags=(names)

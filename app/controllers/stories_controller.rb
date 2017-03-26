@@ -4,6 +4,8 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
+    @recording = @story.recordings.build
+    @video = @story.videos.build
   end
 
   def index
@@ -38,12 +40,10 @@ class StoriesController < ApplicationController
       @stories = Story.order_by_tag(params[:tag] , params[:page])
       render 'index'
     end
-end
+  end
 
-def show
-  @story = Story.find(params[:id])
-    # @user = User.find(params[:id])
-    # @stories = @user.stories.paginate(page: params[:page])
+  def show
+    @story = Story.find(params[:id])
   end
 
   def edit
@@ -51,7 +51,6 @@ def show
   end
 
   def update
-
     if request.xhr?
       @story = Story.find(params[:id])
       if @story[params[:attributeToUpdate]].to_s != params[:attributeValue]
@@ -73,7 +72,6 @@ def show
       else
         render 'edit'
       end 
-
     end
 
   end
@@ -99,6 +97,14 @@ def show
 
   def story_params
     params.require(:story).permit(:title, :content, :year_written, :decade, :age, :thumbnail, :all_tags)
+  end
+
+  def video_params
+    params.require(:story).permit(videos_attributes: ["video", "@original_filename", "@content_type", "@headers", "_destroy", "id"])
+  end
+
+  def recording_params
+    params.require(:story).permit(recordings_attributes: ["recording", "@original_filename", "@content_type", "@headers", "_destroy", "id"])
   end
 
   def correct_user

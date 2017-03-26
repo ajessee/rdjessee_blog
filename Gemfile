@@ -14,10 +14,13 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'aws-sdk-rails'
 gem 'carrierwave'           
+gem 'carrierwave-aws'
+gem 'carrierwave-video'
+gem 'carrierwave-audio'
 gem 'mini_magick'          
 gem 'fog'  
-gem 'paperclip', '~> 5.0.0'
 gem 'font-awesome-sass'
+gem 'simple_form'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

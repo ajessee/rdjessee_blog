@@ -34,7 +34,7 @@ h6.MajestiBannerBook {
 /* Intro Page */
 
 h4 {
-  font-family: MajestiBannerMedium;
+  font-family: MajestiBannerBook;
   font-size: 6em;
   margin-bottom: 20px;
   text-transform: none;
@@ -73,7 +73,16 @@ hr#pageLine2 {
 /* Blog */
 
 .box-shadow {
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.blog_links {
+  text-decoration: none;
+}
+
+.box-shadow:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .border-1px {
@@ -107,12 +116,68 @@ hr#pageLine3 {
   text-transform: none;
 }
 
+h3.MajestiBannerBook {
+  font-family: MajestiBannerBook;
+  font-size: 4em;
+  letter-spacing: .5px;
+  margin-bottom: 15px;
+  text-transform: none;
+}
+
+h3.MajestiBannerBookPartial {
+  font-family: MajestiBannerBook;
+  font-size: 2em;
+  letter-spacing: .5px;
+  margin-bottom: 15px;
+  text-transform: none;
+}
+
+p.MajestiBannerBookPara {
+  font-family: MajestiBannerBook;
+  font-size: 2em;
+  letter-spacing: .5px;
+  margin-bottom: 15px;
+}
+
+p.MajestiBannerBookParaPartial {
+  font-family: MajestiBannerBook;
+  font-size: 1em;
+  letter-spacing: .5px;
+  margin-bottom: 15px;
+}
+
+hr#blogLine1 {
+  border-top: 3px solid #eeeeee;
+  max-width: 50%;
+  margin: 30px auto;
+  border-color: lightgrey;
+}
+
 .alert-info {
     font-family: MajestiBannerMedium;
   font-size: 1em;
     background-color: #d9edf7;
     border-color: #bce8f1;
     color: #31708f;
+}
+
+textarea {
+  font-family: MajestiBannerBook;
+  font-size: 1.5em;
+  letter-spacing: .5px;
+  margin-bottom: 15px;
+}
+
+.panel-title, .panel-body {
+  font-family: MajestiBannerBook;
+  font-size: 1.5em;
+  letter-spacing: .5px;
+}
+
+trix-editor {
+  font-family: MajestiBannerBook;
+  font-size: 1.5em !important;
+  letter-spacing: .5px;
 }
 
 
@@ -126,7 +191,7 @@ hr#pageLine3 {
 }
 
 .alert-danger, .alert-success {
-    background-color: $brightYellow;
+    background-color: lightblue;
     border-color: black;
     color: black;
     font-size: 2em;
@@ -141,9 +206,7 @@ hr#pageLine3 {
   margin: 0 auto;
 }
 
-.blog_links {
-  text-decoration: none;
-}
+
 
 /* General Styling */
 
@@ -172,7 +235,6 @@ h3 {
   margin-bottom: 15px;
   text-transform: none;
 }
-
 
 
 h5 {

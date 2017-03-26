@@ -13,8 +13,8 @@ $(document).ready(function(){
                 loop: false,
                 contentType: 'html',
                 callback: function() {
-                  $("#rdjesseeSignature").fadeIn( 2000 )
-                  $("#scrollDownBook").fadeIn( 8000 )  
+                  $("#rdjesseeSignature").fadeIn( 6000 )
+                  $("#scrollDownBook").fadeIn( 2000 )  
                 }
         })}
       });

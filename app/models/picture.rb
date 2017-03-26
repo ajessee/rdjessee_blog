@@ -4,10 +4,12 @@ class Picture < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :taggings
   has_many :tags, through: :taggings
-  mount_uploader :url, MainPictureUploader
+  mount_uploader :url, PictureUploader
 
   def strip_divs
-    self.caption = self.caption[5..-7]
+    if self.caption[0..4] == "<div>" && self.caption[-6..-1] == "</div>"
+      self.caption = self.caption[5..-7]
+    end
   end
 
 end
