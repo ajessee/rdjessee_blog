@@ -2,43 +2,50 @@
   <div class="container-fluid">
     <!-- Flash Section -->
     <% if !flash.empty? %>
-    <%= render 'shared/flash2' %>
+      <%= render 'shared/flash2' %>
     <% end %>
-    <div class="text-center">
-
-    </div>
 
     <div class="row">
-      <div class="col-lg-12 wow fadeIn">
-        <div>
+
+      <div class="col-lg-12">
+
+        <div class="bottom-margin-30px">
           <%= image_tag(@picture.url, alt: "Logo", class: "img-responsive center-picture") %>
         </div>
-        <% if logged_in? %>
-        <div class="text-center" >
-          <br>
-          <%= form_for [@story, Comment.new] do |f| %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.hidden_field :picture_id, value: @picture.id %>
-          <%= f.text_area :content, placeholder: "Add a comment" %><br/>
-          <%= f.submit "Add Comment" %>
+
+        <div class="row">
+
+          <% if !@picture.comments.empty? %>
+            <% @picture.comments.each do |comment| %>
+              <div class="col-lg-10 col-lg-offset-1">
+                <br>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><%= comment.author.name %> says:<span class="float-right"><%=time_ago_in_words(comment.created_at) %> ago</span> </h3>
+                  </div>
+                  <div class="panel-body">
+                    <%= comment.content %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           <% end %>
-        </div>
-        <% end %>
-        <% if !@picture.comments.empty? %>
-        <% @picture.comments.each do |comment| %>
-        <br>
-        <div class="col-lg-10 col-lg-offset-1 wow fadeIn">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-            <h3 class="panel-title"><%= comment.author.name %> says:</h3>
-            </div>
-            <div class="panel-body">
-              <%= comment.content %>
-            </div>
+
+          <div class="text-center">
+            <% if !logged_in? %>
+              <a href=" <%= login_path %> " class="btn btn-default btn-lg" id="editBlogButton" role="button">Want to leave a comment? Please log in.</a>
+            <% else %>
+              <%= form_for [@story, Comment.new] do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :picture_id, value: @picture.id %>
+              <%= f.text_area :content, placeholder: "Add a comment", cols: "100", rows: "5" %><br/>
+              <%= f.submit "Leave a comment on this story", class: "btn btn-default btn-lg" %>
+              <% end %>
+            <% end %>
           </div>
+
         </div>
-        <% end %>
-        <% end %>
+
       </div>
     </div>
   </section> 

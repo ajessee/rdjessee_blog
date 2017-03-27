@@ -14,7 +14,7 @@
     <% @pictures.each do |picture| %>
       <a href="<%= picture_path(picture.id) %>" class="blog_links">
       <div class="col-lg-4 wow fadeIn">
-        <div class="thumbnail">
+        <div class="thumbnail box-shadow">
           <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
           <div class="caption text-center"><h5><%= picture.caption %></h5>
           </div>

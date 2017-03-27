@@ -20,7 +20,7 @@ if Rails.env.production?
     config.aws_credentials = {
       access_key_id:     ENV.fetch('S3_ACCESS_KEY'),
       secret_access_key: ENV.fetch('S3_SECRET_KEY'),
-      # region:            ENV.fetch('AWS_REGION') # Required
+      region:            ENV.fetch('AWS_REGION') # Required
     }
 
     # Optional: Signing of download urls, e.g. for serving private content through

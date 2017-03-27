@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: rdjessee-blog-env
+    environment: rdjessee-prod-env
 global:
   application_name: rdjessee_blog
   default_ec2_keyname: rdj
