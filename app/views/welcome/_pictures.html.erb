@@ -17,8 +17,7 @@
             <div class="thumbnail box-shadow">
             <% if Rails.env.production? %>
               <% if picture.thumbnail %>
-              <!-- <%= image_tag(picture.thumbnail(:picture_thumb).to_s) %> -->
-                
+              <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
               <% else %>
                 <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
               <% end %>
