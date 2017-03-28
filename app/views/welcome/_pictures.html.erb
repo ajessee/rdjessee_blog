@@ -16,7 +16,7 @@
           <div class="col-lg-4 wow fadeIn">
             <div class="thumbnail box-shadow">
             <% if Rails.env.production? %>
-              <% if picture.thumbnail %>
+              <% if picture.url %>
               <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
               <% else %>
                 <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
