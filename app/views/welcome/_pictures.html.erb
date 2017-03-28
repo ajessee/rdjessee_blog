@@ -1,25 +1,34 @@
 <section id="show_pictures">
+
   <div class="container-fluid text-center">
     <!-- Flash Section -->
     <% if !flash.empty? %>
-    <%= render 'shared/flash2' %>
+      <%= render 'shared/flash2' %>
     <% end %>
+
     <h2>Pictures</h2>
     <hr class="colored">
     <p>Here is a random sample of pictures</p>
 
     <div class="row">
-    <% @pictures.each do |picture| %>
-      <a href="<%= picture_path(picture.id) %>" class="blog_links">
-      <div class="col-lg-4 wow fadeIn">
-        <div class="thumbnail box-shadow">
-          <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
-          <div class="caption text-center"><h5><%= picture.caption %></h5>
+      <% @pictures.each do |picture| %>
+        <a href="<%= picture_path(picture.id) %>" class="blog_links">
+          <div class="col-lg-4 wow fadeIn">
+            <div class="thumbnail box-shadow">
+            <% if Rails.env.production? %>
+              <% if picture.thumbnail %>
+                <%= image_tag(picture.thumbnail(:picture_thumb).to_s) %>
+              <% else %>
+                <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
+              <% end %>
+            <% end %>
+            <div class="caption text-center">
+              <h5><%= picture.caption %></h5>
+            </div>
           </div>
-      </div>
-
-    </div>
-    </a>
+        </div>
+      </a>
       <% end %>
+    </div>
   </div>
 </section> 
