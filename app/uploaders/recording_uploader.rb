@@ -17,6 +17,7 @@ class RecordingUploader < CarrierWave::Uploader::Base
     def full_filename(for_file)
       "#{super.chomp(File.extname(super))}.mp3"
     end
+    
   end
 
   # Override the directory where uploaded files will be stored.

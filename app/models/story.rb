@@ -1,11 +1,11 @@
 class Story < ActiveRecord::Base
   belongs_to :user
-  has_many :taggings
-  has_many :tags, through: :taggings
-  has_many :pictures, as: :imageable
-  has_many :comments, as: :commentable
-  has_many :recordings, as: :recordable
-  has_many :videos, as: :videoable
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings, dependent: :destroy
+  has_many :pictures, as: :imageable, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :recordings, as: :recordable, dependent: :destroy
+  has_many :videos, as: :videoable, dependent: :destroy
   validates :user_id, presence: true
   validates :title, presence: true
   validates :content, presence: true
