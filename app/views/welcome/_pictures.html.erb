@@ -17,10 +17,13 @@
             <div class="thumbnail box-shadow">
             <% if Rails.env.production? %>
               <% if picture.url %>
-              <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
+                <%= image_tag(picture.url_url(:picture_thumb), alt: "Picture", class: "img-responsive center-picture") %>
               <% else %>
-                <%= image_tag(picture.url, alt: "Logo", class: "img-responsive center-picture") %>
+                <i class="fa fa-user-circle fa-2x"></i>
               <% end %>
+            <% end %>
+            <% if Rails.env.development? %>
+              <%= image_tag(picture.url, alt: "Picture", class: "img-responsive center-picture") %>
             <% end %>
             <div class="caption text-center">
               <h5><%= picture.caption %></h5>

@@ -33,7 +33,7 @@
           <% end %>
           <% if Rails.env.production? %>
             <% if story.thumbnail %>
-            <img src="<%= asset_path(story.thumbnail) %>" alt="<%= story.id %>">
+            <%= image_tag(story.thumbnail_url(:story_thumb), alt: "Thumbnail", class: "img-responsive center-picture") %>
             <% else %>
             <i class="fa fa-user-circle fa-2x"></i>
             <% end %>

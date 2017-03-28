@@ -13,6 +13,15 @@ class PictureUploader < CarrierWave::Uploader::Base
       storage :file
     end
 
+    # Create different versions of your uploaded files:
+    version :story_thumb do
+      process resize_to_fit: [400, 400]
+    end
+
+    version :picture_thumb do
+      process resize_to_fit: [500, 500]
+    end
+      
     # Override the directory where uploaded files will be stored.
     # This is a sensible default for uploaders that are meant to be mounted:
     def store_dir
@@ -39,14 +48,6 @@ class PictureUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
-  version :story_thumb do
-    process resize_to_fit: [400, 400]
-  end
-
-  version :picture_thumb do
-    process resize_to_fit: [500, 500]
-  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
