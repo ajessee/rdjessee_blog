@@ -22,7 +22,8 @@
           <% end %>
           <% if Rails.env.production? %>
             <% if story.thumbnail %>
-            <%= image_tag(story.thumbnail(:story_thumb).to_s) %>
+            <!-- <%= image_tag(story.thumbnail(:story_thumb).to_s) %> -->
+            
             <img src="<%= asset_path(story.thumbnail) %>" alt="<%= story.id %>">
             <% else %>
             <i class="fa fa-user-circle fa-2x"></i>
