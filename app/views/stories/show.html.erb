@@ -50,7 +50,18 @@
         <% end %>
       </div>
 
-
+      <div class="text-center">
+        <% if !logged_in? %>
+          <a href=" <%= login_path %> " class="btn btn-default btn-lg" id="editBlogButton" role="button">Want to upload a recording of this story? Please log in.</a>
+        <% else %>
+          <%= form_for [@story, Recording.new] do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :story_id, value: @story.id %>
+          <%= f.file_field :recording %><br/>
+          <%= f.submit "Upload Recording", class: "btn btn-default btn-lg" %>
+          <% end %>
+        <% end %>
+      </div>
 
     </div>
   </div>

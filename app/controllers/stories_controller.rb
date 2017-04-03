@@ -77,7 +77,10 @@ class StoriesController < ApplicationController
   end
 
   def create
+    debugger
+    recording_attributes = story_params.delete("recordings_attributes")
     @story = current_user.stories.build(story_params)
+    @story.recordings.create(recording_attributes)
     @story.strip_divs
     if @story.save
       flash.now[:success] = "Story created!"
@@ -96,7 +99,7 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:title, :content, :year_written, :decade, :age, :thumbnail, :all_tags)
+    params.require(:story).permit(:title, :content, :year_written, :decade, :age, :thumbnail, :all_tags, recordings_attributes: [:caption, :recording])
   end
 
   def video_params
@@ -104,7 +107,7 @@ class StoriesController < ApplicationController
   end
 
   def recording_params
-    params.require(:story).permit(recordings_attributes: ["recording", "@original_filename", "@content_type", "@headers", "_destroy", "id"])
+    params.require(:story).permit(recordings_attributes: [:caption, :recording])
   end
 
   def correct_user

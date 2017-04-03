@@ -7,7 +7,7 @@
 
   <div class="container text-center">
 
-    <div class="btn-group bottom_padding_20px">
+    <div class="btn-group buttonDropShadow">
 
       <%= link_to 'Alphabetical', stories_path, id: "alpha_button", class: "#{'active' if @active_button == 'alphabetical' } btn btn-default", role: "button" %>
 
@@ -17,7 +17,7 @@
         </button>
         <ul class="dropdown-menu">
           <% @years.each do |year| %>
-          <li><%= link_to year, "/stories/sort?sort=year_written&year=#{year}", class: "btn btn-primary", role: "button" %></li>
+          <li><%= link_to year, "/stories/sort?sort=year_written&year=#{year}", class: "btn", role: "button" %></li>
           <% end %>
         </ul>
       </div>
@@ -28,7 +28,7 @@
         </button>
         <ul class="dropdown-menu">
           <% @ages.each do |age| %>
-          <li><%= link_to age, "/stories/sort?sort=age&age=#{age}", class: "btn btn-primary", role: "button" %></li>
+          <li><%= link_to age, "/stories/sort?sort=age&age=#{age}", class: "btn", role: "button" %></li>
           <% end %>
         </ul>
       </div>
@@ -39,7 +39,7 @@
         </button>
         <ul class="dropdown-menu">
           <% @decades.each do |decade| %>
-          <li><%= link_to decade, "/stories/sort?sort=decade&decade=#{decade}", class: "btn btn-primary", role: "button" %></li>
+          <li><%= link_to decade, "/stories/sort?sort=decade&decade=#{decade}", class: "btn", role: "button" %></li>
           <% end %>
         </ul>
       </div>

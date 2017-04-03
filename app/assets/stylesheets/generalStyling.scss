@@ -56,6 +56,13 @@ hr#pageLine1 {
   border-color: lightgrey;
 }
 
+.pageLine {
+  border-top: 3px solid #eeeeee;
+  max-width: 50%;
+  margin: 30px auto;
+  border-color: lightgrey;
+}
+
 #donSmiles {
   border: 8px solid black;
 }
@@ -114,6 +121,11 @@ hr#pageLine3 {
   letter-spacing: 1px;
   margin-bottom: 20px;
   text-transform: none;
+
+}
+
+.buttonDropShadow {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.22);
 }
 
 h3.MajestiBannerBook {
@@ -151,6 +163,34 @@ hr#blogLine1 {
   max-width: 50%;
   margin: 30px auto;
   border-color: lightgrey;
+}
+
+/* Forms */
+
+input.form-control:focus {
+  border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+    color: black;
+    background-color: lightgray;
+    border-color: lightgray;
+}
+
+.pagination > li > a, {
+  color: black;
+}
+
+.pagination > ul {
+  font-family: sans-serif;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.22);
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color: darkgrey;
 }
 
 .alert-info {
@@ -335,9 +375,6 @@ p.center {
   filter: drop-shadow(-4px 3px 4px #000); /* Same syntax as box-shadow */
 }
 
-#stephanieMain {
-  margin-top: 5%;
-}
 
 #user_login {
   height: 100vh;
@@ -448,7 +485,7 @@ hr.colored {
 .navbar-inverse .navbar-nav > li > a:hover {
   font-family: NexaBold;
   font-size: 20px;
-  color: red;
+  color: darkgrey;
   font-weight: bold;
   background-color: transparent;
 }
@@ -479,8 +516,12 @@ textarea.form-control {
 
 .floating-label-form-group input {
   font-family: NexaLight;
-  color: $pantoneOrange;
+  color: darkgrey;
   text-align: left;
+}
+
+.floating-label-form-group-with-value label {
+  color: darkgrey;
 }
 
 .portfolio-carousel .owl-controls .owl-prev,
@@ -519,7 +560,6 @@ textarea.form-control {
 #error_explanation {
   color: $pantoneCoolGrey;
   ul {
-    color: $pantoneOrange;
     font-size: 1.5em;
     margin: 0 0 30px 0;
   }
@@ -531,4 +571,8 @@ textarea.form-control {
     background-color: $pantoneCoolGrey;
   }
 }
+
+
+
+
 

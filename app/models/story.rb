@@ -3,18 +3,18 @@ class Story < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings, dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :pictures, allow_destroy: true
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :recordings, as: :recordable, dependent: :destroy
+  accepts_nested_attributes_for :recordings, allow_destroy: true
   has_many :videos, as: :videoable, dependent: :destroy
+  accepts_nested_attributes_for :videos, allow_destroy: true
   validates :user_id, presence: true
   validates :title, presence: true
   validates :content, presence: true
   validates :year_written, numericality: { only_integer: true }
   validates :decade, numericality: { only_integer: true }
   validates :age, numericality: { only_integer: true }
-  accepts_nested_attributes_for :videos, :allow_destroy => true
-  accepts_nested_attributes_for :recordings, :allow_destroy => true
-  accepts_nested_attributes_for :pictures, :allow_destroy => true
   mount_uploader :thumbnail, PictureUploader
 
   @@age_array = []
