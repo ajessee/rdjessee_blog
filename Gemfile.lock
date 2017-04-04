@@ -82,6 +82,8 @@ GEM
     carrierwave-video (0.5.6)
       carrierwave
       streamio-ffmpeg
+    carrierwave-video-thumbnailer (0.1.4)
+      carrierwave
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -397,6 +399,7 @@ DEPENDENCIES
   carrierwave-audio
   carrierwave-aws
   carrierwave-video
+  carrierwave-video-thumbnailer
   factory_girl_rails
   faker
   fog

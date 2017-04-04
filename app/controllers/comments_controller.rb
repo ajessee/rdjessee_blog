@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :correct_user,   only: [:destroy, :edit]
 
   def new
-    @comment= Comment.new
+    @comment = Comment.new
     find_commentable
   end
 
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :user_id, :picture_id, :comment_id, :story_id)
+    params.require(:comment).permit(:content, :user_id, :picture_id, :comment_id, :story_id, :video_id)
   end
 
   def build_params
@@ -55,5 +55,6 @@ class CommentsController < ApplicationController
     @commentable = Picture.find_by_id(comment_params[:picture_id]) if comment_params[:picture_id]
     @commentable = Comment.find_by_id(comment_params[:comment_id]) if comment_params[:comment_id]
     @commentable = Story.find_by_id(comment_params[:story_id]) if comment_params[:story_id]
+    @commentable = Video.find_by_id(comment_params[:video_id]) if comment_params[:video_id]
   end
 end

@@ -13,7 +13,7 @@ class PicturesController < ApplicationController
       flash.now[:success] = "Picture uploaded successfully!"
       render :show
     else
-      render 'welcome/home'
+      render 'new'
     end
   end
 

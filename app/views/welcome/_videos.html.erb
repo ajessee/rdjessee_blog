@@ -1,4 +1,4 @@
-<section id="show_pictures">
+<section id="show_videos">
 
   <div class="container-fluid text-center">
     <!-- Flash Section -->
@@ -6,30 +6,30 @@
       <%= render 'shared/flash2' %>
     <% end %>
 
-    <h4>Pictures</h4>
+    <h4>Videos</h4>
     <hr class="pageLine">
-    <h6>Here is a random sample of pictures</h6>
+    <h6>Here is a random sample of videos</h6>
     <div>
-    <a href=" <%= pictures_path %> " class="btn btn-default btn-lg buttonDropShadow" id="storiesButton" role="button">Or check out all the pictures</a>
+    <a href=" <%= videos_path %> " class="btn btn-default btn-lg buttonDropShadow" id="videosButton" role="button">Or check out all the videos</a>
     </div>
 
     <div class="row">
-      <% @pictures.each do |picture| %>
-        <a href="<%= picture_path(picture.id) %>" class="blog_links">
+      <% @videos.each do |video| %>
+        <a href="<%= video_path(video.id) %>" class="blog_links">
           <div class="col-lg-4 wow fadeIn">
             <div class="thumbnail box-shadow">
             <% if Rails.env.production? %>
-              <% if picture.url %>
-                <%= image_tag(picture.url_url(:picture_thumb), alt: "Picture", class: "img-responsive center-picture") %>
+              <% if video.video %>
+                <%= image_tag(video.video_url(:thumb), alt: "video", class: "img-responsive center-video") %>
               <% else %>
                 <i class="fa fa-user-circle fa-2x"></i>
               <% end %>
             <% end %>
             <% if Rails.env.development? %>
-              <%= image_tag(picture.url, alt: "Picture", class: "img-responsive center-picture") %>
+              <%= image_tag(video.video_url(:thumb), alt: "video", class: "img-responsive center-video") %>
             <% end %>
             <div class="caption text-center">
-              <h5><%= picture.caption %></h5>
+              <h5><%= video.caption %></h5>
             </div>
           </div>
         </div>

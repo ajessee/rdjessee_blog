@@ -1,2 +1,28 @@
-<h1>Videos#new</h1>
-<p>Find me in app/views/videos/new.html.erb</p>
+<section id="video_new">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 wow fadeIn">
+            <%= form_for(@video) do |f| %>
+              <%= render 'shared/error_messages', object: f.object %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+              <div>
+                <%= f.label :caption %>
+                <%= f.trix_editor :caption, class: 'form-control' %>
+              </div>
+              <div>
+                <%= f.label :year %>
+                <%= f.select :year, (1950..2017).to_a, class: 'form-control' %>
+              </div>
+              <div class="video">
+                <%= f.label "Upload video" %>
+                <%= f.file_field :video %>
+              </div>
+              <br>
+              <div class="text-center">
+                <%= f.submit "Upload Video", class: "btn btn-default btn-lg buttonDropShadow" %>
+              </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</section> 
