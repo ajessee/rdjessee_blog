@@ -5,10 +5,11 @@ class VideoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
   include CarrierWave::Video
   include CarrierWave::Video::Thumbnailer
+  include CarrierWave::FFmpeg
 
   if Rails.env.production?
-    storage :aws
     process encode_video: [:mp4, callbacks: { after_transcode: :set_success } ]
+    storage :aws
   else
     storage :file
   end
