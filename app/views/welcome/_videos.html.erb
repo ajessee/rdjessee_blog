@@ -20,13 +20,13 @@
             <div class="thumbnail box-shadow">
             <% if Rails.env.production? %>
               <% if video.video %>
-                <%= image_tag(video.video_url(:thumb), alt: "video", class: "img-responsive center-video") %>
+
               <% else %>
                 <i class="fa fa-user-circle fa-2x"></i>
               <% end %>
             <% end %>
             <% if Rails.env.development? %>
-              <%= image_tag(video.video_url(:thumb), alt: "video", class: "img-responsive center-video") %>
+         
             <% end %>
             <div class="caption text-center">
               <h5><%= video.caption %></h5>
