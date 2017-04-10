@@ -8,7 +8,6 @@ class RecordingsController < ApplicationController
   end
 
   def create
-    debugger
     @story = Story.find(story_params[:story_id])
     @recording = @story.recordings.build(recording_params)
     if @recording.save
