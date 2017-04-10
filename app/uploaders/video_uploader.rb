@@ -7,9 +7,8 @@ class VideoUploader < CarrierWave::Uploader::Base
   include CarrierWave::Video
 
   if Rails.env.production?
-    # , callbacks: { after_transcode: :set_success }
-    process encode_video: [:mp4]
     storage :aws
+    process encode_video(:mp4, :custom => '-qscale 0 -vpre slow -vpre baseline -g 30')
   else
     storage :file
   end
