@@ -9,7 +9,7 @@ class RecordingsController < ApplicationController
 
   def create
     @story = Story.find(story_params[:story_id])
-    @recording = @story.recordings.build(recording_params)
+    @recording = @story.recordings.build(user_id: params[:recording][:user_id], recording: params[:recording][:recording])
     if @recording.save
       flash.now[:success] = "Recording uploaded successfully!"
       render :show
@@ -33,7 +33,7 @@ class RecordingsController < ApplicationController
   private
 
   def recording_params
-    params.require(:recording).permit(:recording, :user_id)
+    params.require(:recording).permit(:id, :recording, :user_id)
   end
 
   def story_params

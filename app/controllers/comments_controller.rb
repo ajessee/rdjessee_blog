@@ -18,26 +18,24 @@ class CommentsController < ApplicationController
     end
   end
 
-  def index
-    @pictures = Picture.all.order(created_at: :asc).paginate(:page => params[:page], :per_page => 6)
-  end
-
-  def show
-    @picture = Picture.find(params[:id])
-  end
-
   def edit
-    @story = Story.find(params[:id])
+    @comment = Comment.find(params[:id])
+      if @comment.update_attributes(comment_params)
+        @comment.save
+        flash.now[:success] = "Comment updated"
+        redirect_to @comment
+      else
+        render 'edit'
+      end 
   end
 
   def update
 
   end
 
-
   def destroy
-    @story.destroy
-    flash[:success] = "Story deleted"
+    @comment.destroy
+    flash[:success] = "Comment deleted"
     redirect_to request.referrer || root_url
   end
 
@@ -57,4 +55,10 @@ class CommentsController < ApplicationController
     @commentable = Story.find_by_id(comment_params[:story_id]) if comment_params[:story_id]
     @commentable = Video.find_by_id(comment_params[:video_id]) if comment_params[:video_id]
   end
+
+  def correct_user
+    @comment = Comment.find_by(id: params[:id])
+    redirect_to root_url if @comment.user_id != current_user.id
+  end
+
 end

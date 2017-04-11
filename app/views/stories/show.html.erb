@@ -27,10 +27,18 @@
             <br>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title"><%= comment.author.name %> says:<span class="float-right"><%=time_ago_in_words(comment.created_at) %> ago</span> </h3>
+                <h3 class="panel-title"><%= comment.author.name %> says:
+                <span class="float-right"><%=time_ago_in_words(comment.created_at) %> ago</span>
+                </h3>
               </div>
               <div class="panel-body">
                 <%= comment.content %>
+                <% if logged_in? && current_user.id == comment.author.id || logged_in? && current_user.admin? %>
+                  <div class="float-right">
+                    <%= link_to "Delete", comment, method: :delete, class: "btn btn-danger",
+                                                      data: { confirm: "Are you sure you want to delete your comment?" } %>
+                  </div>  
+                <% end %>
               </div>
             </div>
           </div>
@@ -50,7 +58,8 @@
         <% end %>
       </div>
 
-      <div class="text-center">
+<!-- Once we get the recordings working we will use this -->
+<!--       <div class="text-center">
         <% if !logged_in? %>
           <a href=" <%= login_path %> " class="btn btn-default btn-lg" id="editBlogButton" role="button">Want to upload a recording of this story? Please log in.</a>
         <% else %>
@@ -61,7 +70,7 @@
           <%= f.submit "Upload Recording", class: "btn btn-default btn-lg" %>
           <% end %>
         <% end %>
-      </div>
+      </div> -->
 
     </div>
   </div>
