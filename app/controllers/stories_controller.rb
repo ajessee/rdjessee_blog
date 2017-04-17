@@ -77,7 +77,6 @@ class StoriesController < ApplicationController
   end
 
   def create
-    debugger
     recording_attributes = story_params.delete("recordings_attributes")
     @story = current_user.stories.build(story_params)
     @story.recordings.create(recording_attributes)
