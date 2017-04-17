@@ -4,8 +4,6 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
-    @recording = @story.recordings.build
-    @video = @story.videos.build
   end
 
   def index
@@ -77,9 +75,7 @@ class StoriesController < ApplicationController
   end
 
   def create
-    recording_attributes = story_params.delete("recordings_attributes")
     @story = current_user.stories.build(story_params)
-    @story.recordings.create(recording_attributes)
     @story.strip_divs
     if @story.save
       flash.now[:success] = "Story created!"
