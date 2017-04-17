@@ -11,6 +11,7 @@
 
       <%= link_to 'Alphabetical', stories_path, id: "alpha_button", class: "#{'active' if @active_button == 'alphabetical' } btn btn-default", role: "button" %>
 
+      <% if !@years.nil? %>
       <div class="btn-group">
         <button type="button" id="year_button" class="<%= 'active' if @active_button == 'year' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Year Written <span class="caret"></span>
@@ -21,7 +22,9 @@
           <% end %>
         </ul>
       </div>
+      <% end %>
 
+      <% if !@ages.nil? %>
       <div class="btn-group">
         <button type="button" id="age_button" class="<%= 'active' if @active_button == 'age' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Age <span class="caret"></span>
@@ -32,7 +35,9 @@
           <% end %>
         </ul>
       </div>
+      <% end %>
 
+      <% if !@decades.nil? %>
       <div class="btn-group">
         <button type="button" id="decade_button" class="<%= 'active' if @active_button == 'decade' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Decade <span class="caret"></span>
@@ -43,6 +48,7 @@
           <% end %>
         </ul>
       </div>
+      <% end %>
 
       <%= link_to 'Tag Cloud', tags_path, id: "tagAjax", class: "#{'active' if @active_button == 'tag' } btn btn-default", role: "button" %>
 
