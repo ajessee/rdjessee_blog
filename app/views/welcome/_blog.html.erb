@@ -4,47 +4,49 @@
     <hr class="colored" id="pageLine3">
     <h6>Here are 3 random stories selected for you.</h6>
     <div>
-    <a href=" <%= stories_path %> " class="btn btn-default btn-lg buttonDropShadow" id="storiesButton" role="button">Or check out all the stories</a>
+      <a href=" <%= stories_path %> " class="btn btn-default btn-lg buttonDropShadow" id="storiesButton" role="button">Or check out all the stories</a>
     </div>
 
     <% @stories.each do |story| %>
     <a href="<%= story_path(story.id) %>" class="blog_links">
-    <div class="row panel panel-default box-shadow">
-    <div class="panel-body">
-      <div class="col-md-5">
-        <div >
-          <% if Rails.env.development? %>
-            <% if story.thumbnail.path != nil %>
-            <%= image_tag(story.thumbnail_identifier, alt: "Thumbnail", class: "img-responsive center-picture") %>
-            <% else %>
-            <i class="fa fa-picture-o fa-5x top-margin-15-percent"></i>
-            <% end %>
-          <% end %>
-          <% if Rails.env.production? %>
-            <% if story.thumbnail %>
-            <%= image_tag(story.thumbnail_url(:story_thumb), alt: "Thumbnail", class: "img-responsive center-picture") %>
-            <% else %>
-            <i class="fa fa-user-circle fa-2x"></i>
-            <% end %>
+      <div class="row panel panel-default box-shadow">
+        <div class="panel-body">
+          <% if story.thumbnail.path != nil %>
+          <div class="col-md-5">
+            <div>
+              <% if Rails.env.development? %>
+              <%= image_tag(story.thumbnail_identifier, alt: "Thumbnail", class: "img-responsive center-picture") %>
+              <% end %>
+              <% if Rails.env.production? %>
+              <%= image_tag(story.thumbnail_url(:story_thumb), alt: "Thumbnail", class: "img-responsive center-picture") %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="caption black">
+              <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
+              <p class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> </p>
+            </div>
+          </div>
+          <% else %>
+          <div class="col-md-12">
+            <div class="caption black">
+              <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
+              <p class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 500, omission: '...', escape: false) %> </p>
+            </div>
+          </div>
           <% end %>
         </div>
-      </div>
-      <div class="col-md-7">
-        <div class="caption black">
-          <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
-          <p class="MajestiBannerBookParaPartial"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> </p>
+
+        <% if story.all_tags != "" %>
+        <div class="panel-footer">
+          <% story.all_tags.split(",").each do |tag| %>
+          <span><%= link_to tag.strip, "/stories/sort?sort=tag&tag=#{tag.strip}", class: "btn btn-primary", role: "button" %></span>
+          <% end %>
         </div>
-      </div>
-      </div>
-      <% if story.all_tags != "" %>
-      <div class="panel-footer">
-        <% story.all_tags.split(",").each do |tag| %>
-        <span><%= link_to tag.strip, "/stories/sort?sort=tag&tag=#{tag.strip}", class: "btn btn-primary", role: "button" %></span>
         <% end %>
+
       </div>
-      <% end %>
-      
-    </div>
     </a>
     <% end %>
   </div>

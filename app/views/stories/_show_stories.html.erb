@@ -22,30 +22,31 @@
   <a href="<%= story_path(story.id) %>" class="blog_links">
   <div class="row panel panel-default box-shadow">
     <div class="panel-body">
-      <div class="col-md-4">
-        <div >
-          <% if Rails.env.development? %>
-            <% if story.thumbnail.path != nil %>
-            <%= image_tag(story.thumbnail_identifier, alt: "Logo", class: "img-responsive center-picture") %>
-            <% else %>
-            <i class="fa fa-picture-o fa-5x top-margin-15-percent"></i>
+      <% if story.thumbnail.path != nil %>
+        <div class="col-md-5">
+          <div>
+            <% if Rails.env.development? %>
+            <%= image_tag(story.thumbnail_identifier, alt: "Thumbnail", class: "img-responsive center-picture") %>
             <% end %>
-          <% end %>
-          <% if Rails.env.production? %>
-            <% if story.thumbnail %>
+            <% if Rails.env.production? %>
             <%= image_tag(story.thumbnail_url(:story_thumb), alt: "Thumbnail", class: "img-responsive center-picture") %>
-            <% else %>
-            <i class="fa fa-user-circle fa-2x"></i>
             <% end %>
-          <% end %>
+          </div>
         </div>
-      </div>
-      <div class="col-md-8">
-        <div class="caption black">
-          <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
-          <p class="MajestiBannerBookParaPartial"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> </p>
+        <div class="col-md-7">
+          <div class="caption black">
+            <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
+            <p class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> </p>
+          </div>
         </div>
-      </div>
+        <% else %>
+        <div class="col-md-12">
+          <div class="caption black">
+            <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
+            <p class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 500, omission: '...', escape: false) %> </p>
+          </div>
+        </div>
+        <% end %>
     </div>
     <% if story.all_tags != "" %>
     <div class="panel-footer">
