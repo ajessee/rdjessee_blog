@@ -32,7 +32,7 @@
       <div class="col-md-7">
         <div class="caption black">
           <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
-          <p class="MajestiBannerBookParaPartial"> <%= truncate(story.content.html_safe, length: 300, omission: '...') %> </p>
+          <p class="MajestiBannerBookParaPartial"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> </p>
         </div>
       </div>
       </div>
