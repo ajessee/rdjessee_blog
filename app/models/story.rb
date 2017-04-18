@@ -62,12 +62,8 @@ class Story < ActiveRecord::Base
   end
 
   def strip_divs
-    if self.content[0..4] == "<div>" && self.content[-6..-1] == "</div>"
-      self.content = self.content[5..-7]
-    end
-    if self.title[0..4] == "<div>" && self.title[-6..-1] == "</div>"
-      self.title = self.title[5..-7]
-    end
+    self.content.gsub!("<div>", "<p class='MajestiBannerBookPara'>")
+    self.content.gsub!("</div>", "</p>")
   end
 
   def all_tags=(names)
