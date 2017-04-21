@@ -55,7 +55,7 @@ class StoriesController < ApplicationController
         if @story.update_attributes(params[:attributeToUpdate] => params[:attributeValue])
           @story.strip_divs
           @story.save
-          flash[:success] = "Story updated"
+          flash.now[:success] = "Story updated"
           @value = @story[params[:attributeToUpdate]]
           render plain: "Change"
         end
