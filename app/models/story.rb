@@ -62,7 +62,7 @@ class Story < ActiveRecord::Base
   end
 
   def strip_divs
-    self.content.gsub!("<div>", "<p class='MajestiBannerBookPara'>")
+    self.content.gsub!("<div>", "<p class='MajestiBannerBookParaPartial text-left'>")
     self.content.gsub!("</div>", "</p>")
   end
 
