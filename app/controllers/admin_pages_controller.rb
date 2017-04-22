@@ -11,7 +11,7 @@ class AdminPagesController < ApplicationController
   end
 
   def admin_stories
-    @stories = Story.all.order(:id).paginate(page: params[:page])
+    @stories = Story.all.order(title: :asc).paginate(page: params[:page])
   end
 
   private
