@@ -16,8 +16,8 @@
           <h3 class="MajestiBannerBook"><%= @story.title.html_safe %></h4>
         </div>
         <hr class="colored" id="blogLine1">
-        <div>
-          <p class="MajestiBannerBookPara"><%= @story.content.html_safe %></p>
+        <div class="MajestiBannerBookPara">
+          <%= @story.content.html_safe %>
         </div>
       </div>
     </div>

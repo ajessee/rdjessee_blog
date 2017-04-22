@@ -62,8 +62,8 @@ class Story < ActiveRecord::Base
   end
 
   def strip_divs
-    self.content.gsub!("<div>", "<p class='MajestiBannerBookParaPartial text-left'>")
-    self.content.gsub!("</div>", "</p>")
+    self.content.gsub!("<div>", "")
+    self.content.gsub!("</div>", "")
   end
 
   def all_tags=(names)
