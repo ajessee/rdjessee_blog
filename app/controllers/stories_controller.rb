@@ -55,7 +55,7 @@ class StoriesController < ApplicationController
         if @story.update_attributes(params[:attributeToUpdate] => params[:attributeValue])
           @story.strip_divs
           @story.save
-          flash.now[:success] = "Story updated"
+          flash[:success] = "Story updated"
           @value = @story[params[:attributeToUpdate]]
           render plain: "Change"
         end
@@ -65,7 +65,7 @@ class StoriesController < ApplicationController
       if @story.update_attributes(story_params)
         @story.strip_divs
         @story.save
-        flash.now[:success] = "Story updated"
+        flash[:success] = "Story updated"
         redirect_to @story
       else
         render 'edit'
