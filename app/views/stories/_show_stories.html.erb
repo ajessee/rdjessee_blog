@@ -2,17 +2,21 @@
 
     <% if @active_button != 'alphabetical' %>
     <div class="row">
-      <div class="col-sm-6 col-md-6 col-md-offset-3">
-    <div class="alert alert-info" role="alert">
-    <% if @active_button == "tag" %>
-     <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> with that <%= @active_button %> </h6>
-    <% else %>
-      <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that <%= @active_button %> </h6>
+      <div class="col-sm-6 col-md-6 col-md-offset-3 top-margin-5-percent">
+        <div class="alert alert-info" role="alert">
+          <% if @active_button == "tag" %>
+            <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> with that <%= @active_button %> </h6>
+          <% elsif @active_button == "genre" %>
+            <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> in that <%= @active_button %> </h6>
+          <% elsif @active_button == "life_stage" %>
+            <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that life stage </h6>
+          <% else %>
+            <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that <%= @active_button %> </h6>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <% end %>
-    </div>
-    </div>
-    </div>
-    <% end  %>
 
   <div>
     <%= will_paginate @stories %>

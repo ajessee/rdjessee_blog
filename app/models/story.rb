@@ -14,18 +14,23 @@ class Story < ActiveRecord::Base
   validates :content, presence: true
   validates :year_written, numericality: { only_integer: true }
   validates :decade, numericality: { only_integer: true }
-  validates :age, numericality: { only_integer: true }
   mount_uploader :thumbnail, PictureUploader
 
-  @@age_array = []
   @@year_array = []
   @@decade_array = []
+  @@location_array = []
+  @@genre_array = []
+  @@category_array = []
+  @@life_stage_array = []
 
   def self.get_metadata
     Story.find_each do |story|
-      @@age_array.push(story.age)
       @@year_array.push(story.year_written)
       @@decade_array.push(story.decade)
+      @@location_array.push(story.location) if story.location != nil
+      @@genre_array.push(story.genre) if story.genre != nil
+      @@category_array.push(story.category) if story.category != nil
+      @@life_stage_array.push(story.life_stage) if story.life_stage != nil
     end
   end
 
@@ -37,20 +42,28 @@ class Story < ActiveRecord::Base
     Story.where(year_written: year.to_i).paginate(:page => page, :per_page => 6)
   end
 
-  def self.order_by_age(age, page)
-    Story.where(age: age.to_i).paginate(:page => page, :per_page => 6)
-  end
-
   def self.order_by_decade(decade, page)
     Story.where(decade: decade.to_i).paginate(:page => page, :per_page => 6)
   end
 
-  def self.order_by_tag(tag, page)
-    Tag.find_by_name!(tag.strip).stories.paginate(:page => page, :per_page => 6)
+  def self.order_by_location(location, page)
+    Story.where(location: location).paginate(:page => page, :per_page => 6)
   end
 
-  def self.all_ages
-    @@age_array.sort.uniq!
+  def self.order_by_genre(genre, page)
+    Story.where(genre: genre).paginate(:page => page, :per_page => 6)
+  end
+
+  def self.order_by_category(category, page)
+    Story.where(category: category).paginate(:page => page, :per_page => 6)
+  end
+
+  def self.order_by_life_stage(life_stage, page)
+    Story.where(life_stage: life_stage).paginate(:page => page, :per_page => 6)
+  end
+
+  def self.order_by_tag(tag, page)
+    Tag.find_by_name!(tag.strip).stories.paginate(:page => page, :per_page => 6)
   end
 
   def self.all_years
@@ -59,6 +72,22 @@ class Story < ActiveRecord::Base
 
   def self.all_decades
     @@decade_array.sort.uniq!
+  end
+
+  def self.all_locations
+    @@location_array.sort.uniq!
+  end
+
+  def self.all_genres
+    @@genre_array.sort.uniq!
+  end
+
+  def self.all_categories
+    @@category_array.sort.uniq!
+  end
+
+  def self.all_life_stages
+    @@life_stage_array.sort.uniq!
   end
 
   def strip_divs
@@ -78,5 +107,8 @@ class Story < ActiveRecord::Base
     self.tags.map(&:name).join(", ")
   end
 
+  def get_wordcount
+    self.word_count = self.content.scan(/[\w-]+/).size
+  end
 
 end

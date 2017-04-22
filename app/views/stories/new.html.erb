@@ -21,8 +21,20 @@
                 <%= f.select :decade, (1..9).to_a, class: 'form-control' %>
               </div>
               <div>
-              <%= f.label :age %>
-              <%= f.select :age, (1..93).to_a, class: 'form-control' %>
+              <%= f.label :genre %>
+              <%= f.select :genre, options_for_select([['Fiction','Fiction'],['Non-Fiction','Non-Fiction']]), class: 'form-control' %>
+              </div>
+              <div>
+              <%= f.label :category %>
+              <%= f.select :category, options_for_select([['Story','Story'],['Poem','Poem'], ['Letter','Letter']]), class: 'form-control' %>
+              </div>
+              <div>
+              <%= f.label :life_stage %>
+              <%= f.select :life_stage, options_for_select([['Early','Early'],['Middle','Middle'], ['Late','Late']]), class: 'form-control' %>
+              </div>
+              <div>
+              <%= f.label :location %>
+              <%= f.text_field :location, placeholder: "Enter Location of Story", class: 'form-control' %>
               </div>
               <div>
                 <%= f.label :all_tags %>

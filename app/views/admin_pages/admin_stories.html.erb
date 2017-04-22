@@ -11,8 +11,11 @@
         <th class="text-center">ID</th>
         <th class="text-center">Title</th>
         <th class="text-center">Year Written</th>
-        <th class="text-center">Age</th>
         <th class="text-center">Decade</th>
+        <th class="text-center">Location</th>
+        <th class="text-center">Genre</th>
+        <th class="text-center">Category</th>
+        <th class="text-center">Life Stage</th>
         <th class="text-center">Delete</th>
         <th class="text-center">Date Created</th>
         <th class="text-center">Date Updated</th>
@@ -20,10 +23,33 @@
       <% @stories.each do |story| %>
       <tr>
       <td><%= story.id %></td>
-        <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='title'><%= story.title %></td>
-        <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='year_written'><%= story.year_written %></td>
-        <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='age'><%= story.age %></td>
-        <td contenteditable='true' storyID='<%= story.id %>' attributeToUpdate='decade'><%= story.decade %></td>
+        <td contenteditable='true' storyID='<%= story.id %>' fillIn="yes" attributeToUpdate='title'><%= story.title %></td>
+        <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='year_written'>
+          <%= form_for(story) do |f| %>
+            <%= f.select :year_written, options_for_select((2004..2017).to_a.map {|s| ["#{s}", s]}, story.year_written), class: 'form-control' %>
+            <% end %>
+        </td>
+        <td contenteditable='true' storyID='<%= story.id %>' selectInteger="yes" attributeToUpdate='decade'>
+          <%= form_for(story) do |f| %>
+          <%= f.select :decade, options_for_select((1..9).to_a.map {|s| ["#{s}", s]}, story.decade), class: 'form-control' %>
+          <% end %> 
+        </td>
+        <td contenteditable='true' storyID='<%= story.id %>' fillIn="yes" attributeToUpdate='location'><%= story.location %></td>
+        <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='genre'>
+          <%= form_for(story) do |f| %>
+          <%= f.select :genre, options_for_select([['Fiction','Fiction'],['Non-Fiction','Non-Fiction']], story.genre), class: 'form-control' %>
+          <% end %> 
+        </td>
+        <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='category'>
+          <%= form_for(story) do |f| %>
+          <%= f.select :category, options_for_select([['Story','Story'],['Poem','Poem'], ['Letter','Letter']], story.category), class: 'form-control' %>
+          <% end %> 
+        </td>
+        <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='life_stage'>
+          <%= form_for(story) do |f| %>
+          <%= f.select :life_stage, options_for_select([['Early','Early'],['Middle','Middle'], ['Late','Late']], story.life_stage), class: 'form-control' %>
+          <% end %>  
+        </td>
         <td><%= link_to "Delete", story, method: :delete, class: "btn btn-danger",
                                   data: { confirm: "This story took a while to write. Are you sure?" } %></td>
         <td><%= time_ago_in_words(story.created_at) %> ago</td>

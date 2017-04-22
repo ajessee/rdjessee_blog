@@ -10,16 +10,22 @@ class StoriesController < ApplicationController
     @stories = Story.get_stories(params[:page])
     @active_button = "alphabetical"
     Story.get_metadata
-    @ages = Story.all_ages
     @years = Story.all_years
     @decades = Story.all_decades
+    @locations = Story.all_locations
+    @genres = Story.all_genres
+    @categories = Story.all_categories
+    @life_stages = Story.all_life_stages
   end
 
   def sort
     Story.get_metadata
-    @ages = Story.all_ages
     @years = Story.all_years
     @decades = Story.all_decades
+    @locations = Story.all_locations
+    @genres = Story.all_genres
+    @categories = Story.all_categories
+    @life_stages = Story.all_life_stages
     case params[:sort]
     when "year_written"
       @active_button = "year"
@@ -29,9 +35,21 @@ class StoriesController < ApplicationController
       @active_button = "decade"
       @stories = Story.order_by_decade(params[:decade], params[:page])
       render 'index'
-    when "age"
-      @active_button = "age"
-      @stories = Story.order_by_age(params[:age] , params[:page])
+    when "location"
+      @active_button = "location"
+      @stories = Story.order_by_location(params[:location] , params[:page])
+      render 'index'
+    when "genre"
+      @active_button = "genre"
+      @stories = Story.order_by_genre(params[:genre] , params[:page])
+      render 'index'
+    when "category"
+      @active_button = "category"
+      @stories = Story.order_by_category(params[:category] , params[:page])
+      render 'index'
+    when "life_stage"
+      @active_button = "life_stage"
+      @stories = Story.order_by_life_stage(params[:life_stage] , params[:page])
       render 'index'
     when "tag"
       @active_button = "tag"
@@ -76,6 +94,7 @@ class StoriesController < ApplicationController
 
   def create
     @story = current_user.stories.build(story_params)
+    @story.get_wordcount
     @story.strip_divs
     if @story.save
       flash.now[:success] = "Story created!"
@@ -94,7 +113,7 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:title, :content, :year_written, :decade, :age, :thumbnail, :all_tags, recordings_attributes: [:caption, :recording])
+    params.require(:story).permit(:title, :content, :year_written, :decade, :location, :genre, :category, :life_stage, :thumbnail, :all_tags, recordings_attributes: [:caption, :recording])
   end
 
   def video_params
@@ -108,14 +127,6 @@ class StoriesController < ApplicationController
   def correct_user
     @story = current_user.stories.find_by(id: params[:id])
     redirect_to root_url if @story.nil?
-  end
-
-  def sort_age
-    age_array = []
-    Story.find_each do |story|
-      age_array.push(story.age)
-    end
-    @ages = age_array.sort.uniq!
   end
 
   def sort_year
@@ -133,5 +144,38 @@ class StoriesController < ApplicationController
     end
     @decades = decade_array.sort.uniq!
   end
+
+  def sort_location
+    location_array = []
+    Story.find_each do |story|
+      location_array.push(story.location)
+    end
+    @locations = location_array.sort.uniq!
+  end
+
+  def sort_genre
+    genre_array = []
+    Story.find_each do |story|
+      genre_array.push(story.genre)
+    end
+    @genres = genre_array.sort.uniq!
+  end
+
+  def sort_type
+    type_array = []
+    Story.find_each do |story|
+      type_array.push(story.type)
+    end
+    @types = type_array.sort.uniq!
+  end
+
+  def sort_life_stage
+    life_stage_array = []
+    Story.find_each do |story|
+      life_stage_array.push(story.life_stage)
+    end
+    @life_stages = life_stage_array.sort.uniq!
+  end
+
 
 end

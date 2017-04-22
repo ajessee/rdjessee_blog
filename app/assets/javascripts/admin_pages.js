@@ -4,12 +4,32 @@ var object = null;
 
 $('table td').focusout(function() {
 
-  if ($(this).attr("storyID")) {
+  if ($(this).attr("fillIn")) {
     var questionID = $(this).attr("storyID");
     var attributeToUpdate = $(this).attr("attributeToUpdate");
     var attributeValue = $(this)[0].innerHTML;
     var path = "/stories/"
     object = $(this)
+    saveData(questionID, attributeToUpdate, attributeValue, path);
+  }
+
+  if ($(this).attr("selectInteger")) {
+    var questionID = $(this).attr("storyID");
+    var attributeToUpdate = $(this).attr("attributeToUpdate");
+    var attributeValue = parseInt($(this).find(":selected").text());
+    var path = "/stories/"
+    object = $(this)
+    debugger;
+    saveData(questionID, attributeToUpdate, attributeValue, path);
+  }
+
+  if ($(this).attr("selectString")) {
+    var questionID = $(this).attr("storyID");
+    var attributeToUpdate = $(this).attr("attributeToUpdate");
+    var attributeValue = $(this).find(":selected").text();
+    var path = "/stories/"
+    object = $(this)
+    debugger;
     saveData(questionID, attributeToUpdate, attributeValue, path);
   }
 

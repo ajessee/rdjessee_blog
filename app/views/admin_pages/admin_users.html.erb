@@ -26,13 +26,14 @@
           <select name="value" id="tellMe<%= user.id %>">
             <option value="1" <%= "selected" if user.admin? %> >True</option>
             <option value="0" <%= "selected" if !user.admin? %> >False</option>
-          </select></td>
-          <td contenteditable='true' userID='<%= user.id %>' attributeToUpdate='activated'>
-            <select name="value" id="tellMe<%= user.id %>">
-              <option value="1" <%= "selected" if user.activated? %> >True</option>
-              <option value="0" <%= "selected" if !user.activated? %> >False</option>
-            </select>
-          </td>
+          </select>
+        </td>
+        <td contenteditable='true' userID='<%= user.id %>' attributeToUpdate='activated'>
+          <select name="value" id="tellMe<%= user.id %>">
+            <option value="1" <%= "selected" if user.activated? %> >True</option>
+            <option value="0" <%= "selected" if !user.activated? %> >False</option>
+          </select>
+        </td>
           <td><%= link_to "Delete", user, method: :delete, class: "btn btn-danger",
                                   data: { confirm: "There is no good reason for you to be deleting users. Are you sure?" } %></td>
           <td><%= time_ago_in_words(user.created_at)%> ago</td>
