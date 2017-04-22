@@ -36,7 +36,7 @@
         <div class="col-md-7">
           <div class="caption black">
             <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
-            <p class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> </p>
+            <div class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> </div>
           </div>
         </div>
         <% else %>
@@ -44,7 +44,7 @@
           <div class="caption black">
             <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
             <div class="MajestiBannerBookParaPartial text-left"> 
-              <%= truncate(story.content.html_safe, length: 500, omission: '...', escape: false) %>    
+              <%= truncate(story.content.html_safe, length: 500, omission: '...', escape: false) %>
             </div>
           </div>
         </div>
