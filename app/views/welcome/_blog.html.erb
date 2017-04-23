@@ -38,6 +38,13 @@
             </div>
           </div>
           <% end %>
+          <% if story.word_count != nil %>
+          <div class="col-md-12">
+            <div class="float-right black">
+              <p class="MajestiBannerBookPartial">Word Count: <%= story.word_count %></p>
+            </div>
+          </div>
+          <% end %>
         </div>
 
         <% if story.all_tags != "" %>

@@ -72,8 +72,8 @@ class StoriesController < ApplicationController
       if @story[params[:attributeToUpdate]].to_s != params[:attributeValue]
         if @story.update_attributes(params[:attributeToUpdate] => params[:attributeValue])
           @story.strip_divs
+          @story.get_wordcount
           @story.save
-          flash[:success] = "Story updated"
           @value = @story[params[:attributeToUpdate]]
           render plain: "Change"
         end
@@ -82,6 +82,7 @@ class StoriesController < ApplicationController
       @story = Story.find(params[:id])
       if @story.update_attributes(story_params)
         @story.strip_divs
+        @story.get_wordcount
         @story.save
         flash[:success] = "Story updated"
         redirect_to @story

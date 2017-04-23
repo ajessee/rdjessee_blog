@@ -16,6 +16,7 @@
         <th class="text-center">Genre</th>
         <th class="text-center">Category</th>
         <th class="text-center">Life Stage</th>
+        <th class="text-center">Word Count</th>
         <th class="text-center">Delete</th>
         <th class="text-center">Date Created</th>
         <th class="text-center">Date Updated</th>
@@ -50,6 +51,7 @@
           <%= f.select :life_stage, options_for_select([['Early','Early'],['Middle','Middle'], ['Late','Late']], story.life_stage), class: 'form-control' %>
           <% end %>  
         </td>
+        <td storyID='<%= story.id %>'><%= story.word_count %></td>
         <td><%= link_to "Delete", story, method: :delete, class: "btn btn-danger",
                                   data: { confirm: "This story took a while to write. Are you sure?" } %></td>
         <td><%= time_ago_in_words(story.created_at) %> ago</td>
