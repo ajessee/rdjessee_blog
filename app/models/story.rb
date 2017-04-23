@@ -12,8 +12,6 @@ class Story < ActiveRecord::Base
   validates :user_id, presence: true
   validates :title, presence: true
   validates :content, presence: true
-  validates :year_written, numericality: { only_integer: true }
-  validates :decade, numericality: { only_integer: true }
   mount_uploader :thumbnail, PictureUploader
 
   @@year_array = []
@@ -67,26 +65,32 @@ class Story < ActiveRecord::Base
   end
 
   def self.all_years
+    @@year_array.compact!
     @@year_array.sort.uniq!
   end
 
   def self.all_decades
+    @@decade_array.compact!
     @@decade_array.sort.uniq!
   end
 
   def self.all_locations
+    @@location_array.compact!
     @@location_array.sort.uniq!
   end
 
   def self.all_genres
+    @@genre_array.compact!
     @@genre_array.sort.uniq!
   end
 
   def self.all_categories
+    @@category_array.compact!
     @@category_array.sort.uniq!
   end
 
   def self.all_life_stages
+    @@life_stage_array.compact!
     @@life_stage_array.sort.uniq!
   end
 

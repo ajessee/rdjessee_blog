@@ -69,6 +69,7 @@ class StoriesController < ApplicationController
   def update
     if request.xhr?
       @story = Story.find(params[:id])
+      params[:attributeValue] = nil if params[:attributeValue] == ""
       if @story[params[:attributeToUpdate]].to_s != params[:attributeValue]
         if @story.update_attributes(params[:attributeToUpdate] => params[:attributeValue])
           @story.strip_divs
@@ -80,6 +81,7 @@ class StoriesController < ApplicationController
       end
     else
       @story = Story.find(params[:id])
+      clean_story_params
       if @story.update_attributes(story_params)
         @story.strip_divs
         @story.get_wordcount
@@ -94,9 +96,10 @@ class StoriesController < ApplicationController
   end
 
   def create
+    clean_story_params
     @story = current_user.stories.build(story_params)
-    @story.get_wordcount
     @story.strip_divs
+    @story.get_wordcount
     if @story.save
       flash.now[:success] = "Story created!"
       render :show
@@ -123,6 +126,27 @@ class StoriesController < ApplicationController
 
   def recording_params
     params.require(:story).permit(recordings_attributes: [:caption, :recording])
+  end
+
+  def clean_story_params
+    if story_params[:year_written] == "None"
+      params[:story][:year_written] = nil
+    end
+    if story_params[:decade] == "None"
+      params[:story][:decade] = nil
+    end
+    if story_params[:genre] == ""
+      params[:story][:genre] = nil
+    end
+    if story_params[:location] == ""
+      params[:story][:location] = nil
+    end
+    if story_params[:category] == ""
+      params[:story][:category] = nil
+    end
+    if story_params[:life_stage] == ""
+      params[:story][:life_stage] = nil
+    end
   end
 
   def correct_user

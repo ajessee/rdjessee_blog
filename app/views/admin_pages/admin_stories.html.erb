@@ -27,28 +27,28 @@
         <td contenteditable='true' storyID='<%= story.id %>' fillIn="yes" attributeToUpdate='title'><%= story.title %></td>
         <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='year_written'>
           <%= form_for(story) do |f| %>
-            <%= f.select :year_written, options_for_select((2004..2017).to_a.map {|s| ["#{s}", s]}, story.year_written), class: 'form-control' %>
+            <%= f.select :year_written, options_for_select((2004..2017).to_a.unshift("None").map {|s| ["#{s}", s]}, story.year_written), class: 'form-control' %>
             <% end %>
         </td>
         <td contenteditable='true' storyID='<%= story.id %>' selectInteger="yes" attributeToUpdate='decade'>
           <%= form_for(story) do |f| %>
-          <%= f.select :decade, options_for_select((1..9).to_a.map {|s| ["#{s}", s]}, story.decade), class: 'form-control' %>
+          <%= f.select :decade, options_for_select((1..9).to_a.unshift("None").map {|s| ["#{s}", s]}, story.decade), class: 'form-control' %>
           <% end %> 
         </td>
         <td contenteditable='true' storyID='<%= story.id %>' fillIn="yes" attributeToUpdate='location'><%= story.location %></td>
         <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='genre'>
           <%= form_for(story) do |f| %>
-          <%= f.select :genre, options_for_select([['Fiction','Fiction'],['Non-Fiction','Non-Fiction']], story.genre), class: 'form-control' %>
+          <%= f.select :genre, options_for_select([['None', nil], ['Fiction','Fiction'],['Non-Fiction','Non-Fiction']], if story.genre != nil then story.genre else "None" end), class: 'form-control' %>
           <% end %> 
         </td>
         <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='category'>
           <%= form_for(story) do |f| %>
-          <%= f.select :category, options_for_select([['Story','Story'],['Poem','Poem'], ['Letter','Letter']], story.category), class: 'form-control' %>
+          <%= f.select :category, options_for_select([['None', nil], ['Story','Story'],['Poem','Poem'], ['Letter','Letter']], if story.category != nil then story.category else "None" end), class: 'form-control' %>
           <% end %> 
         </td>
         <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='life_stage'>
           <%= form_for(story) do |f| %>
-          <%= f.select :life_stage, options_for_select([['Early','Early'],['Middle','Middle'], ['Late','Late']], story.life_stage), class: 'form-control' %>
+          <%= f.select :life_stage, options_for_select([['None', nil], ['Early','Early'],['Middle','Middle'], ['Late','Late']], if story.life_stage != nil then story.life_stage else "None" end ), class: 'form-control' %>
           <% end %>  
         </td>
         <td storyID='<%= story.id %>'><%= story.word_count %></td>

@@ -8,6 +8,9 @@ $('table td').focusout(function() {
     var questionID = $(this).attr("storyID");
     var attributeToUpdate = $(this).attr("attributeToUpdate");
     var attributeValue = $(this)[0].innerHTML;
+    if (attributeValue === "None") {
+      attributeValue = null 
+    }
     var path = "/stories/"
     object = $(this)
     saveData(questionID, attributeToUpdate, attributeValue, path);
@@ -17,9 +20,11 @@ $('table td').focusout(function() {
     var questionID = $(this).attr("storyID");
     var attributeToUpdate = $(this).attr("attributeToUpdate");
     var attributeValue = parseInt($(this).find(":selected").text());
+    if (attributeValue === "None") {
+      attributeValue = null 
+    }
     var path = "/stories/"
     object = $(this)
-    debugger;
     saveData(questionID, attributeToUpdate, attributeValue, path);
   }
 
@@ -27,9 +32,11 @@ $('table td').focusout(function() {
     var questionID = $(this).attr("storyID");
     var attributeToUpdate = $(this).attr("attributeToUpdate");
     var attributeValue = $(this).find(":selected").text();
+    if (attributeValue === "None") {
+      attributeValue = null 
+    }
     var path = "/stories/"
     object = $(this)
-    debugger;
     saveData(questionID, attributeToUpdate, attributeValue, path);
   }
 
@@ -58,7 +65,6 @@ function saveData(ID, attributeToUpdate, attributeValue, path) {
 })
   .done(function(data){
     if (data === "Change") {
-      debugger;
       object.attr("style", "background-color: lightgreen");
       object.parent().children().last().attr("style", "background-color: lightgreen");
       object.parent().children().last()[0].innerHTML = "Just Now";
