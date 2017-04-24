@@ -18,7 +18,7 @@ $(document).ready(function(){
         typeSpeed: .10,
         loop: false,
         callback: function() {
-          $("#rdjesseeSignature").fadeIn( 6000 )
+          $("#rdjesseeSignature").fadeIn( 2000 )
           $("#scrollDownBook").fadeIn( 2000 )  
         }
       });
