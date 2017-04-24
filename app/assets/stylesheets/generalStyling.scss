@@ -71,11 +71,26 @@ hr#pageLine1 {
 
 hr#pageLine2 {
   border-top: 3px solid #eeeeee;
+  max-width: 50%;
+  margin: 30px auto;
+  border-color: white;
+  text-shadow: 5px;
+}
+
+/* Parallax 2 */
+
+.white_background {
+  background-color: white;
+}
+
+hr#pageLine2 {
+  border-top: 3px solid #eeeeee;
   max-width: 30%;
   margin: 30px auto;
   border-color: white;
   text-shadow: 5px;
 }
+
 
 /* Blog */
 
@@ -270,6 +285,10 @@ trix-editor {
 
 #donSmiles {
   margin-left: 2%;
+}
+
+.yellow_background {
+  background-color: yellow;
 }
 
 

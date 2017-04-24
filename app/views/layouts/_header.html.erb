@@ -27,18 +27,18 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stories <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                              <li><a class="page-scroll" <%= current_page?("/") ? "href=#blog" : "href=/#blog" %> >Sample</a></li>
+                              <li><a class="page-scroll" <%= current_page?("/") ? "href=#blog" : "href=/#blog" %> >Stories</a></li>
                               <li role="separator" class="divider"></li>
-                              <li><a href=" <%= stories_path %> ">All Stories</a></li>
+                              <li><a href=" <%= stories_path %> ">Full List</a></li>
                             </ul>
                     
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pictures <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                              <li><a class="page-scroll" <%= current_page?("/") ? "href=#show_pictures" : "href=/#show_pictures" %> >Sample</a></li>
+                              <li><a class="page-scroll" <%= current_page?("/") ? "href=#show_pictures" : "href=/#show_pictures" %> >Pictures</a></li>
                               <li role="separator" class="divider"></li>
-                              <li><a href=" <%= pictures_path %> ">All Pictures</a></li>
+                              <li><a href=" <%= pictures_path %> ">Full List</a></li>
                               <% if logged_in? %>
                               <li><a href=" <%= new_user_picture_path(current_user) %> ">Upload New Picture</a></li>
                               <% end %>
