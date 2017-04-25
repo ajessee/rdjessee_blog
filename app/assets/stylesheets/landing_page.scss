@@ -1,0 +1,71 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Landing Page */
+
+/* General */
+
+#rdjesseeSignature {
+  display: block;
+}
+
+#scrollDownBook {
+  display: block;
+  clear: both;
+  color: white;
+  font-size: 2.6em;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+
+  #typedIn {
+    font-family: MajestiBannerBook;
+    font-size: 3.2em;
+    letter-spacing: -0.7px;
+    margin-bottom: 5px;
+    text-transform: none;
+    text-align: left;
+    color: white;
+  }
+
+  .vert-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+  }
+
+  #rdjesseeSignature {
+    float: right;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+  #typedIn {
+    font-family: MajestiBannerBook;
+    font-size: 1.8em;
+    letter-spacing: -0.7px;
+    text-transform: none;
+    text-align: center;
+    color: white;
+  }
+
+  header.mobile-full {
+    padding: 2% 0 2% 0;
+  }
+
+  #rdjesseeSignature {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  #scrollDownBook {
+    font-size: 1.6em;
+  }
+
+}

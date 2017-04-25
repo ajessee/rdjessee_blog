@@ -4,67 +4,18 @@ $pantoneOrange: #FF6C2F;
 $pantoneCoolGrey: #53565A;
 $brightYellow: #FFCE00;
 
-/* Landing Page */
-
-#rdjesseeSignature {
-  display: none;
-}
-
-#scrollDownBook {
-  display: none;
-}
-
-h6.MajestiBannerBook {
-  font-family: MajestiBannerBook;
-  font-size: 3.2em;
-  letter-spacing: -0.7px;
-  margin-bottom: 5px;
-  text-transform: none;
-  text-align: left;
-  color: white;
-}
-
-.vert-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
-  display: flex;
-  align-items: center;
-}
-
-/* Intro Page */
-
-h4 {
-  font-family: MajestiBannerBook;
-  font-size: 6em;
-  margin-bottom: 20px;
-  text-transform: none;
-}
-
-p.droid-serif {
-    font-family: 'Droid Serif', serif;
-    font-size: 1.7em;
-    letter-spacing: 0px;
-    margin-bottom: 5px;
-    text-transform: none;
-    text-align: left;
-}
-
+/* Shared */
 
 .pageLine {
   border-top: 3px solid #eeeeee;
   max-width: 50%;
-  margin: 30px auto;
+  margin: 3% auto;
   border-color: lightgrey;
 }
 
-#donSmiles {
-  border: 8px solid black;
+.buttonDropShadow {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.22);
 }
-
-/* Parallax 1 */
-
-
-/* Parallax 2 */
 
 
 /* Blog */
@@ -99,18 +50,7 @@ p.droid-serif {
 }
 
 
-#storiesButton {
-  font-family: MajestiBannerMedium;
-  font-size: 2em;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-  text-transform: none;
 
-}
-
-.buttonDropShadow {
-  box-shadow: 0 1px 6px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.22);
-}
 
 h3.MajestiBannerBook {
   font-family: MajestiBannerBook;
@@ -252,9 +192,7 @@ trix-editor {
   margin: 0 auto;
 }
 
-#donSmiles {
-  margin-right: 2%;
-}
+
 
 .yellow_background {
   background-color: yellow;
@@ -290,6 +228,12 @@ h3 {
   text-transform: none;
 }
 
+h4 {
+  font-family: MajestiBannerBook;
+  font-size: 6em;
+  margin-bottom: 20px;
+  text-transform: none;
+}
 
 h5 {
   font-family: NexaLight;

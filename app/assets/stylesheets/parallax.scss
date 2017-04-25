@@ -1,0 +1,61 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Intro Page */
+
+/* General */
+
+#quote_1 {
+  font-family: MajestiBannerBold;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: 2.5em;
+  text-align: right;
+}
+
+#quote_1_author {
+  font-family: MajestiBannerBold;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: 2.5em;
+}
+
+#quote_2 {
+  font-family: MajestiBannerBold;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: 2.5em;
+  text-align: left;
+}
+
+#quote_2_author {
+  font-family: MajestiBannerBold;
+  font-size: 2.5em;
+  color: white;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+  #quote_1 {
+    font-size: 1.8em;
+    text-align: center;
+    color: antiquewhite;
+  }
+
+  #quote_1_author {
+    font-size: 1.5em;
+    color: antiquewhite;
+  }
+
+  #quote_2 {
+    font-size: 1.8em;
+    text-align: center;
+    color: antiquewhite;
+  }
+
+  #quote_2_author {
+    font-size: 1.5em;
+    color: white;
+    color: antiquewhite;
+  }
+}
