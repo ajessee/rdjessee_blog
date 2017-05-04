@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= ga_script %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/meta' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -12,5 +13,6 @@
   <body>
       <%= yield %>
     <%= javascript_include_tag 'application' %>
+    <%= ga_track %>
   </body>
 </html>
