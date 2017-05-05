@@ -13,46 +13,6 @@
     font-size: 1.5em;
   }
 
-  h4.h4-mobile {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-
-  h4.mobile-hide {
-    display: none;
-  }
-
-  ul.no-bullet-mobile {
-    list-style-type: none;
-    padding-left: 0;
-  }
-
-  p.bullet-mobile {
-    font-size: 1.2em;
-    text-align: left;
-  }
-
-  p.nexa-light {
-  text-align: center;
-  }
-
-  p.nexa-bold {
-  text-align: center;
-  }
-
-  p.mobile-smaller{
-    font-size: 1.4em;
-  }
-
-  .intro-text-spacing {
-    margin-bottom: 3% !important;
-    margin-top: 5% !important;
-  }
-
-  .bullet-spacing {
-    margin-bottom: 5px !important;
-  }
-
   .navbar-expanded {
     display: none;
   }
@@ -65,20 +25,6 @@
     padding: 1em 0;
   }
 
-  #headerLogo {
-    width: 91%;
-  }
-
-  #giraffeSectionLogo{
-    height: 50%;
-    width: 50%;
-  }
-
-  #knowYourPowerLogo {
-    height: 50%;
-    width: 50%;
-  }
-
   #page-top {
     height: 100vh;
   }
@@ -86,18 +32,6 @@
   .cta-quote {
     height: 100vh;
   }
-
-  .padding-signin {
-    padding-top: 50px !important;
-    padding-left: 60px !important;
-  }
-
-  .padding-arrow {
-    padding-top: 8px !important;
-    padding-left: 45px !important;
-  }
-
-
 
   #quote_1 {
     font-family: MajestiBannerBoldItalic;
@@ -128,5 +62,9 @@
   .input-group {
     margin-bottom: 40px;
   }
+
+  .dropdown-menu li:hover .dropdown-menu {
+  position:static;
+}
 
 }
