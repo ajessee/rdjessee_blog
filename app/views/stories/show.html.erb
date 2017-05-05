@@ -44,7 +44,7 @@
 
       <div class="text-center">
         <% if !logged_in? %>
-          <a href=" <%= login_path %> " class="btn btn-default btn-lg" id="editBlogButton" role="button">Want to leave a comment? Please log in.</a>
+        <%= link_to "Want to leave a comment? Please log in.", login_path, class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
         <% else %>
           <%= form_for [@story, Comment.new] do |f| %>
           <%= f.hidden_field :user_id, value: current_user.id %>
@@ -57,23 +57,9 @@
 
       <div class="text-center top-margin-1-percent">
         <% if logged_in? && current_user.admin? %>
-        <a href="<%= edit_story_path(@story.id) %>" class="btn btn-default btn-lg buttonDropShadow" id="editBlogButton" role="button">Edit this story</a>
+        <%= link_to "Edit this story", edit_story_path(@story.id), class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
         <% end %>
       </div>
-
-<!-- Once we get the recordings working we will use this -->
-<!--       <div class="text-center">
-        <% if !logged_in? %>
-          <a href=" <%= login_path %> " class="btn btn-default btn-lg" id="editBlogButton" role="button">Want to upload a recording of this story? Please log in.</a>
-        <% else %>
-          <%= form_for [@story, Recording.new] do |f| %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.hidden_field :story_id, value: @story.id %>
-          <%= f.file_field :recording %><br/>
-          <%= f.submit "Upload Recording", class: "btn btn-default btn-lg" %>
-          <% end %>
-        <% end %>
-      </div> -->
 
     </div>
   </div>
