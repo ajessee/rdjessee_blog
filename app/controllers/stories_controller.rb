@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy, :new, :edit]
-  before_action :correct_user,   only: [:destroy, :edit]
+  before_action :admin_user,   only: [:destroy, :edit]
 
   def new
     @story = Story.new
@@ -147,6 +147,11 @@ class StoriesController < ApplicationController
     if story_params[:life_stage] == ""
       params[:story][:life_stage] = nil
     end
+  end
+
+  # Confirms an admin user.
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 
   def correct_user
