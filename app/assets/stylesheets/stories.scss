@@ -34,6 +34,14 @@
     padding: 4px 9px;
   }
 
+  .btn-group, .btn-group-vertical {
+    display: grid;
+  }
+
+  .pagination > ul {
+    box-shadow: none;
+  }
+
   .comment-area {
     height: 6em;
     width: 17em;
@@ -41,6 +49,10 @@
 
   #blog {
     padding-top: 3em;
+  }
+
+  #blog_full {
+    padding-top: 5em;
   }
 
   h3.MajestiBannerBookPartial {

@@ -1,0 +1,15 @@
+  /* Sign up and Log in Pages */
+
+  /* General */
+
+  /* Desktop */
+  @media (min-width: 768px) {}
+
+  /* Mobile */
+  @media (max-width: 767px) {
+
+    section#user_login, section#new_user {
+      padding-top: 3em;
+    }
+
+  }  

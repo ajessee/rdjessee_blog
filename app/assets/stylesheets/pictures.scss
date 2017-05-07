@@ -10,3 +10,23 @@
   margin-bottom: 20px;
   text-transform: none;
 }
+
+
+/* Desktop */
+@media (min-width: 768px) {}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+  h4 {
+  font-size: 3em;
+  margin-top: 5%;
+  }
+
+
+  #picturesButton {
+    font-size: 1.5em;
+    margin: 2% 0 5% 0;
+  }
+
+}

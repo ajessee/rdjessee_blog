@@ -25,7 +25,7 @@ $brightYellow: #FFCE00;
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-.blog_links {
+.blog_links, .blog_links:hover, .blog_links:active, .blog_links:visited, .blog_links:focus {
   text-decoration: none;
 }
 
@@ -386,20 +386,20 @@ hr.colored {
 }
 
 .modal-content {
-  background-color: $pantoneCoolGrey;
+  background-color: lightgray;
 }
 
 .modal-header {
   font-family: NexaBold;
   font-size: 1em;
   text-align: center;
-  color: $pantoneOrange;
+  color: black;
 }
 
 .modal-body {
   font-family: NexaLight;
   font-size: .5em;
-  color: $pantoneOrange;
+  color: black;
 }
 
 .closeModal {
