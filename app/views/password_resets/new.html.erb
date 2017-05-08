@@ -1,13 +1,35 @@
 <% provide(:title, "Forgot password") %>
-<h1>Forgot password</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+<section id="forgot_password">
+  <div class="container">
 
-      <%= f.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
+  <% if !flash.empty? %>
+    <%= render 'shared/flash2' %>
+  <% end %>
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h4>Forgot password?</h4>
+        <hr class="pageLine">
+        <h6>No worries, just submit your email address and we'll send you an email to reset your password</h6>
+      </div>
+    </div>
+
+    <div class="row">
+        <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+          <div class="form-group col-xs-12 floating-label-form-group controls"> 
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control', placeholder: "Enter Email Address" %>
+          </div>
+          <div class="form-group col-xs-12 text-center">
+          <%= f.submit "Submit", class: "btn btn-default btn-lg buttonDropShadow" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
   </div>
-</div>
+</section>
+
+

@@ -25,6 +25,10 @@
   margin-top: 5%;
   }
 
+  div.panel-heading {
+    font-size: .7em;
+  }
+
   #storiesButton {
     font-size: 1.5em;
     margin: 2% 0 5% 0;
@@ -53,6 +57,14 @@
 
   #blog_full {
     padding-top: 5em;
+  }
+
+  #blog_edit {
+    padding-top: 5em;
+  }
+
+  #updateStoryButton {
+    margin-top: 1em;
   }
 
   h3.MajestiBannerBookPartial {
