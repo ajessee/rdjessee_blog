@@ -1,131 +1,137 @@
 <!-- Navigation -->
 <!-- NOTE: .navbar-default and .navbar-inverse are both supported with this theme. -->
 <nav class="navbar navbar-inverse navbar-fixed-top navbar-expanded">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-bars"></i> Menu
-            </button>
-            <% if !current_page?("/") %>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <i class="fa fa-bars"></i> Menu
+      </button>
+      <% if !current_page?("/") %>
 
-                <%= link_to image_tag("rdjesseeLogo.png", alt: "Logo", class: "img-responsive"),   root_path, class: "navbar-brand page-scroll"  %>
-            <% else %>
-                <%= link_to image_tag("rdjesseeLogo.png", alt: "Logo", class: "img-responsive"),   "#page-top", class: "navbar-brand page-scroll"  %>
-            <% end %>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a class="page-scroll" href="#page-top"></a>
-                </li>
-
-
-                <li>
-                    <a class="page-scroll" <%= current_page?("/") ? "href=#intro" : "href=/#intro" %> >Don</a>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stories <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a class="page-scroll" <%= current_page?("/") ? "href=#blog" : "href=/#blog" %> >Stories</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href=" <%= stories_path %> ">Full List</a></li>
-                            </ul>
-                    
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pictures <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a class="page-scroll" <%= current_page?("/") ? "href=#show_pictures" : "href=/#show_pictures" %> >Pictures</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href=" <%= pictures_path %> ">Full List</a></li>
-                              <% if logged_in? %>
-                              <li><a href=" <%= new_user_picture_path(current_user) %> ">Upload New Picture</a></li>
-                              <% end %>
-                            </ul>
-                    
-                </li>
-                <!-- Once we get videos setup we will add this back in -->
-<!--                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Videos <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a class="page-scroll" <%= current_page?("/") ? "href=#show_videos" : "href=/#show_videos" %> >Sample</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href=" <%= videos_path %> ">All Videos</a></li>
-                              <% if logged_in? %>
-                              <li><a href=" <%= new_user_video_path(current_user) %> ">Upload New Video</a></li>
-                              <% end %>
-                            </ul>
-                    
-                </li> -->
-
-                <% if logged_in? && current_user.admin? %>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><%= link_to "Users", admin_users_path %></li>
-                            <li><%= link_to "Stories", admin_stories_path %></li>
-                            <li><%= link_to "New Blog Post", new_story_path %></li>
-                                            <% if Rails.env.development? %>
-                                <li>
-                                    <a data-toggle="modal" data-target="#debugModal">Debug Panel</a>
-                                </li>
-                            <% end %>
-                            </ul>
-                    
-                </li>
-                <% end %>
-                <% if logged_in? %>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><%= link_to "Profile", current_user %></li>
-                            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-                            <li class="divider"></li>
-                            <li>
-                            <%= link_to "Log out", logout_path, method: "delete" %>
-                            </li>
-                        </ul>
-                     </li>
-                <% else %>
-                  <li><%= link_to "Sign up", signup_path %></li>
-                  <li><%= link_to "Log in", login_path %></li>
-                <% end %>
-
-            </ul>
-        </div>
+      <%= link_to image_tag("rdjesseeLogo.png", alt: "Logo", class: "img-responsive"),   root_path, class: "navbar-brand page-scroll"  %>
+      <% else %>
+      <%= link_to image_tag("rdjesseeLogo.png", alt: "Logo", class: "img-responsive"),   "#page-top", class: "navbar-brand page-scroll"  %>
+      <% end %>
     </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="hidden">
+          <a class="page-scroll" href="#page-top"></a>
+        </li>
+
+        <li>
+          <a class="page-scroll" <%= current_page?("/") ? "href=#intro" : "href=/#intro" %> >Don</a>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stories <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="page-scroll" <%= current_page?("/") ? "href=#blog" : "href=/#blog" %> >Stories</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href=" <%= stories_path %> ">Full List</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pictures <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="page-scroll" <%= current_page?("/") ? "href=#show_pictures" : "href=/#show_pictures" %> >Pictures</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href=" <%= pictures_path %> ">Full List</a></li>
+            <% if logged_in? %>
+            <li><a href=" <%= new_user_picture_path(current_user) %> ">Upload New Picture</a></li>
+            <% end %>
+          </ul>
+        </li>
+
+
+        <% if logged_in? && current_user.admin? %>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Users", admin_users_path %></li>
+            <li><%= link_to "Stories", admin_stories_path %></li>
+            <li><%= link_to "New Blog Post", new_story_path %></li>
+            <% if Rails.env.development? %>
+            <li>
+              <a data-toggle="modal" data-target="#debugModal">Debug Panel</a>
+            </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <% end %>
+
+        <% if logged_in? %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <!-- <li><%= link_to "Profile", current_user %></li> -->
+            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to "Log out", logout_path, method: "delete" %>
+            </li>
+          </ul>
+        </li>
+        <% else %>
+        <li><%= link_to "Sign up", signup_path %></li>
+        <li><%= link_to "Log in", login_path %></li>
+        <% end %>
+
+        <!-- Once we get videos setup we will add this back in -->
+        <!-- <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Videos <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a class="page-scroll" <%= current_page?("/") ? "href=#show_videos" : "href=/#show_videos" %> >Sample</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href=" <%= videos_path %> ">All Videos</a></li>
+                    <% if logged_in? %>
+                    <li><a href=" <%= new_user_video_path(current_user) %> ">Upload New Video</a></li>
+                    <% end %>
+                  </ul>
+          
+                </li> -->
+                
+      </ul>
+    </div>
+  </div>
 </nav>
 
-<div class="modal fade" id="debugModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="closeModal"aria-hidden="true"><i class="fa fa-times fa-1x"></i></span></button>
-        <h4 class="modal-title">Debug</h4>
-      </div>
-      <div class="modal-body">
-        <%= debug(params) %>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<div class="modal fade" id="rememberModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="closeModal" aria-hidden="true"><i class="fa fa-times fa-1x"></i></span></button>
-        <h4 class="modal-title">What is this?</h4>
-      </div>
-      <div class="modal-body">
-        <h4>When you select this checkbox, we'll put an encrypted cookie on your browser so that you don't have to log-in again when you return to ralphdonaldjessee.com, even if you close your browser. Don't worry, you can log out at anytime to delete this <a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank">cookie</a>.</h4>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 
-<%= if !current_page?("/")
-        javascript_tag "document.getElementsByClassName('navbar-fixed-top')[0].className = 'navbar navbar-inverse navbar-fixed-top';"
-    end %>
+                  <div class="modal fade" id="debugModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="closeModal"aria-hidden="true"><i class="fa fa-times fa-1x"></i></span></button>
+                          <h4 class="modal-title">Debug</h4>
+                        </div>
+                        <div class="modal-body">
+                          <%= debug(params) %>
+                        </div>
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+
+                  <div class="modal fade" id="rememberModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="closeModal" aria-hidden="true"><i class="fa fa-times fa-1x"></i></span></button>
+                          <h4 class="modal-title">What is this?</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h4>When you select this checkbox, we'll put an encrypted cookie on your browser so that you don't have to log-in again when you return to ralphdonaldjessee.com, even if you close your browser. Don't worry, you can log out at anytime to delete this <a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank">cookie</a>.</h4>
+                        </div>
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+
+
+                  <%= if !current_page?("/")
+                    javascript_tag "document.getElementsByClassName('navbar-fixed-top')[0].className = 'navbar navbar-inverse navbar-fixed-top';"
+                    end %>
