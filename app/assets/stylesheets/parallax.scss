@@ -6,7 +6,7 @@
 
 /* General */
 
-#quote_1 {
+#quote_1, #quote_1_2 {
   font-family: MajestiBannerBold;
   text-shadow: 2px 2px 4px #000000;
   font-size: 2.5em;
@@ -36,26 +36,39 @@
 /* Mobile */
 @media (max-width: 767px) {
 
-  #quote_1 {
+  #quote_1, #quote_1_2 {
     font-size: 1.8em;
     text-align: center;
-    color: antiquewhite;
+    color: white;
+  }
+
+  #quote_1 {
+    margin-bottom: 22%
+  }
+
+  #quote_1_2 {
+    margin-top: 22%
   }
 
   #quote_1_author {
     font-size: 1.5em;
-    color: antiquewhite;
+    color: white;
+  }
+
+  aside#quote_1_container {
+    background-size: 100%;
+    background-color: black;
   }
 
   #quote_2 {
     font-size: 1.8em;
     text-align: center;
-    color: antiquewhite;
+    color: white;
   }
 
   #quote_2_author {
     font-size: 1.5em;
     color: white;
-    color: antiquewhite;
+    color: white;
   }
 }
