@@ -26,17 +26,24 @@ class PicturesController < ApplicationController
   end
 
   def edit
-    @story = Story.find(params[:id])
+    @picture = Picture.find(params[:id])
   end
 
   def update
-
+    @picture = Picture.find(params[:id])
+    if @picture.update_attributes(picture_params)
+      @picture.save
+      flash[:success] = "Picture updated"
+      redirect_to @picture
+    else
+      render 'edit'
+    end 
   end
 
-
   def destroy
-    @story.destroy
-    flash[:success] = "Story deleted"
+    @picture = Picture.find(params[:id])
+    @picture.destroy
+    flash[:success] = "Picture deleted"
     redirect_to request.referrer || root_url
   end
 
