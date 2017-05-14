@@ -46,6 +46,10 @@
           </ul>
         </li>
 
+        <li>
+          <a class="page-scroll" id="obit_menu" <%= current_page?("/") ? "href=#rdj_obit" : "href=/#rdj_obit" %> >Obituary</a>
+        </li>
+
 
         <% if logged_in? && current_user.admin? %>
 
@@ -83,55 +87,55 @@
         <% end %>
 
         <!-- Once we get videos setup we will add this back in -->
-        <!-- <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Videos <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a class="page-scroll" <%= current_page?("/") ? "href=#show_videos" : "href=/#show_videos" %> >Sample</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href=" <%= videos_path %> ">All Videos</a></li>
-                    <% if logged_in? %>
-                    <li><a href=" <%= new_user_video_path(current_user) %> ">Upload New Video</a></li>
-                    <% end %>
-                  </ul>
-          
-                </li> -->
-                
-      </ul>
-    </div>
-  </div>
+<!-- <li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Videos <span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a class="page-scroll" <%= current_page?("/") ? "href=#show_videos" : "href=/#show_videos" %> >Sample</a></li>
+<li role="separator" class="divider"></li>
+<li><a href=" <%= videos_path %> ">All Videos</a></li>
+<% if logged_in? %>
+<li><a href=" <%= new_user_video_path(current_user) %> ">Upload New Video</a></li>
+<% end %>
+</ul>
+
+</li> -->
+
+</ul>
+</div>
+</div>
 </nav>
 
 
 
-                  <div class="modal fade" id="debugModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="closeModal"aria-hidden="true"><i class="fa fa-times fa-1x"></i></span></button>
-                          <h4 class="modal-title">Debug</h4>
-                        </div>
-                        <div class="modal-body">
-                          <%= debug(params) %>
-                        </div>
-                      </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                  </div><!-- /.modal -->
+<div class="modal fade" id="debugModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="closeModal"aria-hidden="true"><i class="fa fa-times fa-1x"></i></span></button>
+        <h4 class="modal-title">Debug</h4>
+      </div>
+      <div class="modal-body">
+        <%= debug(params) %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-                  <div class="modal fade" id="rememberModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="closeModal" aria-hidden="true"><i class="fa fa-times fa-1x"></i></span></button>
-                          <h4 class="modal-title">What is this?</h4>
-                        </div>
-                        <div class="modal-body">
-                          <h4>When you select this checkbox, we'll put an encrypted cookie on your browser so that you don't have to log-in again when you return to ralphdonaldjessee.com, even if you close your browser. Don't worry, you can log out at anytime to delete this <a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank">cookie</a>.</h4>
-                        </div>
-                      </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                  </div><!-- /.modal -->
+<div class="modal fade" id="rememberModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="closeModal" aria-hidden="true"><i class="fa fa-times fa-1x"></i></span></button>
+        <h4 class="modal-title">What is this?</h4>
+      </div>
+      <div class="modal-body">
+        <h4>When you select this checkbox, we'll put an encrypted cookie on your browser so that you don't have to log-in again when you return to ralphdonaldjessee.com, even if you close your browser. Don't worry, you can log out at anytime to delete this <a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank">cookie</a>.</h4>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
-                  <%= if !current_page?("/")
-                    javascript_tag "document.getElementsByClassName('navbar-fixed-top')[0].className = 'navbar navbar-inverse navbar-fixed-top';"
-                    end %>
+<%= if !current_page?("/")
+  javascript_tag "document.getElementsByClassName('navbar-fixed-top')[0].className = 'navbar navbar-inverse navbar-fixed-top';"
+  end %>

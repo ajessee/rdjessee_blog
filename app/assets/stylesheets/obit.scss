@@ -1,0 +1,50 @@
+// Place all the styles related to the Pictures controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+p.nexa-light, ul.nexa-light {
+  font-family: NexaLight;
+  font-size: 1.7em;
+  letter-spacing: -0.7px;
+  margin-bottom: 20px;
+  text-transform: none;
+  text-align: left;
+}
+
+.owl-controls {
+  margin-top: 5% !important;
+}
+
+.center {
+  text-align: center !important;
+}
+
+#obitPic3 {
+  max-height: 38em;
+}
+
+#obitPic4 {
+  max-height: 42em;
+}
+
+#obitPic5 {
+  max-height: 40em;
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {}
+
+/* Mobile */
+@media (max-width: 767px) {
+
+p.nexa-light, ul.nexa-light {
+  text-align: center;
+}
+
+#obitPic1, #obitPic2, #obitPic3, #obitPic4, #obitPic5, #obitPic6, #obitPic7, #obitPic8, #obitPic9 {
+  margin: 10% 0% 10% 0%;
+}
+
+}
