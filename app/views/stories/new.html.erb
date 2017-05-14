@@ -1,62 +1,70 @@
-<section id="blog_new">
+  <section id="blog_new">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 wow fadeIn">
-            <%= form_for(@story) do |f| %>
-              <%= render 'shared/error_messages', object: f.object %>
-              <div>
-                <%= f.label :title %>
-                <%= f.trix_editor :title, class: 'form-control' %>
-              </div>
-              <div>
-                <%= f.label :content %>
-                <%= f.trix_editor :content, size: "30x10", class: 'form-control make-big' %>
-              </div>
-              <div>
-                <%= f.label :year_written %>
-                <%= f.select :year_written, options_for_select((2004..2017).to_a.unshift("None").map {|s| ["#{s}", s]}, @story.year_written), class: 'form-control' %>
-              </div>
-              <div>
-                <%= f.label :decade %>
-                <%= f.select :decade, options_for_select((1..9).to_a.unshift("None").map {|s| ["#{s}", s]}, @story.decade), class: 'form-control' %>
-              </div>
-              <div>
-              <%= f.label :genre %>
-              <%= f.select :genre, options_for_select([['None', nil], ['Fiction','Fiction'],['Non-Fiction','Non-Fiction']]), class: 'form-control' %>
-              </div>
-              <div>
-              <%= f.label :category %>
-              <%= f.select :category, options_for_select([['None', nil], ['Story','Story'],['Poem','Poem'], ['Letter','Letter']]), class: 'form-control' %>
-              </div>
-              <div>
-              <%= f.label :life_stage %>
-              <%= f.select :life_stage, options_for_select([['None', nil], ['Early','Early'],['Middle','Middle'], ['Late','Late']]), class: 'form-control' %>
-              </div>
-              <div>
-              <%= f.label :location %>
-              <%= f.text_field :location, placeholder: "Enter Location of Story", class: 'form-control' %>
-              </div>
-              <div>
-                <%= f.label :all_tags %>
-                <%= f.text_field :all_tags, placeholder: "Tags seperated with comma", class: 'form-control' %>
-              </div>
-              <div class="picture">
-                <%= f.label "Upload thumbnail picture" %>
-                <%= f.file_field :thumbnail %>
-              </div>
-              <div class="recording">
-              <%= f.fields_for :recordings do |r| %>
-                  <%= r.label "Upload Recording" %>
-                  <%= r.text_field :caption, placeholder: "Enter caption for recording...", class: 'form-control' %> 
-                  <%= r.file_field :recording %>
-              <% end %>
-              </div>
-              <br>
-              <div>
-                <%= f.submit "Submit Story", class: "btn btn-default btn-lg buttonDropShadow" %>
-              </div>
-            <% end %>
-            </div>
+
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h4>Create New Story</h4>
+          <hr class="pageLine">
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 wow fadeIn">
+          <%= form_for(@story) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div>
+            <%= f.label :title %>
+            <%= f.trix_editor :title, class: 'form-control' %>
+          </div>
+          <div>
+            <%= f.label :content %>
+            <%= f.trix_editor :content, size: "30x10", class: 'form-control make-big' %>
+          </div>
+          <div>
+            <%= f.label :year_written %>
+            <%= f.select :year_written, options_for_select((2004..2017).to_a.unshift("None").map {|s| ["#{s}", s]}, @story.year_written), class: 'form-control' %>
+          </div>
+          <div>
+            <%= f.label :decade %>
+            <%= f.select :decade, options_for_select((1..9).to_a.unshift("None").map {|s| ["#{s}", s]}, @story.decade), class: 'form-control' %>
+          </div>
+          <div>
+            <%= f.label :genre %>
+            <%= f.select :genre, options_for_select([['None', nil], ['Fiction','Fiction'],['Non-Fiction','Non-Fiction']]), class: 'form-control' %>
+          </div>
+          <div>
+            <%= f.label :category %>
+            <%= f.select :category, options_for_select([['None', nil], ['Story','Story'],['Poem','Poem'], ['Letter','Letter']]), class: 'form-control' %>
+          </div>
+          <div>
+            <%= f.label :life_stage %>
+            <%= f.select :life_stage, options_for_select([['None', nil], ['Early','Early'],['Middle','Middle'], ['Late','Late']]), class: 'form-control' %>
+          </div>
+          <div>
+            <%= f.label :location %>
+            <%= f.text_field :location, placeholder: "Enter Location of Story", class: 'form-control' %>
+          </div>
+          <div>
+            <%= f.label :all_tags %>
+            <%= f.text_field :all_tags, placeholder: "Tags seperated with comma", class: 'form-control' %>
+          </div>
+          <div class="picture">
+            <%= f.label "Upload thumbnail picture" %>
+            <%= f.file_field :thumbnail %>
+          </div>
+          <div class="recording">
+            <%= f.fields_for :recordings do |r| %>
+            <%= r.label "Upload Recording" %>
+            <%= r.text_field :caption, placeholder: "Enter caption for recording...", class: 'form-control' %> 
+            <%= r.file_field :recording %>
+            <% end %>
+          </div>
+          <br>
+          <div class="text-center">
+            <%= f.submit "Submit Story", class: "btn btn-default btn-lg buttonDropShadow" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-</section> 
+  </section> 
