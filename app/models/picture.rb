@@ -7,9 +7,10 @@ class Picture < ActiveRecord::Base
   mount_uploader :url, PictureUploader
 
   def strip_divs
-    if self.caption[0..4] == "<div>" && self.caption[-6..-1] == "</div>"
-      self.caption = self.caption[5..-7]
-    end
+    self.title.gsub!("<div>", "")
+    self.title.gsub!("</div>", "")
+    self.content.gsub!("<div>", "")
+    self.content.gsub!("</div>", "")
   end
 
 end

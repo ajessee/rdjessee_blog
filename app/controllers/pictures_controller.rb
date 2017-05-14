@@ -32,6 +32,7 @@ class PicturesController < ApplicationController
   def update
     @picture = Picture.find(params[:id])
     if @picture.update_attributes(picture_params)
+      @picture.strip_divs
       @picture.save
       flash[:success] = "Picture updated"
       redirect_to @picture
