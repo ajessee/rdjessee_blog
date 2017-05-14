@@ -7,10 +7,8 @@ class Picture < ActiveRecord::Base
   mount_uploader :url, PictureUploader
 
   def strip_divs
-    self.title.gsub!("<div>", "")
-    self.title.gsub!("</div>", "")
-    self.content.gsub!("<div>", "")
-    self.content.gsub!("</div>", "")
+    self.caption.gsub!("<div>", "")
+    self.caption.gsub!("</div>", "")
   end
 
 end
