@@ -50,6 +50,10 @@
           <a class="page-scroll" id="obit_menu" <%= current_page?("/") ? "href=#rdj_obit" : "href=/#rdj_obit" %> >Obituary</a>
         </li>
 
+        <li>
+          <a class="page-scroll" id="guestbook_menu" <%= current_page?("/") ? "href=#guestbook" : "href=/#guestbook" %> >Guestbook</a>
+        </li>
+
 
         <% if logged_in? && current_user.admin? %>
 

@@ -54,6 +54,7 @@ class CommentsController < ApplicationController
     @commentable = Comment.find_by_id(comment_params[:comment_id]) if comment_params[:comment_id]
     @commentable = Story.find_by_id(comment_params[:story_id]) if comment_params[:story_id]
     @commentable = Video.find_by_id(comment_params[:video_id]) if comment_params[:video_id]
+    @commentable = User.find_by_id(comment_params[:user_id]) if comment_params[:user_id]
   end
 
   def correct_user
