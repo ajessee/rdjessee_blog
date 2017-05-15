@@ -87,7 +87,7 @@ class StoriesController < ApplicationController
         @story.get_wordcount
         @story.save
         flash[:success] = "Story updated"
-        redirect_to @story
+        redirect_to "/#flash"
       else
         render 'edit'
       end 
@@ -104,7 +104,8 @@ class StoriesController < ApplicationController
       flash.now[:success] = "Story created!"
       render :show
     else
-      render 'welcome/home'
+      flash.now[:info] = "Oops, that didn't work"
+      redirect_to "/#flash"
     end
   end
 

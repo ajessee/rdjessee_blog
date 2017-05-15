@@ -9,8 +9,11 @@ class CommentsController < ApplicationController
 
   def create
     find_commentable
+    debugger
     @comment = @commentable.comments.build(build_params)
-    if @comment.save
+    if @comment.class == User && @comment.save
+      redirect_to "/#guestbook"
+    elsif @comment.save
       flash.now[:success] = "Comment created"
       redirect_to :back
     else
