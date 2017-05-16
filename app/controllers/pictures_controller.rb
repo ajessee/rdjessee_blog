@@ -18,7 +18,7 @@ class PicturesController < ApplicationController
   end
 
   def index
-    @pictures = Picture.all.order(created_at: :asc).paginate(:page => params[:page], :per_page => 6)
+    @pictures = Picture.all.order(created_at: :asc).paginate(:page => params[:page], :per_page => 3)
   end
 
   def show

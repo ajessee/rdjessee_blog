@@ -59,6 +59,9 @@
                 <%= f.submit "Update Story", class: "btn btn-default btn-lg buttonDropShadow", id: "updateStoryButton" %>
               </div>
             <% end %>
+              <div class="text-center top-margin-1-percent">
+                <%= link_to "Cancel", story_path(@story.id), class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
+              </div>
             </div>
         </div>
     </div>
