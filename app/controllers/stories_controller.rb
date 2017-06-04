@@ -64,6 +64,7 @@ class StoriesController < ApplicationController
 
   def edit
     @story = Story.find(params[:id])
+    @all_tags = Tag.all
   end
 
   def update

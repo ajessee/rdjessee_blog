@@ -20,3 +20,13 @@ debugger;
 
 
 });
+
+$( "#all_tags_counts" ).change(function() {
+  if (document.getElementById("story_all_tags").value == ""){
+    document.getElementById("story_all_tags").value = $( "#all_tags_counts option:selected" ).text()
+  }
+  else {
+    var existingTags = document.getElementById("story_all_tags").value
+    document.getElementById("story_all_tags").value = existingTags + ", " + $( "#all_tags_counts option:selected" ).text()
+  }
+});
