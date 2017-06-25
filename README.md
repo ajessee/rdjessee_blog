@@ -36,7 +36,6 @@ The app is written in Rails 4 and currently deployed in production using AWS.
 * Setup to use Secure Shell (SSH) to connect securely to EC2 instance.
 * Uses AWS Simple Email Service (SES) to deliver send user activation emails, password reset emails, or any other communication.
 * Uses AWS Relational Database Service (RDS) and PostgresQL database for data persistence to store user information.
-* Uses AWS Simple Storage Service (S3) to store web application..
+* Uses AWS Simple Storage Service (S3) to store web application.
+* Uses Google Analytics to monitor and analyze traffic, bounce rates, and page views.
 * Uses Bootstrap framework for front end design.
- 
- 
