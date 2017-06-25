@@ -52,11 +52,17 @@ class CommentsController < ApplicationController
   end
 
   def find_commentable
-    @commentable = Picture.find_by_id(comment_params[:picture_id]) if comment_params[:picture_id]
-    @commentable = Comment.find_by_id(comment_params[:comment_id]) if comment_params[:comment_id]
-    @commentable = Story.find_by_id(comment_params[:story_id]) if comment_params[:story_id]
-    @commentable = Video.find_by_id(comment_params[:video_id]) if comment_params[:video_id]
-    @commentable = User.find_by_id(comment_params[:user_id]) if comment_params[:user_id]
+    if comment_params[:picture_id] && comment_params[:user_id]
+      @commentable = Picture.find_by_id(comment_params[:picture_id])
+    elsif comment_params[:video_id] && comment_params[:user_id]
+      @commentable = Video.find_by_id(comment_params[:video_id]) 
+    elsif comment_params[:comment_id] && comment_params[:user_id]
+      @commentable = Comment.find_by_id(comment_params[:comment_id])
+    elsif comment_params[:story_id] && comment_params[:user_id]
+      @commentable = Story.find_by_id(comment_params[:story_id])
+    else
+      @commentable = User.find_by_id(comment_params[:user_id])
+    end
   end
 
   def correct_user
