@@ -56,7 +56,13 @@
       <% if story.word_count != nil %>
       <div class="col-md-12">
         <div class="float-right black">
-          <p class="MajestiBannerBookPartial">Word Count: <%= story.word_count %></p>
+          <p class="MajestiBannerBookPartial">Estimated Reading Time: 
+          <% if  (story.word_count / 130.0) > 1 %>
+          <%= (story.word_count / 130.0).round(1) %> minutes
+          <% else %>
+          1 minute
+          <% end %>            
+          </p>
         </div>
       </div>
       <% end %>
