@@ -91,11 +91,9 @@ class Story < ActiveRecord::Base
 
   def self.all_life_stages
     @@life_stage_array.compact!
-    @@life_stage_array.sort.uniq!
-    if @@life_stage_array.count == 3
-      @@life_stage_array[1], @@life_stage_array[2] = @@life_stage_array[2], @@life_stage_array[1] 
-      @@life_stage_array
-    end
+    @@life_stage_array = @@life_stage_array.sort.uniq!
+    @@life_stage_array[1], @@life_stage_array[2] = @@life_stage_array[2], @@life_stage_array[1] 
+    @@life_stage_array
   end
 
   def strip_divs
