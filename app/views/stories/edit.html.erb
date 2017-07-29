@@ -26,17 +26,17 @@
               <br/>
               <div>
               <%= f.label :genre %>
-              <%= f.select :genre, options_for_select([['None', nil], ['Fiction','Fiction'],['Non-Fiction','Non-Fiction']]), class: 'form-control' %>
+              <%= f.select :genre, options_for_select([['None', nil], ['Fiction','Fiction'],['Non-Fiction','Non-Fiction']], @story.genre), class: 'form-control' %>
               </div>
               <br/>
               <div>
               <%= f.label :category %>
-              <%= f.select :category, options_for_select([['None', nil], ['Story','Story'],['Poem','Poem'], ['Letter','Letter']]), class: 'form-control' %>
+              <%= f.select :category, options_for_select([['None', nil], ['Story','Story'],['Poem','Poem'], ['Letter','Letter']], @story.category), class: 'form-control' %>
               </div>
               <br/>
               <div>
               <%= f.label :life_stage %>
-              <%= f.select :life_stage, options_for_select([['None', nil], ['Early','Early'],['Middle','Middle'], ['Late','Late']]), class: 'form-control' %>
+              <%= f.select :life_stage, options_for_select([['None', nil], ['Early','Early'],['Middle','Middle'], ['Late','Late']], @story.life_stage), class: 'form-control' %>
               </div>
               <br/>
               <div>
