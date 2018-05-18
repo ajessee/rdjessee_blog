@@ -58,7 +58,9 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :aws_sdk
+  aws_credentials = Aws::Credentials.new(ENV['S3_ACCESS_KEY'], ENV['S3_SECRET_KEY'])
+  Aws::Rails.add_action_mailer_delivery_method(:aws_ses, credentials: aws_credentials, region: ENV['AWS_REGION'])
+  config.action_mailer.delivery_method = :aws_ses
   config.action_mailer.default_url_options = { :host => 'ralphdonaldjessee.com' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
