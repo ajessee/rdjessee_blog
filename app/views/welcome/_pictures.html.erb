@@ -21,7 +21,7 @@
               <% end %>
             <% end %>
             <% if Rails.env.development? %>
-              <%= image_tag(picture.url, alt: "Picture", class: "img-responsive center-picture") %>
+              <%= image_tag(picture.url_url, alt: "Picture", class: "img-responsive center-picture") %>
             <% end %>
             <div class="caption text-center">
               <h5><%= picture.caption %></h5>

@@ -1,4 +1,4 @@
-class Recording < ActiveRecord::Base
+class Recording < ApplicationRecord
   # belongs_to :uploader, class_name: 'User', foreign_key: :user_id
   belongs_to :recordable, polymorphic: true
   has_many :comments, as: :commentable, dependent: :destroy

@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :stories, dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy

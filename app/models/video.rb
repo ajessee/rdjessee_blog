@@ -1,4 +1,4 @@
-class Video < ActiveRecord::Base
+class Video < ApplicationRecord
   belongs_to :uploader, class_name: 'User', foreign_key: :user_id
   belongs_to :videoable, polymorphic: true
   has_many :comments, as: :commentable
