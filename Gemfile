@@ -8,7 +8,7 @@ gem 'jquery-rails'
 gem 'jbuilder'
 gem 'sdoc', group: :doc
 gem 'bcrypt'
-gem 'trix'
+gem 'trix', git: 'https://github.com/bcoia/trix.git'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'aws-sdk', '~> 2'
