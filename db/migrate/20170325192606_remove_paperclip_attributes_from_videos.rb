@@ -1,4 +1,4 @@
-class RemovePaperclipAttributesFromVideos < ActiveRecord::Migration
+class RemovePaperclipAttributesFromVideos < ActiveRecord::Migration[5.2]
   def change
     remove_column :videos, :asset_file_name, :string
     remove_column :videos, :asset_content_type, :string

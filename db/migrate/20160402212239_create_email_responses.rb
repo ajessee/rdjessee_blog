@@ -1,4 +1,4 @@
-class CreateEmailResponses < ActiveRecord::Migration
+class CreateEmailResponses < ActiveRecord::Migration[5.2]
   def change
     create_table :email_responses do |t|
       t.string :email

@@ -1,4 +1,4 @@
-class AddAttribitesToStories < ActiveRecord::Migration
+class AddAttribitesToStories < ActiveRecord::Migration[5.2]
   def change
     add_column :stories, :location, :string
     add_column :stories, :genre, :string

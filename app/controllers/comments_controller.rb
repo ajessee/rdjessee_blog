@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
       redirect_to "/#guestbook"
     elsif @comment.save
       flash.now[:success] = "Comment created"
-      redirect_to :back
+      redirect_back(fallback_location: root_path)
     else
       render 'welcome/home'
     end

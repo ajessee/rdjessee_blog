@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 5.2'
 gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'uglifier'
@@ -8,10 +8,10 @@ gem 'jquery-rails'
 gem 'jbuilder'
 gem 'sdoc', group: :doc
 gem 'bcrypt'
-gem 'trix', git: 'https://github.com/bcoia/trix.git'
+gem 'trix'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'aws-sdk', '~> 2'
+gem 'aws-sdk'
 gem 'aws-sdk-rails'
 gem 'carrierwave'           
 gem 'carrierwave-aws'
@@ -23,7 +23,7 @@ gem 'fog'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem "paperclip"
-gem 'pg', '~> 0.21'
+gem 'pg'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

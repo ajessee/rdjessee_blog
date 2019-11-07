@@ -1,4 +1,4 @@
-class RemoveUseridFromComments < ActiveRecord::Migration
+class RemoveUseridFromComments < ActiveRecord::Migration[5.2]
   def up
     add_reference(:comments, :commentable, polymorphic: true, index: true)
   end
