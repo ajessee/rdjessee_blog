@@ -1032,7 +1032,7 @@ aside.cta-quote span.quote {
   -ms-transition: top 0.5s ease,opacity 0.5s ease;
   transition: top 0.5s ease,opacity 0.5s ease;
 }
-.floating-label-form-group::not(':first-child') {
+.floating-label-form-group::not(:first-child) {
   padding-left: 14px;
   border-left: 1px solid #e1e1e1;
 }
