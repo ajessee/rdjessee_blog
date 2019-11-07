@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'jbuilder'
 gem 'sdoc', group: :doc
 gem 'bcrypt'
-gem 'trix'
+gem 'trix-rails', require: 'trix'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'aws-sdk'
