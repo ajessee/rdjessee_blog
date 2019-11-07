@@ -67,7 +67,7 @@ class CommentsController < ApplicationController
 
   def correct_user
     @comment = Comment.find_by(id: params[:id])
-    redirect_to root_url if @comment.user_id != current_user.id
+    redirect_to(root_url) unless @comment.user_id = = current_user.id || current_user.admin?
   end
 
 end
