@@ -58,7 +58,7 @@
               <% if @story.thumbnail %>
               <div>
                 <h5>If you want to change this thumbnail:</h5>
-                <%= image_tag(@story.thumbnail) unless @story.thumbnail.nil? %>
+                <%= image_tag(@story.thumbnail.url) unless @story.thumbnail.url.nil? %>
                 <h5>Upload a new one below</h5>
                 
               </div>
