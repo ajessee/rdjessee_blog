@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby "2.5.3"
 
 gem 'rails', '~> 5.2'
 gem 'sass-rails'
@@ -25,10 +24,12 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem "paperclip"
 gem 'pg'
+gem 'bootsnap'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
+  gem 'listen'
 end
 
 group :development, :test do
