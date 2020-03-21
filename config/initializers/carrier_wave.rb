@@ -1,7 +1,7 @@
-if Rails.env.production?
+if Rails.env.production? 
   CarrierWave.configure do |config|
     config.storage    = :aws
-    config.aws_bucket = ENV.fetch('S3_BUCKET')
+    config.aws_bucket = Rails.application.credentials.dig(:aws, :bucket)
     config.aws_acl    = 'public-read'
 
     # Optionally define an asset host for configurations that are fronted by a
@@ -18,9 +18,9 @@ if Rails.env.production?
     # }
 
     config.aws_credentials = {
-      access_key_id:     ENV.fetch('S3_ACCESS_KEY'),
-      secret_access_key: ENV.fetch('S3_SECRET_KEY'),
-      region:            ENV.fetch('AWS_REGION') # Required
+      access_key_id:     Rails.application.credentials.dig(:aws, :access_key_id),
+      secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key),
+      region:            Rails.application.credentials.dig(:aws, :region) # Required
     }
 
     # Optional: Signing of download urls, e.g. for serving private content through

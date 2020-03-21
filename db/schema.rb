@@ -2,31 +2,31 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_04_22_215625) do
+ActiveRecord::Schema.define(version: 2020_03_21_211306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", id: :serial, force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "commentable_id"
     t.string "commentable_type"
-    t.bigint "commentable_id"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "email_responses", force: :cascade do |t|
+  create_table "email_responses", id: :serial, force: :cascade do |t|
     t.string "email"
     t.text "extra_info"
     t.integer "response_type"
@@ -34,22 +34,22 @@ ActiveRecord::Schema.define(version: 2017_04_22_215625) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pictures", force: :cascade do |t|
+  create_table "pictures", id: :serial, force: :cascade do |t|
     t.string "url"
     t.text "caption"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "imageable_id"
     t.string "imageable_type"
-    t.bigint "imageable_id"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.integer "year"
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
     t.index ["user_id"], name: "index_pictures_on_user_id"
   end
 
-  create_table "recordings", force: :cascade do |t|
+  create_table "recordings", id: :serial, force: :cascade do |t|
     t.text "caption"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "year"
@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(version: 2017_04_22_215625) do
     t.index ["user_id"], name: "index_recordings_on_user_id"
   end
 
-  create_table "stories", force: :cascade do |t|
+  create_table "stories", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "year_written"
@@ -77,22 +77,22 @@ ActiveRecord::Schema.define(version: 2017_04_22_215625) do
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
-  create_table "taggings", force: :cascade do |t|
-    t.bigint "story_id"
-    t.bigint "tag_id"
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "story_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["story_id"], name: "index_taggings_on_story_id"
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", id: :serial, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
@@ -108,10 +108,10 @@ ActiveRecord::Schema.define(version: 2017_04_22_215625) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  create_table "videos", force: :cascade do |t|
+  create_table "videos", id: :serial, force: :cascade do |t|
     t.text "caption"
     t.string "youtube_url"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "youtube"
