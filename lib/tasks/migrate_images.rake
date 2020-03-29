@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# To run: rake db:pull_prod_db
-# lib/tasks/pull_prod_db.rake
+# To run: rake db:migrate_picture
+# lib/tasks/migrate_picture.rake
 
-task :migrate_picture do
+task :migrate_picture => :environment do
 
     def migrate_attachment!(klass:, attachment_attribute:, carrierwave_uploader:, active_storage_column: attachment_attribute)
         klass.find_each do |item|
@@ -16,8 +16,9 @@ task :migrate_picture do
             item.save
         end
     end
-
+    puts 'Starting migration'
     migrate_attachment!(klass: Story, attachment_attribute: :thumbnail, carrierwave_uploader: PictureUploader, active_storage_column: :picture)
     migrate_attachment!(klass: Picture, attachment_attribute: :url, carrierwave_uploader: PictureUploader, active_storage_column: :picture)
+    puts 'Done'
 
 end
