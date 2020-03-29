@@ -33,7 +33,7 @@ class RecordingsController < ApplicationController
   private
 
   def recording_params
-    params.require(:recording).permit(:id, :recording, :user_id)
+    params.require(:recording).permit(:id, :recording, :audio_file, :user_id)
   end
 
   def story_params

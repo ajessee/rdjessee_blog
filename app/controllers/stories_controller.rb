@@ -119,7 +119,7 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:title, :content, :year_written, :decade, :location, :genre, :category, :life_stage, :thumbnail, :all_tags, recordings_attributes: [:caption, :recording])
+    params.require(:story).permit(:title, :content, :year_written, :decade, :location, :genre, :category, :life_stage, :thumbnail, :picture, :all_tags, recordings_attributes: [:caption, :recording])
   end
 
   def video_params
