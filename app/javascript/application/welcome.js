@@ -15,12 +15,12 @@ $(document).ready(function(){
       return quote;
     }()
   
-    Typed.new('#typedIn', {
+    new Typed('#typedIn', {
           strings: selectedQuote,
-          typeSpeed: .10,
+          typeSpeed: 50,
           loop: false,
           showCursor: false,
-          callback: function() {
+          onComplete: function() {
             $("#rdjesseeSignature").css({
               "opacity":"0",
               "display":"block",

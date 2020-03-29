@@ -5,7 +5,6 @@ $('#tagAjax').click(function(event) {
 
 
     event.preventDefault();
-    debugger;
         $.ajax({
           method: "get",
           url: "/tag_cloud",
