@@ -18,16 +18,20 @@
         <a href="<%= video_path(video.id) %>" class="blog_links">
           <div class="col-lg-4 wow fadeIn">
             <div class="thumbnail box-shadow">
-            <% if Rails.env.production? %>
-              <% if video.video %>
+            <%# <% if Rails.env.production? %> %>
+              <%# <% if video.video %> %>
 
-              <% else %>
-                <i class="fa fa-user-circle fa-2x"></i>
-              <% end %>
-            <% end %>
-            <% if Rails.env.development? %>
+              <%# <% else %> %>
+                <%# <i class="fa fa-user-circle fa-2x"></i> %>
+              <%# <% end %> %>
+            <%# <% end %> %>
+            <%# <% if Rails.env.development? %> %>
          
-            <% end %>
+            <%# <% end %> %>
+            <%# TODO: Fix this %>
+              <% if video.video_file.attached? %>
+                <%= image_tag video.video_file, alt: "Video", class: "img-responsive center-picture" %>
+              <% end %>
             <div class="caption text-center">
               <h5><%= video.caption %></h5>
             </div>

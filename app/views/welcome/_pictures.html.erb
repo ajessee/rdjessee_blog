@@ -13,16 +13,19 @@
         <a href="<%= picture_path(picture.id) %>" class="blog_links">
           <div class="col-lg-4 wow fadeIn">
             <div class="thumbnail box-shadow">
-            <% if Rails.env.production? %>
-              <% if picture.url %>
-                <%= image_tag(picture.url_url(:picture_thumb), alt: "Picture", class: "img-responsive center-picture") %>
-              <% else %>
-                <i class="fa fa-user-circle fa-2x"></i>
+            <%# <% if Rails.env.production? %> %>
+              <%# <% if picture.url %> %>
+                <%# <%= image_tag(picture.url_url(:picture_thumb), alt: "Picture", class: "img-responsive center-picture") %> %>
+              <%# <% else %> %>
+                <%# <i class="fa fa-user-circle fa-2x"></i> %>
+              <%# <% end %> %>
+            <%# <% end %> %>
+            <%# <% if Rails.env.development? %> %>
+              <%# <%= image_tag(picture.url_url, alt: "Picture", class: "img-responsive center-picture") %> %>
+            <%# <% end %> %>
+              <% if picture.picture.attached? %>
+                <%= image_tag picture.picture, alt: "Picture", class: "img-responsive center-picture" %>
               <% end %>
-            <% end %>
-            <% if Rails.env.development? %>
-              <%= image_tag(picture.url_url, alt: "Picture", class: "img-responsive center-picture") %>
-            <% end %>
             <div class="caption text-center">
               <h5><%= picture.caption %></h5>
             </div>
