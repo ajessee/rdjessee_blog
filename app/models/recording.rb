@@ -4,6 +4,6 @@ class Recording < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings, dependent: :destroy
-  mount_uploader :recording, RecordingUploader
+  # mount_uploader :recording, RecordingUploader
   has_one_attached :audio_file
 end
