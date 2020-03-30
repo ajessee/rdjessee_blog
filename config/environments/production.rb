@@ -116,7 +116,7 @@ Rails.application.configure do
 config.paperclip_defaults = {
   storage: :s3,
   s3_host_name: "s3-us-east-1.amazonaws.com",
-  s3_region: Rails.application.credentials.dig(:aws, :region)
+  s3_region: Rails.application.credentials.dig(:aws, :region),
   s3_credentials: {
     bucket: Rails.application.credentials.dig(:aws, :bucket),
     access_key_id: Rails.application.credentials.dig(:aws, :access_key_id),
