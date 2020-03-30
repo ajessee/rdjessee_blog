@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_224950) do
+ActiveRecord::Schema.define(version: 2020_03_30_224750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,9 @@ ActiveRecord::Schema.define(version: 2020_03_29_224950) do
     t.string "imageable_type"
     t.integer "user_id"
     t.integer "year"
+    t.string "path"
+    t.string "content_type"
+    t.string "file_name"
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
     t.index ["user_id"], name: "index_pictures_on_user_id"
   end
@@ -94,6 +97,9 @@ ActiveRecord::Schema.define(version: 2020_03_29_224950) do
     t.integer "word_count"
     t.string "life_stage"
     t.string "category"
+    t.string "path"
+    t.string "content_type"
+    t.string "file_name"
     t.index ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
