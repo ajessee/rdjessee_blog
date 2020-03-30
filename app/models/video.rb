@@ -4,7 +4,7 @@ class Video < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :taggings
   has_many :tags, through: :taggings
-  mount_uploader :video, VideoUploader
+  # mount_uploader :video, VideoUploader
   has_one_attached :video_file
 
   def set_success(format, opts)

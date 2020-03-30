@@ -12,7 +12,7 @@ class Story < ApplicationRecord
   validates :user_id, presence: true
   validates :title, presence: true
   validates :content, presence: true
-  mount_uploader :thumbnail, PictureUploader
+  # mount_uploader :thumbnail, PictureUploader
   has_one_attached :picture
 
   @@year_array = []

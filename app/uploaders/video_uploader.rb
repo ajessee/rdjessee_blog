@@ -1,4 +1,4 @@
-class VideoUploader < CarrierWave::Uploader::Base
+# class VideoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -62,4 +62,4 @@ class VideoUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-end
+# end
