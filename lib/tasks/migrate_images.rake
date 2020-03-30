@@ -19,7 +19,7 @@ task :migrate_picture => :environment do
     s3 = Aws::S3::Client.new(
         region: 'us-east-1',
         access_key_id: Rails.application.credentials.dig(:aws, :access_key_id),
-        Rails.application.credentials.dig(:aws, :secret_access_key)
+        secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key)
       )
 
     # def migrate_attachment!(klass:, attachment_attribute:, carrierwave_uploader:, active_storage_column: attachment_attribute)
