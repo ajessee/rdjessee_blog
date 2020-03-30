@@ -6,12 +6,12 @@ class VideoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::Video::Thumbnailer
   # include CarrierWave::Video
 
-  if Rails.env.production?
-    storage :aws
-    process encode_video(:mp4, :custom => '-qscale 0 -vpre slow -vpre baseline -g 30')
-  else
-    storage :file
-  end
+  # if Rails.env.production?
+  #   storage :aws
+  #   process encode_video(:mp4, :custom => '-qscale 0 -vpre slow -vpre baseline -g 30')
+  # else
+  #   storage :file
+  # end
 
   # version :thumb do
   #   process thumbnail: [{format: 'png', quality: 10, size: 192, strip: true, logger: Rails.logger}]
@@ -26,9 +26,9 @@ class VideoUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  # def store_dir
+  #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  # end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
