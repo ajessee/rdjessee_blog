@@ -4,7 +4,7 @@ class VideoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   # include CarrierWave::Video::Thumbnailer
-  include CarrierWave::Video
+  # include CarrierWave::Video
 
   if Rails.env.production?
     storage :aws
