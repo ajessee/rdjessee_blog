@@ -2,7 +2,6 @@ if Rails.env.production?
   CarrierWave.configure do |config|
     config.storage    = :aws
     config.aws_bucket = Rails.application.credentials.dig(:aws, :bucket)
-    config.aws_region = Rails.application.credentials.dig(:aws, :region)
     config.aws_acl    = 'public-read'
     config.fog_credentials = {
       provider:              'AWS',                        # required
