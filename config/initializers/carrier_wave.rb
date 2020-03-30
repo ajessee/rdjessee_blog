@@ -19,7 +19,8 @@ if Rails.env.production?
     config.aws_credentials = {
       access_key_id:     Rails.application.credentials.dig(:aws, :access_key_id),
       secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key),
-      region:            Rails.application.credentials.dig(:aws, :region) # Required
+      region:            Rails.application.credentials.dig(:aws, :region), # Required
+      bucket: Rails.application.credentials.dig(:aws, :bucket)
     }
 
     # Optional: Signing of download urls, e.g. for serving private content through
