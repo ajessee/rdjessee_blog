@@ -14,6 +14,7 @@ gem 'bootstrap-will_paginate'
 gem 'aws-sdk-rails'
 gem 'aws-sdk'
 gem 'aws-sdk-s3'
+gem 'carrierwave'           
 gem 'carrierwave-aws'
 gem 'mini_magick'          
 gem 'font-awesome-sass'
@@ -21,7 +22,7 @@ gem 'simple_form'
 gem 'pg'
 gem 'bootsnap'
 gem 'webpacker'
-gem 'fog'
+gem 'fog', require: 'fog/aws'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

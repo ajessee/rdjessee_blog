@@ -1408,6 +1408,7 @@ DEPENDENCIES
   bootstrap-will_paginate
   byebug
   capybara
+  carrierwave
   carrierwave-aws
   factory_girl_rails
   faker
