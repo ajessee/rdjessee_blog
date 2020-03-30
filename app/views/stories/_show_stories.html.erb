@@ -26,7 +26,7 @@
   <a href="<%= story_path(story.id) %>" class="blog_links">
   <div class="row panel panel-default box-shadow">
     <div class="panel-body">
-      <% if story.thumbnail.path != nil %>
+      <%# <% if story.thumbnail.path != nil %> %>
         <div class="col-md-5">
           <div>
             <%# <% if Rails.env.development? %> %>
@@ -46,16 +46,16 @@
             <div class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 200, omission: '...', escape: false) %> </div>
           </div>
         </div>
-        <% else %>
-        <div class="col-md-12">
-          <div class="caption black">
-            <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
-            <div class="MajestiBannerBookParaPartial text-left"> 
-              <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <%# <% else %> %>
+        <%# <div class="col-md-12"> %>
+          <%# <div class="caption black"> %>
+            <%# <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3> %>
+            <%# <div class="MajestiBannerBookParaPartial text-left">  %>
+              <%# <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> %>
+            <%# </div> %>
+          <%# </div> %>
+        <%# </div> %>
+      <%# <% end %> %>
       <% if story.word_count != nil %>
       <div class="col-md-12">
         <div class="float-right black">
