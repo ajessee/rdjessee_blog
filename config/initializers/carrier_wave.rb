@@ -3,14 +3,6 @@ if Rails.env.production?
     config.storage    = :aws
     config.aws_bucket = Rails.application.credentials.dig(:aws, :bucket)
     config.aws_acl    = 'public-read'
-    config.fog_credentials = {
-      provider:              'AWS',                        # required
-      aws_access_key_id:     Rails.application.credentials.dig(:aws, :access_key_id),                        # required unless using use_iam_profile
-      aws_secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key),                        # required unless using use_iam_profile
-      region:                Rails.application.credentials.dig(:aws, :region),                  # optional, defaults to 'us-east-1'
-    }
-    config.fog_directory = Rails.application.credentials.dig(:aws, :bucket)
-
     # Optionally define an asset host for configurations that are fronted by a
     # content host, such as CloudFront.
     # config.asset_host = 'http://example.com'
