@@ -16,11 +16,7 @@ task :migrate_picture => :environment do
     #     end
     # end
 
-    s3 = Aws::S3::Client.new(
-        region: 'us-east-1',
-        access_key_id: Rails.application.credentials.dig(:aws, :access_key_id),
-        secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key)
-      )
+    s3 = Aws::S3::Client.new
 
     # def migrate_attachment!(klass:, attachment_attribute:, carrierwave_uploader:, active_storage_column: attachment_attribute)
     #     klass.find_each do |item|
@@ -32,6 +28,8 @@ task :migrate_picture => :environment do
     #         item.save
     #     end
     # end
+
+    s3 = Aws::S3::Client.new
 
     def migrate_attachment!(klass:, attachment_attribute:, carrierwave_uploader:, active_storage_column: attachment_attribute)
         klass.find_each do |item|
