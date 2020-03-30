@@ -29,9 +29,9 @@ task :migrate_picture => :environment do
 
     s3 = Aws::S3::Client.new
 
-    def migrate_attachment!(klass:, attachment_attribute:, carrierwave_uploader:, active_storage_column: attachment_attribute)
+    def migrate_attachment!(klass:)
         klass.find_each do |item|
-            next unless item.send(attachment_attribute).present?
+            next unless item.path.present?
             resp = s3.get_object(bucket: Rails.application.credentials.dig(:aws, :bucket), key: item.path)
             attach_params = {
                 io: resp.body,
@@ -44,8 +44,8 @@ task :migrate_picture => :environment do
     end
 
     puts 'Starting migration'
-    migrate_attachment!(klass: Story, attachment_attribute: :thumbnail, carrierwave_uploader: PictureUploader, active_storage_column: :picture)
-    migrate_attachment!(klass: Picture, attachment_attribute: :url, carrierwave_uploader: PictureUploader, active_storage_column: :picture)
+    migrate_attachment!(klass: Story)
+    migrate_attachment!(klass: Picture)
     puts 'Done'
 
 end
