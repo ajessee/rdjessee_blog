@@ -20,7 +20,7 @@ gem 'carrierwave-video'
 gem 'carrierwave-video-thumbnailer'
 gem 'carrierwave-audio'
 gem 'mini_magick'          
-gem 'fog'  
+gem 'fog-aws'  
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem "paperclip"
