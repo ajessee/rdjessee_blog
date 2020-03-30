@@ -4,9 +4,6 @@
 # lib/tasks/migrate_picture.rake
 
 task :migrate_picture => :environment do
-
-    
-
     def migrate_attachment!(klass:, attachment_attribute:, carrierwave_uploader:, active_storage_column: attachment_attribute)
         klass.find_each do |item|
             next unless item.send(attachment_attribute).present?
