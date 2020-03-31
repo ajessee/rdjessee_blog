@@ -29,9 +29,12 @@ task :migrate_picture => :environment do
     #     end
     # end
 
-    creds = Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
+    Aws.config.update({
+          region: 'us-east-1',
+          credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
+        })
 
-    s3 = Aws::S3::Client.new(ENV['AWS_REGION'], credentials: creds)
+    s3 = Aws::S3::Client.new
 
     def migrate_attachment!(klass:)
         klass.find_each do |item|
