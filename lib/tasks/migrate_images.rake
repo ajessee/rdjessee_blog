@@ -36,7 +36,7 @@ task :migrate_picture => :environment do
 
     s3 = Aws::S3::Client.new
 
-    def migrate_attachment!(klass:)
+    def migrate_attachment!(klass:, s3:)
         klass.find_each do |item|
             next unless item.path.present?
             resp = s3.get_object(bucket: 'andre-pictures', key: item.path)
@@ -51,8 +51,8 @@ task :migrate_picture => :environment do
     end
 
     puts 'Starting migration'
-    migrate_attachment!(klass: Story)
-    migrate_attachment!(klass: Picture)
+    migrate_attachment!(klass: Story, s3: s3)
+    migrate_attachment!(klass: Picture, s3: s3)
     puts 'Done'
 
 end
