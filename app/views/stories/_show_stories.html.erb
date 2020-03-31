@@ -29,16 +29,11 @@
       <%# <% if story.thumbnail.path != nil %> 
         <div class="col-md-5">
           <div>
-            <%# <% if Rails.env.development? %> 
-            <%# <%= image_tag(story.thumbnail_identifier, alt: "Thumbnail", class: "img-responsive center-picture") %> 
-            <%# <% end %> 
-            <%# <% if Rails.env.production? %> 
-            <%# <%= image_tag(story.thumbnail_url(:story_thumb), alt: "Thumbnail", class: "img-responsive center-picture") %> 
-            <%# <% end %> 
+
             
             <% if story.picture.attached? %>
-            <%= image_tag story.picture.variant(resize_to_limit: [500, 500]) %>
-              <%# <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %>
+            <%# <%= image_tag story.picture.variant(resize_to_limit: [500, 500]) %> 
+              <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %> 
             <% end %>
           </div>
         </div>
