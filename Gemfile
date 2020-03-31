@@ -13,7 +13,7 @@ gem 'trix-rails', require: 'trix'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'aws-sdk-rails'
-gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-s3'
 # gem 'carrierwave'
 # gem 'carrierwave-aws'
 # gem 'mini_magick'          
