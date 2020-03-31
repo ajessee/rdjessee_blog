@@ -3,6 +3,8 @@
 # To run: rake db:migrate_picture
 # lib/tasks/migrate_picture.rake
 
+require 'aws-sdk-s3'
+
 task :migrate_picture => :environment do
     # def migrate_attachment!(klass:, attachment_attribute:, carrierwave_uploader:, active_storage_column: attachment_attribute)
     #     klass.find_each do |item|
