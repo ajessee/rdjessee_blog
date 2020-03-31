@@ -10,15 +10,9 @@
     <a href="<%= story_path(story.id) %>" class="blog_links">
       <div class="row panel panel-default box-shadow">
         <div class="panel-body">
-          <%# <% if story.thumbnail.path != nil %> %>
+          <%# <% if story.thumbnail.path != nil %>
           <div class="col-md-5">
             <div>
-              <%# <% if Rails.env.development? %> %>
-              <%# <%= image_tag(story.thumbnail_identifier, alt: "Thumbnail", class: "img-responsive center-picture") %> %>
-              <%# <% end %> %>
-              <%# <% if Rails.env.production? %> %>
-              <%# <%= image_tag(story.thumbnail_url(:story_thumb), alt: "Thumbnail", class: "img-responsive center-picture") %> %>
-              <%# <% end %> %>
               <% if story.picture.attached? %>
                 <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %>
               <% end %>
@@ -32,14 +26,14 @@
               </div>
             </div>
           </div>
-          <%# <% else %> %>
+          <%# <% else %> 
           <%# <div class="col-md-12"> %>
             <%# <div class="caption black"> %>
-              <%# <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3> %>
-              <%# <p class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) </p> %>  %>
+              <%# <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %>
+              <%# <p class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) </p> %>  
             <%# </div> %>
           <%# </div> %>
-          <%# <% end %> %>
+          <%# <% end %> 
           <% if story.word_count != nil %>
           <div class="col-md-12">
             <div class="float-right black">
