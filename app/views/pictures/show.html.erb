@@ -10,7 +10,10 @@
       <div class="col-lg-12">
 
         <div class="bottom-margin-30px">
-          <%= image_tag(@picture.url_url, alt: "Logo", class: "img-responsive center-picture") %>
+          <% if @picture.picture.attached? %>
+          <%# <%= image_tag(@picture.url_url, alt: "Logo", class: "img-responsive center-picture") %>
+          <%= image_tag @picture.picture.variant(resize_to_limit: [500, 500]) %>
+          <% end %>
         </div>
 
         <div class="row">

@@ -16,7 +16,8 @@
         <div class="col-lg-4 wow fadeIn">
           <div class="thumbnail box-shadow">
             <% if picture.picture.attached? %>
-              <%= image_tag picture.picture, alt: "Picture", class: "img-responsive center-picture" %>
+              <%= image_tag picture.picture.variant(resize_to_limit: [500, 500]) %>
+              <%# <%= image_tag picture.picture, alt: "Picture", class: "img-responsive center-picture" %>
             <% end %>
             <div>
               <% if logged_in? && current_user.admin? %>
