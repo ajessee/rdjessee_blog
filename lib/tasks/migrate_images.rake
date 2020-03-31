@@ -42,7 +42,7 @@ task :migrate_picture => :environment do
             resp = s3.get_object(bucket: 'andre-pictures', key: item.path)
             attach_params = {
                 io: resp.body,
-                file_name: item.file_name,
+                filename: item.file_name,
                 content_type: item.content_type
               }
             item.picture.attach(attach_params)
