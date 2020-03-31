@@ -34,7 +34,7 @@ task :migrate_picture => :environment do
     def migrate_attachment!(klass:)
         klass.find_each do |item|
             next unless item.path.present?
-            resp = s3.get_object(bucket: Rails.application.credentials.dig(:aws, :bucket), key: item.path)
+            resp = s3.get_object(bucket: 'andre-pictures', key: item.path)
             attach_params = {
                 io: resp.body,
                 file_name: item.file_name,

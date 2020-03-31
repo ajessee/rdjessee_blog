@@ -1,4 +1,6 @@
+# require 'aws-sdk'
+
 # Aws.config.update({
 #   region: 'us-east-1',
-#   credentials: Aws::Credentials.new(Rails.application.credentials.dig(:aws, :access_key_id), Rails.application.credentials.dig(:aws, :secret_access_key))
+#   credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
 # })
