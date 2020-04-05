@@ -1,84 +1,83 @@
 <div id="stories_container">
-
-    <% if @active_button != 'alphabetical' %>
+  <% if @active_button != 'alphabetical' %>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-md-offset-3 top-margin-5-percent">
         <div class="alert alert-info" role="alert">
           <% if @active_button == "tag" %>
-            <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> with that <%= @active_button %> </h6>
+            <h6>
+              There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> with that <%= @active_button %>
+            </h6>
           <% elsif @active_button == "genre" %>
-            <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> in that <%= @active_button %> </h6>
+            <h6>
+              There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> in that <%= @active_button %>
+            </h6>
           <% elsif @active_button == "life_stage" %>
-            <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that life stage </h6>
+            <h6>
+              There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that life stage
+            </h6>
           <% else %>
-            <h6>There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that <%= @active_button %> </h6>
+            <h6>
+              There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that <%= @active_button %>
+            </h6>
           <% end %>
         </div>
       </div>
     </div>
-    <% end %>
-
+  <% end %>
   <div>
     <%= will_paginate @stories %>
   </div>
-
   <% @stories.each do |story| %>
-  <a href="<%= story_path(story.id) %>" class="blog_links">
-  <div class="row panel panel-default box-shadow">
-    <div class="panel-body">
-      <%# <% if story.thumbnail.path != nil %> 
-        <div class="col-md-5">
-          <div>
-
-            
-            <% if story.picture.attached? %>
-            <%# <%= image_tag story.picture.variant(resize_to_limit: [500, 500]) %> 
-              <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %> 
+    <a href="<%= story_path(story.id) %>" class="blog_links">
+      <div class="row panel panel-default box-shadow">
+        <div class="panel-body">
+          <% if story.picture.attached? %>
+            <div class="col-md-5">
+              <div>
+                <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="caption black">
+                <h3 class="MajestiBannerBookPartial">
+                  <%= story.title.html_safe %>
+                </h3>
+                <div class="MajestiBannerBookParaPartial text-left">
+                  <%= truncate(story.content.html_safe, length: 200, omission: '...', escape: false) %>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <div class="col-md-12">
+              <div class="caption black">
+                <h3 class="MajestiBannerBookPartial">
+                  <%= story.title.html_safe %>
+                </h3>
+                <div class="MajestiBannerBookParaPartial text-left">
+                  <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %>
+                </div>
+              </div>
+            </div>
+          <% end %> <% if story.word_count != nil %>
+            <div class="col-md-12">
+              <div class="float-right black">
+                <p class="MajestiBannerBookPartial">
+                  Estimated Reading Time: <% if (story.word_count / 130.0) > 1 %> <%= (story.word_count / 130.0).round(1) %> minutes <% else %> 1 minute <% end %>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <% if story.all_tags != "" %>
+          <div class="panel-footer">
+            <% story.all_tags.split(",").each do |tag| %>
+              <span><%= link_to tag.strip, "/stories/sort?sort=tag&tag=#{tag.strip}", class: "btn btn-primary", role: "button" %></span>
             <% end %>
           </div>
-        </div>
-        <div class="col-md-7">
-          <div class="caption black">
-            <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %></h3>
-            <div class="MajestiBannerBookParaPartial text-left"> <%= truncate(story.content.html_safe, length: 200, omission: '...', escape: false) %> </div>
-          </div>
-        </div>
-        <%# <% else %> 
-        <%# <div class="col-md-12"> %>
-          <%# <div class="caption black"> %>
-            <%# <h3 class="MajestiBannerBookPartial"><%= story.title.html_safe %>
-            <%# <div class="MajestiBannerBookParaPartial text-left">  %>
-              <%# <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %> 
-            <%# </div> %>
-          <%# </div> %>
-        <%# </div> %>
-      <%# <% end %>
-      <% if story.word_count != nil %>
-      <div class="col-md-12">
-        <div class="float-right black">
-          <p class="MajestiBannerBookPartial">Estimated Reading Time: 
-          <% if  (story.word_count / 130.0) > 1 %>
-          <%= (story.word_count / 130.0).round(1) %> minutes
-          <% else %>
-          1 minute
-          <% end %>            
-          </p>
-        </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
-    <% if story.all_tags != "" %>
-    <div class="panel-footer">
-      <% story.all_tags.split(",").each do |tag| %>
-      <span><%= link_to tag.strip, "/stories/sort?sort=tag&tag=#{tag.strip}", class: "btn btn-primary", role: "button" %></span>
-      <% end %>
-    </div>
-    <% end %>
-
-  </div>
-  </a>
+    </a>
   <% end %>
-
   <div>
     <%= will_paginate @stories %>
   </div>

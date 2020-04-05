@@ -1,35 +1,31 @@
 <section id="blog_full">
-<!-- Flash Section -->
-<% if !flash.empty? %>
-    <%= render 'shared/flash' %>
-<% end %>
-    <div class="container-fluid text-center">
+  <!-- Flash Section -->
+  <% if !flash.empty? %> <%= render 'shared/flash' %> <% end %>
+  <div class="container-fluid text-center">
     <div>
-    <p>
-      <%= link_to 'Most Recent', "/stories/sort?sort=alphabetical", class: "btn btn-primary", role: "button" %>
-    </p>
-
+      <p>
+        <%= link_to 'Most Recent', "/stories/sort?sort=alphabetical", class: "btn btn-primary", role: "button" %>
+      </p>
       <button type="button" class="btn btn-primary active">Primary</button>
-
     </div>
     <%= will_paginate @stories %>
     <div class="row">
-            <% @stories.each do |story| %>
-              <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                <% if story.picture.attached? %>
-                <%# <%= image_tag story.picture.variant(resize_to_limit: [500, 500]) %>
-                  <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %>
-                <% end %>
-                  <div class="caption">
-                    <h3><%= story.title.html_safe %></h3>
-                    <p><%= truncate(story.content.html_safe, length: 125, omission: '...') %></p>
-                    <p><a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a></p>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+      <% @stories.each do |story| %>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <% if story.picture.attached? %> <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %> <% end %>
+            <div class="caption">
+              <h3><%= story.title.html_safe %></h3>
+              <p>
+                <%= truncate(story.content.html_safe, length: 125, omission: '...') %>
+              </p>
+              <p>
+                <a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a>
+              </p>
+            </div>
+          </div>
         </div>
+      <% end %>
     </div>
-
-</section> 
+  </div>
+</section>

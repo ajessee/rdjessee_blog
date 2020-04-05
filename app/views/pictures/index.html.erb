@@ -1,46 +1,35 @@
 <section id="pictures_full">
-
   <!-- Flash Section -->
-  <% if !flash.empty? %>
-  <%= render 'shared/flash' %>
-  <% end %>
-
+  <% if !flash.empty? %> <%= render 'shared/flash' %> <% end %>
   <div class="container-fluid text-center">
     <div>
       <%= will_paginate @pictures %>
     </div>
-
     <div class="row">
       <% @pictures.each do |picture| %>
-      <a href="<%= picture_path(picture.id) %>" class="blog_links">
-        <div class="col-lg-4 wow fadeIn">
-          <div class="thumbnail box-shadow">
-            <% if picture.picture.attached? %>
-              <%# <%= image_tag picture.picture.variant(resize_to_limit: [500, 500]) %> 
-              <%= image_tag picture.picture, alt: "Picture", class: "img-responsive center-picture" %>
-            <% end %>
-            <div>
-              <% if logged_in? && current_user.admin? %>
+        <a href="<%= picture_path(picture.id) %>" class="blog_links">
+          <div class="col-lg-4 wow fadeIn">
+            <div class="thumbnail box-shadow">
+              <% if picture.picture.attached? %> <%= image_tag picture.picture.variant(resize: "500x500", auto_orient: true), alt: "Picture", class:
+            "img-responsive center-picture" %> <% end %>
               <div>
-                <%= link_to "Delete", picture, method: :delete, class: "btn btn-danger top-margin-1-percent",
-                data: { confirm: "Are you sure you want to delete this picture?" } %>
-              </div>  
-              <% end %>
+                <% if logged_in? && current_user.admin? %>
+                  <div>
+                    <%= link_to "Delete", picture, method: :delete, class: "btn btn-danger top-margin-1-percent", data: { confirm: "Are you sure you want to delete
+                this picture?" } %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="caption text-center">
+                <h5><%= picture.caption %></h5>
+              </div>
             </div>
-            <div class="caption text-center">
-            <h5><%= picture.caption %></h5>
-            </div>
-        </div>
-
-      </div>
-    </a>
-    <% end %>
+          </div>
+        </a>
+      <% end %>
+    </div>
+    <div>
+      <%= will_paginate @pictures %>
+    </div>
   </div>
-
-  <div>
-    <%= will_paginate @pictures %>
-  </div>
-
-</div>
-
-</section> 
+</section>

@@ -11,10 +11,10 @@
     <%= render 'layouts/header' %>
   </head>
   <body>
-      <%= yield %>
+    <%= yield %>
     <%= javascript_include_tag 'application' %>
     <%# TODO: Get rid of javascript_include_tag and use pack tag instead. (To switch from sprockets to webpacker) %>
-    <%# <%= javascript_pack_tag 'application' %> %>
+    <%# <%= javascript_pack_tag 'application' %>
     <%= ga_script %>
     <%= ga_track %>
   </body>

@@ -1,44 +1,26 @@
 <section id="show_videos">
-
   <div class="container-fluid text-center">
     <!-- Flash Section -->
-    <% if !flash.empty? %>
-      <%= render 'shared/flash2' %>
-    <% end %>
-
+    <% if !flash.empty? %> <%= render 'shared/flash2' %> <% end %>
     <h4>Videos</h4>
-    <hr class="pageLine">
+    <hr class="pageLine" />
     <h6>Here is a random sample of videos</h6>
     <div>
-    <a href=" <%= videos_path %> " class="btn btn-default btn-lg buttonDropShadow" id="videosButton" role="button">Or check out all the videos</a>
+      <a href=" <%= videos_path %> " class="btn btn-default btn-lg buttonDropShadow" id="videosButton" role="button">Or check out all the videos</a>
     </div>
-
     <div class="row">
       <% @videos.each do |video| %>
         <a href="<%= video_path(video.id) %>" class="blog_links">
           <div class="col-lg-4 wow fadeIn">
             <div class="thumbnail box-shadow">
-            <%# <% if Rails.env.production? %> %>
-              <%# <% if video.video %> %>
-
-              <%# <% else %> %>
-                <%# <i class="fa fa-user-circle fa-2x"></i> %>
-              <%# <% end %> %>
-            <%# <% end %> %>
-            <%# <% if Rails.env.development? %> %>
-         
-            <%# <% end %> %>
-            <%# TODO: Fix this %>
-              <% if video.video_file.attached? %>
-                <%= image_tag video.video_file, alt: "Video", class: "img-responsive center-picture" %>
-              <% end %>
-            <div class="caption text-center">
-              <h5><%= video.caption %></h5>
+              <% if video.video_file.attached? %> <%= image_tag video.video_file, alt: "Video", class: "img-responsive center-picture" %> <% end %>
+              <div class="caption text-center">
+                <h5><%= video.caption %></h5>
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
       <% end %>
     </div>
   </div>
-</section> 
+</section>
