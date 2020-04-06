@@ -14,6 +14,20 @@ class Story < ApplicationRecord
   validates :content, presence: true
   has_one_attached :picture
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  index_name Rails.application.class.parent_name.underscore
+  document_type self.name.downcase
+
+  # ElasticSearch Index
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :title, analyzer: 'english'
+      indexes :content, analyzer: 'english'
+    end
+  end
+
   @@year_array = []
   @@decade_array = []
   @@location_array = []

@@ -19,6 +19,8 @@ gem 'simple_form'
 gem 'pg'
 gem 'bootsnap'
 gem 'webpacker'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
