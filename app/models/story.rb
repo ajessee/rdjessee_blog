@@ -17,15 +17,46 @@ class Story < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  index_name Rails.application.class.parent_name.underscore
-  document_type self.name.downcase
+  def self.search(query)
+    __elasticsearch__.search(
+      {
+        from: 0,
+        size: 500,
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['title', 'content']
+          }
+        },
+        highlight: {
+          pre_tags: ['<mark>'],
+          post_tags: ['</mark>'],
+          fields: {
+            title: {number_of_fragments: 0},
+            content: {},
+          }
+        },
+        suggest: {
+          text: query,
+          title: {
+            term: {
+              size: 1,
+              field: :title
+            }
+          },
+          content: {
+            term: {
+              size: 1,
+              field: :content
+            }
+          }
+        }
+      }
+    )
+  end
 
-  # ElasticSearch Index
-  settings index: { number_of_shards: 1 } do
-    mappings dynamic: 'false' do
-      indexes :title, analyzer: 'english'
-      indexes :content, analyzer: 'english'
-    end
+  def as_indexed_json(options = nil)
+    self.as_json( only: [ :title, :content ] )
   end
 
   @@year_array = []
@@ -129,6 +160,22 @@ class Story < ApplicationRecord
 
   def get_wordcount
     self.word_count = self.content.scan(/[\w-]+/).size
+  end
+
+  def get_results(results, id)
+    @results = results.select { |r| r.id == id.to_s }.first
+    @results_content = {
+      title: @results.highlight.title.nil? ? nil : @results.highlight.title.first.html_safe,
+      content: @results.highlight.content.nil? ? nil : @results.highlight.content.join('...').html_safe,
+    }
+  end
+
+  def get_highlighted_title
+    @results_content ? @results_content[:title] : nil
+  end
+
+  def get_highlighted_content
+    @results_content ? @results_content[:content] : nil
   end
 
 end

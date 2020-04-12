@@ -1,5 +1,5 @@
 <div id="stories_container">
-  <% if @active_button != 'alphabetical' %>
+  <% if @active_button != 'alphabetical' || @results %>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-md-offset-3 top-margin-5-percent">
         <div class="alert alert-info" role="alert">
@@ -15,6 +15,21 @@
             <h6>
               There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that life stage
             </h6>
+          <% elsif @results %>
+            <% if @results.count == 0 %>
+              <h6>
+                No results found that contain '<%= @results.search.definition[:body][:query][:multi_match][:query] %>'
+                <% suggestion = autosuggest_aggregate(@results.response.suggest, [:title, :body], @results.search.definition[:body][:query][:multi_match][:query]) %>
+                <% if suggestion %>
+                      Search instead for: <%=  link_to suggestion, stories_search_path( query: suggestion ) %>
+                <% end %>
+              </h6>
+            <% else %>
+              <h6>
+                There <%= @results.count > 1 ? "are" : "is" %> <%= pluralize(@results.count, "story") %> that <%= @results.count > 1 ? "match" : "matches" %> '<%= @results.search.definition[:body][:query][:multi_match][:query] %>'
+              </h6>
+            <% end %>
+
           <% else %>
             <h6>
               There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that <%= @active_button %>
@@ -24,10 +39,14 @@
       </div>
     </div>
   <% end %>
-  <div>
-    <%= will_paginate @stories %>
+
+    <div>
+    <%= will_paginate @stories if @stories %>
   </div>
+  
+  <% if @stories %>
   <% @stories.each do |story| %>
+    <% story.get_results(@results, story.id) if @results %>
     <a href="<%= story_path(story.id) %>" class="blog_links">
       <div class="row panel panel-default box-shadow">
         <div class="panel-body">
@@ -40,10 +59,10 @@
             <div class="col-md-7">
               <div class="caption black">
                 <h3 class="MajestiBannerBookPartial">
-                  <%= story.title.html_safe %>
+                  <%= story.get_highlighted_title || story.title.html_safe %>
                 </h3>
                 <div class="MajestiBannerBookParaPartial text-left">
-                  <%= truncate(story.content.html_safe, length: 200, omission: '...', escape: false) %>
+                  <%= truncate(story.get_highlighted_content || story.content.html_safe, length: 200, omission: '...', escape: false) %>
                 </div>
               </div>
             </div>
@@ -51,10 +70,10 @@
             <div class="col-md-12">
               <div class="caption black">
                 <h3 class="MajestiBannerBookPartial">
-                  <%= story.title.html_safe %>
+                  <%= story.get_highlighted_title || story.title.html_safe %>
                 </h3>
                 <div class="MajestiBannerBookParaPartial text-left">
-                  <%= truncate(story.content.html_safe, length: 350, omission: '...', escape: false) %>
+                  <%= truncate(story.get_highlighted_content || story.content.html_safe, length: 350, omission: '...', escape: false) %>
                 </div>
               </div>
             </div>
@@ -78,7 +97,8 @@
       </div>
     </a>
   <% end %>
+  <% end %>
   <div>
-    <%= will_paginate @stories %>
+    <%= will_paginate @stories if @stories %>
   </div>
 </div>

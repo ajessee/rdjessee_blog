@@ -7,6 +7,14 @@
 
   <div class="container text-center">
 
+    <div id="elastic-search-bar">
+      
+      <%= form_with(url: stories_search_path, method: "get", local: true) do |f| %>
+        <%= f.text_field :query, placeholder: "Word or phrase", required: true %>
+        <%= f.submit :Search %>
+      <% end %>
+    </div>
+
     <div class="btn-group buttonDropShadow">
 
       <%= link_to 'Alphabetical', stories_path, id: "alpha_button", class: "#{'active' if @active_button == 'alphabetical' } btn btn-default", role: "button" %>
@@ -93,12 +101,8 @@
       <%= link_to 'Tag Cloud', tags_path, id: "tagAjax", class: "#{'active' if @active_button == 'tag' } btn btn-default", role: "button" %>
 
     </div>
-
-
     
-    <%= render 'show_stories' %>
-
-
+    <%= render partial: 'show_stories', locals: {results: @results} %>
 
   </div>
 

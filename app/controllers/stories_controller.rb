@@ -58,6 +58,23 @@ class StoriesController < ApplicationController
     end
   end
 
+  def search
+    Story.get_metadata
+    @years = Story.all_years
+    @decades = Story.all_decades
+    @locations = Story.all_locations
+    @genres = Story.all_genres
+    @categories = Story.all_categories
+    @life_stages = Story.all_life_stages
+    story_ids = []
+    @results = Story.search(search_params[:query])
+    @results.each do |result|
+      story_ids.push(result.id)
+    end
+    @stories = Story.where(id: story_ids).paginate(:page => params[:page], :per_page => 6)
+    render 'index'
+  end
+
   def show
     @story = Story.find(params[:id])
   end
@@ -128,6 +145,10 @@ class StoriesController < ApplicationController
 
   def recording_params
     params.require(:story).permit(recordings_attributes: [:caption, :recording])
+  end
+
+  def search_params
+    params.permit(:query, :commit)
   end
 
   def clean_story_params

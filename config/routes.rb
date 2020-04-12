@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/admin/stories',   to: 'admin_pages#admin_stories'
 
   get 'stories/sort' => 'stories#sort'
+  get 'stories/search' => 'stories#search'
 
   resources :users do
     resources :stories
