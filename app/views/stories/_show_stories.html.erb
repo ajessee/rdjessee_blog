@@ -18,10 +18,10 @@
           <% elsif @results %>
             <% if @results.count == 0 %>
               <h6>
-                No results found that contain '<%= @results.search.definition[:body][:query][:multi_match][:query] %>'
-                <% suggestion = autosuggest_aggregate(@results.response.suggest, [:title, :body], @results.search.definition[:body][:query][:multi_match][:query]) %>
+                No results found that contain '<%= get_results_query(@results) %>'
+                <% suggestion = autosuggest_aggregate(@results.response.suggest, [:title, :body], get_results_query(@results)) %>
                 <% if suggestion %>
-                      Search instead for: <%=  link_to suggestion, stories_search_path( query: suggestion ) %>
+                  Search instead for: <%=  link_to suggestion, stories_search_path( query: suggestion ) %>
                 <% end %>
               </h6>
             <% else %>
@@ -29,7 +29,6 @@
                 There <%= @results.count > 1 ? "are" : "is" %> <%= pluralize(@results.count, "story") %> that <%= @results.count > 1 ? "match" : "matches" %> '<%= @results.search.definition[:body][:query][:multi_match][:query] %>'
               </h6>
             <% end %>
-
           <% else %>
             <h6>
               There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that <%= @active_button %>
@@ -39,64 +38,63 @@
       </div>
     </div>
   <% end %>
-
-    <div>
+  <div>
     <%= will_paginate @stories if @stories %>
   </div>
-  
   <% if @stories %>
-  <% @stories.each do |story| %>
-    <% story.get_results(@results, story.id) if @results %>
-    <a href="<%= story_path(story.id) %>" class="blog_links">
-      <div class="row panel panel-default box-shadow">
-        <div class="panel-body">
-          <% if story.picture.attached? %>
-            <div class="col-md-5">
-              <div>
-                <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %>
-              </div>
-            </div>
-            <div class="col-md-7">
-              <div class="caption black">
-                <h3 class="MajestiBannerBookPartial">
-                  <%= story.get_highlighted_title || story.title.html_safe %>
-                </h3>
-                <div class="MajestiBannerBookParaPartial text-left">
-                  <%= truncate(story.get_highlighted_content || story.content.html_safe, length: 200, omission: '...', escape: false) %>
+    <% @stories.each do |story| %>
+      <% result_hash = get_results(@results, story) %>
+      <a href="<%= story_path(story.id) %>" class="blog_links" >
+        <div class="row panel panel-default box-shadow">
+          <div class="panel-body">
+            <% if story.picture.attached? %>
+              <div class="col-md-5">
+                <div>
+                  <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %>
                 </div>
               </div>
-            </div>
-          <% else %>
-            <div class="col-md-12">
-              <div class="caption black">
-                <h3 class="MajestiBannerBookPartial">
-                  <%= story.get_highlighted_title || story.title.html_safe %>
-                </h3>
-                <div class="MajestiBannerBookParaPartial text-left">
-                  <%= truncate(story.get_highlighted_content || story.content.html_safe, length: 350, omission: '...', escape: false) %>
+              <div class="col-md-7">
+                <div class="caption black">
+                  <h3 class="MajestiBannerBookPartial">
+                    <%= result_hash[:title] %>
+                  </h3>
+                  <div class="MajestiBannerBookParaPartial text-left">
+                    <%= result_hash[:content] %>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %> <% if story.word_count != nil %>
-            <div class="col-md-12">
-              <div class="float-right black">
-                <p class="MajestiBannerBookPartial">
-                  Estimated Reading Time: <% if (story.word_count / 130.0) > 1 %> <%= (story.word_count / 130.0).round(1) %> minutes <% else %> 1 minute <% end %>
-                </p>
+            <% else %>
+              <div class="col-md-12">
+                <div class="caption black">
+                  <h3 class="MajestiBannerBookPartial">
+                    <%= result_hash[:title] %>
+                  </h3>
+                  <div class="MajestiBannerBookParaPartial text-left">
+                    <%= result_hash[:content] %>
+                  </div>
+                </div>
               </div>
+            <% end %>
+            <% if story.word_count != nil %>
+              <div class="col-md-12">
+                <div class="float-right black">
+                  <p class="MajestiBannerBookPartial">
+                    Estimated Reading Time: <% if (story.word_count / 130.0) > 1 %> <%= (story.word_count / 130.0).round(1) %> minutes <% else %> 1 minute <% end %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <% if story.all_tags != "" %>
+            <div class="panel-footer">
+              <% story.all_tags.split(",").each do |tag| %>
+                <span><%= link_to tag.strip, "/stories/sort?sort=tag&tag=#{tag.strip}", class: "btn btn-primary", role: "button" %></span>
+              <% end %>
             </div>
           <% end %>
         </div>
-        <% if story.all_tags != "" %>
-          <div class="panel-footer">
-            <% story.all_tags.split(",").each do |tag| %>
-              <span><%= link_to tag.strip, "/stories/sort?sort=tag&tag=#{tag.strip}", class: "btn btn-primary", role: "button" %></span>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </a>
-  <% end %>
+      </a>
+    <% end %>
   <% end %>
   <div>
     <%= will_paginate @stories if @stories %>

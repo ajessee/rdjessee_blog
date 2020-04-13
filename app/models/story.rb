@@ -162,20 +162,4 @@ class Story < ApplicationRecord
     self.word_count = self.content.scan(/[\w-]+/).size
   end
 
-  def get_results(results, id)
-    @results = results.select { |r| r.id == id.to_s }.first
-    @results_content = {
-      title: @results.highlight.title.nil? ? nil : @results.highlight.title.first.html_safe,
-      content: @results.highlight.content.nil? ? nil : @results.highlight.content.join('...').html_safe,
-    }
-  end
-
-  def get_highlighted_title
-    @results_content ? @results_content[:title] : nil
-  end
-
-  def get_highlighted_content
-    @results_content ? @results_content[:content] : nil
-  end
-
 end

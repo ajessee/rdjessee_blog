@@ -58,5 +58,24 @@ module StoriesHelper
       count == 1 ? "#{noun}#{text}" : "#{noun.pluralize}#{text}"
     end
   end
+
+  def get_results(results, story)
+    if results
+      results = results.select { |r| r.id == story.id.to_s }.first
+      title = results.highlight.title.nil? ? story.title : results.highlight.title.first.html_safe
+      content = results.highlight.content.nil? ? story.content : results.highlight.content.join(' / ').html_safe
+    else
+      title = story.title.html_safe
+      content = truncate(story.content.html_safe, length: 350, omission: '...')
+    end
+    {
+      title: title,
+      content: content,
+    }
+  end
+
+  def get_results_query(results)
+    results.search.definition[:body][:query][:multi_match][:query]
+  end
   
 end
