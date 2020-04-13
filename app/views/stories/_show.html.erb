@@ -17,7 +17,7 @@
             <div class="caption">
               <h3><%= story.title.html_safe %></h3>
               <p>
-                <%= truncate(story.content.html_safe, length: 125, omission: '...') %>
+                <%= truncate(story.content.html_safe, length: 125, omission: '...(click to continue reading)') %>
               </p>
               <p>
                 <a href=" <%= story_path(story.id) %> " class="btn btn-primary" role="button">Read</a>

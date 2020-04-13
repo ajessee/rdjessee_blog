@@ -130,6 +130,7 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (4.1.0)
+    htmlentities (4.3.4)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
@@ -267,6 +268,9 @@ GEM
     tilt (2.0.10)
     trix-rails (2.2.0)
       rails (> 4.1, < 6.1)
+    truncato (0.7.11)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.7.0, <= 2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
@@ -323,6 +327,7 @@ DEPENDENCIES
   simplecov
   spring
   trix-rails
+  truncato
   uglifier
   web-console
   webpacker

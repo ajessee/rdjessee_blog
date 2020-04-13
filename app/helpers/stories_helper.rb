@@ -66,11 +66,11 @@ module StoriesHelper
       content = results.highlight.content.nil? ? story.content : results.highlight.content.join(' / ').html_safe
     else
       title = story.title.html_safe
-      content = truncate(story.content.html_safe, length: 350, omission: '...')
+      content = Truncato.truncate(story.content, max_length: 500) + '(click to continue reading)'
     end
     {
       title: title,
-      content: content,
+      content: content.html_safe,
     }
   end
 
