@@ -76,6 +76,9 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
+  # Elastic search using searchbox addin in prod with Heroku
+  Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL'], port: 443, retry_on_failure: true, transport_options: {request: {timeout: 5}}
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
