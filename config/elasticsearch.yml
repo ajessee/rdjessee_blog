@@ -9,5 +9,5 @@ test:
   host: 'http://localhost:9250'
   port: '9250'
 production:
-  host: <%= ENV['SEARCHBOX_URL'] %>
+  host: '<%= ENV['SEARCHBOX_URL'] %>'
   port: '443'
