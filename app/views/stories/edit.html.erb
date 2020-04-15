@@ -55,18 +55,20 @@
               </div>
               <br/>
 
-              <% if @story.thumbnail %>
+              <% if @story.picture.attached? %>
               <div>
                 <h5>If you want to change this thumbnail:</h5>
-                <%= image_tag(@story.thumbnail.url) unless @story.thumbnail.url.nil? %>
+                <%= image_tag @story.picture.variant(resize: "200x200", auto_orient: true) %>
                 <h5>Upload a new one below</h5>
-                
               </div>
+              <% else %>
+              <h5>Upload a thumbnail for this story</h5>
               <% end %>
-
               <div class="picture">
-                <%= f.file_field :thumbnail %>
+                <%= f.file_field :picture %>
               </div>
+
+
 
               <div class="text-center">
                 <%= f.submit "Update Story", class: "btn btn-default btn-lg buttonDropShadow", id: "updateStoryButton" %>
