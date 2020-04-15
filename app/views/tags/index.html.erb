@@ -1,3 +1,19 @@
-<% @tags.each do |tag| %>
-<h1><%= tag.name  %></h1>
-<% end %>
+<table class="table table-bordered tag-table" data-order="<%= order %>">
+  <tr>
+    <th class="text-center">Tag 
+    <a href="#" id="sort-tags-asc"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
+    <a href="#" id="sort-tags-desc"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
+     </th>
+    <th class="text-center">Stories With Tag</th>
+  </tr>
+  <% @tags.each do |tag| %>
+    <tr>
+      <td><%= link_to tag.name, "/stories/sort?sort=tag&tag=#{tag.name}" %></td>
+      <td>
+        <% tag.stories.each_with_index do |story, idx| %>
+          <%= link_to story.title, story_path(story.id) %><% if idx + 1 != tag.stories.length  %> | <% end  %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

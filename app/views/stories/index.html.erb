@@ -1,24 +1,17 @@
 <section id="blog_full">
-
   <!-- Flash Section -->
   <% if !flash.empty? %>
-  <%= render 'shared/flash' %>
+    <%= render 'shared/flash' %>
   <% end %>
-
   <div class="container text-center">
-        
     <div id="elastic-search-bar" class="form">
       <%= form_with(url: stories_search_path, method: "get", local: true, class: "form-inline") do |f| %>
         <%= f.text_field :query, placeholder: "Word or phrase", required: true, class: "form-control" %>
         <%= f.submit :Search, class: "btn btn-primary mb-2" %>
       <% end %>
     </div>
-
-
     <div class="btn-group buttonDropShadow">
-
       <%= link_to 'Alphabetical', stories_path, id: "alpha_button", class: "#{'active' if @active_button == 'alphabetical' } btn btn-default", role: "button" %>
-
       <% if !@years.nil? %>
         <div class="btn-group">
           <button type="button" id="year_button" class="<%= 'active' if @active_button == 'year' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,12 +19,11 @@
           </button>
           <ul class="dropdown-menu">
             <% @years.each do |year| %>
-            <li><%= link_to year, "/stories/sort?sort=year_written&year=#{year}", class: "btn", role: "button" %></li>
+              <li><%= link_to year, "/stories/sort?sort=year_written&year=#{year}", class: "btn", role: "button" %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-
       <% if !@decades.nil? %>
         <div class="btn-group">
           <button type="button" id="decade_button" class="<%= 'active' if @active_button == 'decade' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,12 +31,11 @@
           </button>
           <ul class="dropdown-menu">
             <% @decades.each do |decade| %>
-            <li><%= link_to decade, "/stories/sort?sort=decade&decade=#{decade}", class: "btn", role: "button" %></li>
+              <li><%= link_to decade, "/stories/sort?sort=decade&decade=#{decade}", class: "btn", role: "button" %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-
       <% if !@locations.nil? %>
         <div class="btn-group">
           <button type="button" id="location_button" class="<%= 'active' if @active_button == 'location' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,12 +43,11 @@
           </button>
           <ul class="dropdown-menu">
             <% @locations.each do |location| %>
-            <li><%= link_to location, "/stories/sort?sort=location&location=#{location}", class: "btn", role: "button" %></li>
+              <li><%= link_to location, "/stories/sort?sort=location&location=#{location}", class: "btn", role: "button" %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-
       <% if !@genres.nil? %>
         <div class="btn-group">
           <button type="button" id="genre_button" class="<%= 'active' if @active_button == 'genre' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,12 +55,11 @@
           </button>
           <ul class="dropdown-menu">
             <% @genres.each do |genre| %>
-            <li><%= link_to genre, "/stories/sort?sort=genre&genre=#{genre}", class: "btn", role: "button" %></li>
+              <li><%= link_to genre, "/stories/sort?sort=genre&genre=#{genre}", class: "btn", role: "button" %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-
       <% if !@categories.nil? %>
         <div class="btn-group">
           <button type="button" id="type_button" class="<%= 'active' if @active_button == 'category' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,12 +67,11 @@
           </button>
           <ul class="dropdown-menu">
             <% @categories.each do |category| %>
-            <li><%= link_to category, "/stories/sort?sort=category&category=#{category}", class: "btn", role: "button" %></li>
+              <li><%= link_to category, "/stories/sort?sort=category&category=#{category}", class: "btn", role: "button" %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-
       <% if !@life_stages.nil? %>
         <div class="btn-group">
           <button type="button" id="age_button" class="<%= 'active' if @active_button == 'life_stage' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,19 +79,23 @@
           </button>
           <ul class="dropdown-menu">
             <% @life_stages.each do |life_stage| %>
-            <li><%= link_to life_stage, "/stories/sort?sort=life_stage&life_stage=#{life_stage}", class: "btn", role: "button" %></li>
+              <li><%= link_to life_stage, "/stories/sort?sort=life_stage&life_stage=#{life_stage}", class: "btn", role: "button" %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-
-
-      <%= link_to 'Tag Cloud', tags_path, id: "tagAjax", class: "#{'active' if @active_button == 'tag' } btn btn-default", role: "button" %>
-
+      <div class="btn-group">
+        <button type="button" id="tags_button" class="<%= 'active' if @active_button == 'tag' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tags <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'Tag Cloud', tag_cloud_path, id: "tag-cloud", class: "btn tag-xhr-request", role: "button" %></li>
+          <li><%= link_to 'Tag List', tags_path, id: "tag-list", class: "btn tag-xhr-request", role: "button" %></li>
+        </ul>
+      </div>
+      
     </div>
-    
     <%= render partial: 'show_stories', locals: {results: @results} %>
-
   </div>
-
-</section> 
+</section>
+ 

@@ -1,7 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$('#tagAjax').click(function(event) {
+$('.tag-xhr-request').click(function(event) {
 
 
     event.preventDefault();
