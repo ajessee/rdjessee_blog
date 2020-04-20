@@ -12,20 +12,17 @@
         </div>
         <hr class="colored" id="blogLine1">
         <div class="MajestiBannerBookPara">
-          <%= @story.content.html_safe %>
-        </div>
-         <div class="MajestiBannerBookPara">
           <% if !@story.recordings.empty? %>
-          <h5 class="text-center">Story <%=  pluralize_without_count(@story.recordings.count, 'recording') %>:</h5>
           <div class="story-recordings text-center">
             <% @story.recordings.each do |recording| %>
                 <div id="recording-id-<%= recording.id %>">
-                <p><%= recording.caption %></p>
                 <%= audio_tag (rails_blob_url recording.audio_file), controls: true %>
+                <p><%= recording.caption %></p>
                 </div>
             <% end %>
             </div>
           <% end %>
+          <%= @story.content.html_safe %>
         </div>
       </div>
     </div>
