@@ -71,10 +71,9 @@
             <div>
               <div>
                 <%= audio_tag (rails_blob_url recording.audio_file), controls: true %>
-                <%= link_to "Delete", recording, method: :delete, class: "btn btn-danger",
-                                  data: { confirm: "Are you sure?" } %>
+                <span class="audio-file-delete"><%= link_to "Delete", recording, method: :delete, class: "btn btn-danger",
+                                  data: { confirm: "Are you sure?" } %></span>
               </div>
-              
             </div>
           <% end %>
           <h5>Upload a new recording for this story</h5>
