@@ -18,7 +18,7 @@ class Recording < ApplicationRecord
         content_type: 'audio/mp4'
       )
   
-      File.delete(mp4_audio_tmpfile)
+      File.delete(mp4_audio_tmpfile) 
     end
   end
 
