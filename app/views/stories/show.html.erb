@@ -3,21 +3,32 @@
   <div class="container">
     <!-- Flash Section -->
     <% if !flash.empty? %>
-    <%= render 'shared/flash2' %>
+      <%= render 'shared/flash2' %>
     <% end %>
-
     <div class="row">
       <div class="col-lg-12">
         <div class="text-center">
-          <h3 class="MajestiBannerBook"><%= @story.title.html_safe %></h4>
+          <h3 class="MajestiBannerBook"><%= @story.title.html_safe %></h3>
         </div>
         <hr class="colored" id="blogLine1">
         <div class="MajestiBannerBookPara">
           <%= @story.content.html_safe %>
         </div>
+         <div class="MajestiBannerBookPara">
+          <% if !@story.recordings.empty? %>
+          <h5 class="text-center">Story <%=  pluralize_without_count(@story.recordings.count, 'recording') %>:</h5>
+          <div class="story-recordings text-center">
+            <% @story.recordings.each do |recording| %>
+                <div id="recording-id-<%= recording.id %>">
+                <p><%= recording.caption %></p>
+                <%= audio_tag (rails_blob_url recording.audio_file), controls: true %>
+                </div>
+            <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
-
     <div class="row">
       <% if !@story.comments.empty? %>
         <% @story.comments.each do |comment| %>
@@ -26,7 +37,7 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title"><%= comment.author.name %> says:
-                <span class="float-right"><%=time_ago_in_words(comment.created_at) %> ago</span>
+                  <span class="float-right"><%=time_ago_in_words(comment.created_at) %> ago</span>
                 </h3>
               </div>
               <div class="panel-body">
@@ -35,38 +46,33 @@
                   <div class="float-right">
                     <%= link_to "Delete", comment, method: :delete, class: "btn btn-danger",
                                                       data: { confirm: "Are you sure you want to delete your comment?" } %>
-                  </div>  
+                  </div>
                 <% end %>
               </div>
             </div>
           </div>
         <% end %>
       <% end %>
-
-
       <div class="col-lg-10 col-lg-offset-1">
-
-      <div class="text-center">
-        <% if !logged_in? %>
-        <%= link_to "Please log in to comment", login_path, class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
-        <% else %>
-          <%= form_for [@story, Comment.new] do |f| %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.hidden_field :story_id, value: @story.id %>
-          <%= f.text_area :content, placeholder: "Type comment here...", class: "comment-area", cols: "100", rows: "5" %><br/>
-          <%= f.submit "Submit Comment", class: "btn btn-default btn-lg buttonDropShadow" %>
+        <div class="text-center">
+          <% if !logged_in? %>
+            <%= link_to "Please log in to comment", login_path, class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
+          <% else %>
+            <%= form_for [@story, Comment.new] do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :story_id, value: @story.id %>
+              <%= f.text_area :content, placeholder: "Type comment here...", class: "comment-area", cols: "100", rows: "5" %><br/>
+              <%= f.submit "Submit Comment", class: "btn btn-default btn-lg buttonDropShadow" %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+        <div class="text-center top-margin-1-percent">
+          <% if logged_in? && current_user.admin? %>
+            <%= link_to "Edit this story", edit_story_path(@story.id), class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
+          <% end %>
+        </div>
       </div>
-
-      <div class="text-center top-margin-1-percent">
-        <% if logged_in? && current_user.admin? %>
-        <%= link_to "Edit this story", edit_story_path(@story.id), class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
-        <% end %>
-      </div>
-
-      </div>
-
     </div>
   </div>
-</section> 
+</section>
+ 

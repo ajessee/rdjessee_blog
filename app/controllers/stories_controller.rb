@@ -4,6 +4,7 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
+    @recordings = @story.recordings.new
   end
 
   def index
@@ -128,6 +129,7 @@ class StoriesController < ApplicationController
   end
 
   def destroy
+    @story = Story.find(delete_params)
     @story.destroy
     flash.now[:success] = "Story deleted"
     redirect_to request.referrer || root_url
@@ -136,7 +138,7 @@ class StoriesController < ApplicationController
   private
 
   def story_params
-    params.require(:story).permit(:title, :content, :year_written, :decade, :location, :genre, :category, :life_stage, :picture, :all_tags, recordings_attributes: [:caption, :recording])
+    params.require(:story).permit(:title, :content, :year_written, :decade, :location, :genre, :category, :life_stage, :picture, :all_tags, recordings_attributes: [:caption, :audio_file] )
   end
 
   def video_params
@@ -149,6 +151,10 @@ class StoriesController < ApplicationController
 
   def search_params
     params.permit(:query, :commit)
+  end
+
+  def delete_params
+    params.require(:id)
   end
 
   def clean_story_params

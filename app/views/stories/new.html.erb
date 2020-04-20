@@ -53,10 +53,10 @@
             <%= f.file_field :picture %>
           </div>
           <div class="recording">
-            <%= f.fields_for :recordings do |r| %>
+            <%= f.fields_for :recordings, @recordings do |r| %>
             <%= r.label "Upload Recording" %>
             <%= r.text_field :caption, placeholder: "Enter caption for recording...", class: 'form-control' %> 
-            <%= r.file_field :recording %>
+            <%= r.file_field :audio_file %>
             <% end %>
           </div>
           <br>

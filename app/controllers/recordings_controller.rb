@@ -25,12 +25,20 @@ class RecordingsController < ApplicationController
   end
 
   def destroy
+    @recording = Recording.find(delete_params)
+    @story = Story.find(@recording.recordable_id)
+    @recording.destroy
+    render 'stories/edit'
   end
 
   def update
   end
 
   private
+
+  def delete_params
+    params.require(:id)
+  end
 
   def recording_params
     params.require(:recording).permit(:id, :recording, :audio_file, :user_id)
