@@ -18,41 +18,45 @@ class Story < ApplicationRecord
   include Elasticsearch::Model::Callbacks
 
   def self.search(query)
-    __elasticsearch__.search(
-      {
-        from: 0,
-        size: 500,
-        query: {
-          multi_match: {
-            query: query,
-            fields: ['title', 'content']
+
+    search_definition = {
+      from: 0,
+      size: 500,
+      query: {
+        multi_match: {
+          query: query,
+          fields: ['title', 'content']
+        }
+      },
+      highlight: {
+        pre_tags: ['<mark>'],
+        post_tags: ['</mark>'],
+        fields: {
+          title: {number_of_fragments: 0},
+          content: {},
+        }
+      },
+      suggest: {
+        text: query,
+        title: {
+          term: {
+            size: 1,
+            field: :title
           }
         },
-        highlight: {
-          pre_tags: ['<mark>'],
-          post_tags: ['</mark>'],
-          fields: {
-            title: {number_of_fragments: 0},
-            content: {},
-          }
-        },
-        suggest: {
-          text: query,
-          title: {
-            term: {
-              size: 1,
-              field: :title
-            }
-          },
-          content: {
-            term: {
-              size: 1,
-              field: :content
-            }
+        content: {
+          term: {
+            size: 1,
+            field: :content
           }
         }
       }
-    )
+    }
+
+    if (query[0] == '"' || query[0] == "'") && (query[-1] == '"' || query[-1] == "'")
+      search_definition[:query][:multi_match][:type] = 'phrase'
+    end
+    __elasticsearch__.search(search_definition)
   end
 
   def as_indexed_json(options = nil)
