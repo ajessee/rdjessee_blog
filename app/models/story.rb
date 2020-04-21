@@ -55,6 +55,7 @@ class Story < ApplicationRecord
 
     if (query[0] == '"' || query[0] == "'") && (query[-1] == '"' || query[-1] == "'")
       search_definition[:query][:multi_match][:type] = 'phrase'
+      search_definition.delete(:suggest)
     end
     __elasticsearch__.search(search_definition)
   end

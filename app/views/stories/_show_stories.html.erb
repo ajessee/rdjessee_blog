@@ -19,9 +19,11 @@
             <% if @results.count == 0 %>
               <h6>
                 No results found that contain '<%= get_results_query(@results) %>'
-                <% suggestion = autosuggest_aggregate(@results.response.suggest, [:title, :body], get_results_query(@results)) %>
-                <% if suggestion %>
-                  Search instead for: <%=  link_to suggestion, stories_search_path( query: suggestion ) %>
+                <% if @results.response.suggest %>
+                  <% suggestion = autosuggest_aggregate(@results.response.suggest, [:title, :body], get_results_query(@results)) %>
+                  <% if suggestion %>
+                    Search instead for: <%=  link_to suggestion, stories_search_path( query: suggestion ) %>
+                  <% end %>
                 <% end %>
               </h6>
             <% else %>
