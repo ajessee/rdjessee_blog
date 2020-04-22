@@ -100,7 +100,7 @@ class StoriesController < ApplicationController
       end
     else
       @story = Story.find(params[:id])
-      clean_story_params
+      helpers.clean_story_params(story_params, params)
       if @story.update_attributes(story_params)
         @story.strip_divs
         @story.get_wordcount
@@ -115,7 +115,7 @@ class StoriesController < ApplicationController
   end
 
   def create
-    clean_story_params
+    helpers.clean_story_params(story_params, params)
     @story = current_user.stories.build(story_params)
     @story.strip_divs
     @story.get_wordcount
@@ -141,41 +141,12 @@ class StoriesController < ApplicationController
     params.require(:story).permit(:title, :content, :year_written, :decade, :location, :genre, :category, :life_stage, :picture, :all_tags, recordings_attributes: [:caption, :audio_file] )
   end
 
-  def video_params
-    params.require(:story).permit(videos_attributes: ["video", "@original_filename", "@content_type", "@headers", "_destroy", "id"])
-  end
-
-  def recording_params
-    params.require(:story).permit(recordings_attributes: [:caption, :recording])
-  end
-
   def search_params
     params.permit(:query, :commit)
   end
 
   def delete_params
     params.require(:id)
-  end
-
-  def clean_story_params
-    if story_params[:year_written] == "None"
-      params[:story][:year_written] = nil
-    end
-    if story_params[:decade] == "None"
-      params[:story][:decade] = nil
-    end
-    if story_params[:genre] == ""
-      params[:story][:genre] = nil
-    end
-    if story_params[:location] == ""
-      params[:story][:location] = nil
-    end
-    if story_params[:category] == ""
-      params[:story][:category] = nil
-    end
-    if story_params[:life_stage] == ""
-      params[:story][:life_stage] = nil
-    end
   end
 
   # Confirms an admin user.
@@ -187,54 +158,5 @@ class StoriesController < ApplicationController
     @story = current_user.stories.find_by(id: params[:id])
     redirect_to root_url if @story.nil?
   end
-
-  def sort_year
-    year_array = []
-    Story.find_each do |story|
-      year_array.push(story.year_written)
-    end
-    @years = year_array.sort.uniq!
-  end
-
-  def sort_decade
-    decade_array = []
-    Story.find_each do |story|
-      decade_array.push(story.decade)
-    end
-    @decades = decade_array.sort.uniq!
-  end
-
-  def sort_location
-    location_array = []
-    Story.find_each do |story|
-      location_array.push(story.location)
-    end
-    @locations = location_array.sort.uniq!
-  end
-
-  def sort_genre
-    genre_array = []
-    Story.find_each do |story|
-      genre_array.push(story.genre)
-    end
-    @genres = genre_array.sort.uniq!
-  end
-
-  def sort_type
-    type_array = []
-    Story.find_each do |story|
-      type_array.push(story.type)
-    end
-    @types = type_array.sort.uniq!
-  end
-
-  def sort_life_stage
-    life_stage_array = []
-    Story.find_each do |story|
-      life_stage_array.push(story.life_stage)
-    end
-    @life_stages = life_stage_array.sort.uniq!
-  end
-
 
 end

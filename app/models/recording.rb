@@ -2,7 +2,7 @@ class Recording < ApplicationRecord
   belongs_to :recorder, class_name: 'User', foreign_key: :user_id
   belongs_to :recordable, polymorphic: true
   has_one_attached :audio_file
-  after_commit :process_audio!
+  after_create_commit :process_audio!
   after_create :set_filename
 
   def set_filename

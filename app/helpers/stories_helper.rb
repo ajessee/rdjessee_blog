@@ -77,5 +77,40 @@ module StoriesHelper
   def get_results_query(results)
     results.search.definition[:body][:query][:multi_match][:query]
   end
+
+  def clean_story_params(story_params, params)
+    if story_params[:year_written] == "None"
+      params[:story].delete(:year_written)
+    end
+    if story_params[:decade] == "None"
+      params[:story].delete(:decade)
+    end
+    if story_params[:genre] == ""
+      params[:story].delete(:genre)
+    end
+    if story_params[:location] == ""
+      params[:story].delete(:location)
+    end
+    if story_params[:category] == ""
+      params[:story].delete(:category)
+    end
+    if story_params[:life_stage] == ""
+      params[:story].delete(:life_stage)
+    end
+    if !nested_hash_value(story_params[:recordings_attributes].to_h, :audio_file)
+      params[:story].delete(:recordings_attributes)
+    end
+  end
+
+
+  def nested_hash_value(obj,key)
+    if obj.respond_to?(:key?) && obj.key?(key)
+      obj[key]
+    elsif obj.respond_to?(:each)
+      r = nil
+      obj.find{ |*a| r=nested_hash_value(a.last,key) }
+      r
+    end
+  end
   
 end
