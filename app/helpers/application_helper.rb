@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  include StoriesHelper
+  
   def full_title(page_title)
     base_title = "RDJ Blog"
     if page_title.empty?

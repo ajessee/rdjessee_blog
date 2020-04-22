@@ -1,66 +1,114 @@
-
 <section id="admin_stories">
-
   <div class="container-fluid text-center">
-
     <h1>Stories</h1>
     <p>You can click into fields to edit values. You will see the cell turn green if you have sucessfully updated it.</p>
     <%= will_paginate @stories %>
     <table class="table table-bordered">
       <tr>
-        <th class="text-center">ID</th>
-        <th class="text-center">Title</th>
-        <th class="text-center">Year Written</th>
-        <th class="text-center">Decade</th>
-        <th class="text-center">Location</th>
-        <th class="text-center">Genre</th>
-        <th class="text-center">Category</th>
-        <th class="text-center">Life Stage</th>
-        <th class="text-center">Word Count</th>
+        <th class="text-center">ID 
+          <% sort_link_hash = create_sort_link_hash(@sortInfo, "id") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+        </th>
+        <th class="text-center">Title
+          <% sort_link_hash = create_sort_link_hash(@sortInfo, "title") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+        </th>
+        <th class="text-center">Year Written
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "year_written") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+          </th>
+        <th class="text-center">Decade
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "decade") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+          </th>
+        <th class="text-center">Location
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "location") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+          </th>
+        <th class="text-center">Genre
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "genre") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+          </th>
+        <th class="text-center">Category
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "category") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+          </th>
+        <th class="text-center">Life Stage
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "life_stage") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+          </th>
+        <th class="text-center">Word Count
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "word_count") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %></th>
         <th class="text-center">Delete</th>
-        <th class="text-center">Date Created</th>
-        <th class="text-center">Date Updated</th>
+        <th class="text-center">Date Created
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "created_at") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+          </th>
+        <th class="text-center">Date Updated
+        <% sort_link_hash = create_sort_link_hash(@sortInfo, "updated_at") %>
+         <%= link_to admin_stories_path(sort_link_hash[:params]) do %>  
+            <i class="<%= sort_link_hash[:icon_class] %>"></i>
+          <% end %>
+          </th>
       </tr>
       <% @stories.each do |story| %>
-      <tr>
-      <td><%= story.id %></td>
-        <td contenteditable='true' storyID='<%= story.id %>' fillIn="yes" attributeToUpdate='title'><%= story.title %></td>
-        <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='year_written'>
-          <%= form_for(story) do |f| %>
-            <%= f.select :year_written, options_for_select((2004..2017).to_a.unshift("None").map {|s| ["#{s}", s]}, story.year_written), class: 'form-control' %>
+        <tr>
+          <td><%= story.id %></td>
+          <td><%= link_to story.title, story %></td>
+          <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='year_written'>
+            <%= form_for(story) do |f| %>
+              <%= f.select :year_written, options_for_select((2004..2017).to_a.unshift("None").map {|s| ["#{s}", s]}, story.year_written), class: 'form-control' %>
             <% end %>
-        </td>
-        <td contenteditable='true' storyID='<%= story.id %>' selectInteger="yes" attributeToUpdate='decade'>
-          <%= form_for(story) do |f| %>
-          <%= f.select :decade, options_for_select((1..9).to_a.unshift("None").map {|s| ["#{s}", s]}, story.decade), class: 'form-control' %>
-          <% end %> 
-        </td>
-        <td contenteditable='true' storyID='<%= story.id %>' fillIn="yes" attributeToUpdate='location'><%= story.location %></td>
-        <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='genre'>
-          <%= form_for(story) do |f| %>
-          <%= f.select :genre, options_for_select([['None', nil], ['Fiction','Fiction'],['Non-Fiction','Non-Fiction']], if story.genre != nil then story.genre else "None" end), class: 'form-control' %>
-          <% end %> 
-        </td>
-        <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='category'>
-          <%= form_for(story) do |f| %>
-          <%= f.select :category, options_for_select([['None', nil], ['Story','Story'],['Poem','Poem'], ['Letter','Letter']], if story.category != nil then story.category else "None" end), class: 'form-control' %>
-          <% end %> 
-        </td>
-        <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='life_stage'>
-          <%= form_for(story) do |f| %>
-          <%= f.select :life_stage, options_for_select([['None', nil], ['Early','Early'],['Middle','Middle'], ['Late','Late']], if story.life_stage != nil then story.life_stage else "None" end ), class: 'form-control' %>
-          <% end %>  
-        </td>
-        <td storyID='<%= story.id %>'><%= story.word_count %></td>
-        <td><%= link_to "Delete", story, method: :delete, class: "btn btn-danger",
+          </td>
+          <td contenteditable='true' storyID='<%= story.id %>' selectInteger="yes" attributeToUpdate='decade'>
+            <%= form_for(story) do |f| %>
+              <%= f.select :decade, options_for_select((1..9).to_a.unshift("None").map {|s| ["#{s}", s]}, story.decade), class: 'form-control' %>
+            <% end %>
+          </td>
+          <td contenteditable='true' storyID='<%= story.id %>' fillIn="yes" attributeToUpdate='location'><%= story.location %></td>
+          <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='genre'>
+            <%= form_for(story) do |f| %>
+              <%= f.select :genre, options_for_select([['None', nil], ['Fiction','Fiction'],['Non-Fiction','Non-Fiction']], if story.genre != nil then story.genre else "None" end), class: 'form-control' %>
+            <% end %>
+          </td>
+          <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='category'>
+            <%= form_for(story) do |f| %>
+              <%= f.select :category, options_for_select([['None', nil], ['Story','Story'],['Poem','Poem'], ['Letter','Letter']], if story.category != nil then story.category else "None" end), class: 'form-control' %>
+            <% end %>
+          </td>
+          <td contenteditable='true' storyID='<%= story.id %>' selectString="yes" attributeToUpdate='life_stage'>
+            <%= form_for(story) do |f| %>
+              <%= f.select :life_stage, options_for_select([['None', nil], ['Early','Early'],['Middle','Middle'], ['Late','Late']], if story.life_stage != nil then story.life_stage else "None" end ), class: 'form-control' %>
+            <% end %>
+          </td>
+          <td storyID='<%= story.id %>'><%= story.word_count %></td>
+          <td><%= link_to "Delete", story, method: :delete, class: "btn btn-danger",
                                   data: { confirm: "This story took a while to write. Are you sure?" } %></td>
-        <td><%= time_ago_in_words(story.created_at) %> ago</td>
-        <td><%= time_ago_in_words(story.updated_at) %> ago</td>
-      </tr>
+          <td><%= time_ago_in_words(story.created_at) %> ago</td>
+          <td><%= time_ago_in_words(story.updated_at) %> ago</td>
+        </tr>
       <% end %>
     </table>
-
   </div>
-
 </section>
-

@@ -11,7 +11,14 @@ class AdminPagesController < ApplicationController
   end
 
   def admin_stories
-    @stories = Story.all.order(title: :asc).paginate(page: params[:page])
+    if params[:sort_info]
+      query_string = "#{params[:sort_info][:sort_using]} #{params[:sort_info][:opposite_direction]}"
+      @sortInfo = {"#{params[:sort_info][:sort_using]}": {direction: params[:sort_info][:opposite_direction], opposite_direction: params[:sort_info][:direction], icon_class: helpers.get_sort_icon_class(params[:sort_info][:sort_using], params[:sort_info][:opposite_direction])}}
+    else
+      query_string = "title ASC"
+      @sortInfo = {"title": {direction: "ASC", opposite_direction: "DESC", icon_class: helpers.get_sort_icon_class("title", "ASC")}}
+    end
+    @stories = Story.all.order(query_string).paginate(page: params[:page])
   end
 
   private

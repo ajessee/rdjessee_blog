@@ -1,12 +1,13 @@
 <table class="table table-bordered tag-table" data-order="<%= order %>">
   <tr>
     <th class="text-center">Tag 
-    <a href="#" id="sort-tags-asc"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
-    <a href="#" id="sort-tags-desc"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
+    <a href="#" id="sort-tags-asc"><i class="fas fa-sort-alpha-down-alt"></i></a>
+    <a href="#" id="sort-tags-desc"><i class="fas fa-sort-alpha-up"></i></span></a>
      </th>
     <th class="text-center">Stories With Tag</th>
   </tr>
   <% @tags.each do |tag| %>
+    <% cache tag do %>
     <tr>
       <td><%= link_to tag.name, "/stories/sort?sort=tag&tag=#{tag.name}" %></td>
       <td>
@@ -15,5 +16,6 @@
         <% end %>
       </td>
     </tr>
+  <% end %>
   <% end %>
 </table>
