@@ -86,7 +86,7 @@ showRecorderButton.onclick = function() {
 
           submitRecordingButton.style.display = "inline-block";
     
-          var clipName = prompt('Enter a name for your sound clip');
+          var clipName = prompt('Please enter a title for your recording. Preferably in the format of: "[Your Name]\'s reading of "[Title Of Story]" ');
     
           var clipContainer = document.createElement('article');
           var clipLabel = document.createElement('p');
