@@ -61,6 +61,16 @@
               <%= f.text_area :content, placeholder: "Type comment here...", class: "comment-area", cols: "100", rows: "5" %><br/>
               <%= f.submit "Submit Comment", class: "btn btn-default btn-lg buttonDropShadow" %>
             <% end %>
+            <div id="audio-recorder">
+              <p>Would you like to record yourself reading this story? </p>
+              <p>Click the record button below, and the recording will start and we'll jump to the top of the page so you can begin reading</p>
+              <button id="start-audio-recorder" type="button" class="btn btn-danger">Start Recording</button>
+              <button id="stop-audio-recorder" type="button" class="btn btn-secondary">Stop Recording</button>
+              <%= form_for [@story, Recording.new] do |f| %>
+              <%= f.hidden_field :story_id, value: @story.id %>
+              <%= f.submit "Submit Recording", id: "submit-recording-button", class: "btn btn-default btn-lg buttonDropShadow" %>
+            <% end %>
+            </div>
           <% end %>
         </div>
         <div class="text-center top-margin-1-percent">

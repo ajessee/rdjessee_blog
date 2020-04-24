@@ -9,10 +9,10 @@ class RecordingsController < ApplicationController
 
   def create
     @story = Story.find(story_params[:story_id])
-    @recording = @story.recordings.build(user_id: params[:recording][:user_id], recording: params[:recording][:recording])
+    @recording = @story.recordings.build(recording_params)
     if @recording.save
       flash.now[:success] = "Recording uploaded successfully!"
-      render :show
+      render js: %(window.location.href = "/stories/#{@story.id}")
     else
       render 'welcome/home'
     end
@@ -41,7 +41,7 @@ class RecordingsController < ApplicationController
   end
 
   def recording_params
-    params.require(:recording).permit(:id, :recording, :audio_file, :user_id)
+    params.require(:recording).permit(:caption, :audio_file)
   end
 
   def story_params
