@@ -33,6 +33,43 @@ mark {
   }
 }
 
+#blog .btn {
+  margin: 1%;
+}
+
+#audio-recorder {
+  display: none;
+}
+
+.fixed-audio-buttons {
+  position: fixed;
+  right: 3%;
+  top: 15%;
+}
+
+#stop-audio-recorder {
+  display: none;
+}
+
+@-webkit-keyframes recording-pulse {
+  0% {
+      background-color: rgb(167, 37, 37);
+  }
+  50% {
+      background-color: #fa0000;
+  }
+  100% {
+      background-color:  rgb(167, 37, 37);
+  }
+}
+  
+.recording-pulse {
+  -webkit-animation-name: recording-pulse;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}    
+
 /* Desktop */
 @media (min-width: 768px) {}
 
