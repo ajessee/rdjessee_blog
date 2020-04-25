@@ -15,6 +15,14 @@
             <h6>
               There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> from that life stage
             </h6>
+          <% elsif @active_button == "has_recordings" %>
+            <h6>
+              There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> that have audio <%= pluralize_without_count(@stories.count, "recording") %>
+            </h6>
+          <% elsif @active_button == "has_comments" %>
+            <h6>
+              There <%= @stories.count > 1 ? "are" : "is" %> <%= pluralize(@stories.count, "story") %> that <%= @stories.count > 1 ? "have" : "has" %> comments
+            </h6>
           <% elsif @results %>
             <% if @results.count == 0 %>
               <h6>
@@ -64,6 +72,12 @@
                     <%= result_hash[:content] %>
                   </div>
                 </div>
+                <% if story.recordings.length > 0 %>
+                  <div class="text-left"><i class="far fa-file-audio fa-2x"></i></div>
+                <% end %>
+                <% if story.comments.length > 0 %>
+                  <div class="text-left"><i class="far fa-comments fa-2x"></i></div>
+                <% end %>
               </div>
             <% else %>
               <div class="col-md-12">
@@ -75,6 +89,12 @@
                     <%= result_hash[:content] %>
                   </div>
                 </div>
+                <% if story.recordings.length > 0 %>
+                  <div class="text-left"><i class="far fa-file-audio fa-2x"></i></div>
+                <% end %>
+                <% if story.comments.length > 0 %>
+                  <div class="text-left"><i class="far fa-comments fa-2x"></i></div>
+                <% end %>
               </div>
             <% end %>
             <% if story.word_count != nil %>

@@ -33,6 +33,9 @@ let ajaxCall = function (url) {
     $("#year_button").removeClass("active");
     $("#age_button").removeClass("active");
     $("#decade_button").removeClass("active");
+    $("#recordings_button").removeClass("active");
+    $("#comments_button").removeClass("active");
+    $("#tags_button").addClass("active");
     $("#stories_container").html(data);
   })
 }

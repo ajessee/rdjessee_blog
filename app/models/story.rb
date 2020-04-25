@@ -110,6 +110,14 @@ class Story < ApplicationRecord
     Story.where(life_stage: life_stage).paginate(:page => page, :per_page => 6)
   end
 
+  def self.get_stories_with_recordings(page)
+    Story.joins(:recordings).paginate(:page => page, :per_page => 6)
+  end
+
+  def self.get_stories_with_comments(page)
+    Story.joins(:comments).paginate(:page => page, :per_page => 6)
+  end
+
   def self.order_by_tag(tag, page)
     Tag.find_by_name!(tag.strip).stories.paginate(:page => page, :per_page => 6)
   end

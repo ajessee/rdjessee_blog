@@ -52,6 +52,14 @@ class StoriesController < ApplicationController
       @active_button = "life_stage"
       @stories = Story.order_by_life_stage(params[:life_stage] , params[:page])
       render 'index'
+    when "has_recordings"
+      @active_button = "has_recordings"
+      @stories = Story.get_stories_with_recordings( params[:page])
+      render 'index'
+    when "has_comments"
+      @active_button = "has_comments"
+      @stories = Story.get_stories_with_comments( params[:page])
+      render 'index'
     when "tag"
       @active_button = "tag"
       @stories = Story.order_by_tag(params[:tag] , params[:page])

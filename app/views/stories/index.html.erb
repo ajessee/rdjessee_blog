@@ -10,7 +10,7 @@
         <%= f.submit :Search, class: "btn btn-primary mb-2" %>
       <% end %>
     </div>
-    <div class="btn-group buttonDropShadow">
+    <div class="btn-group">
       <%= link_to 'Alphabetical', stories_path, id: "alpha_button", class: "#{'active' if @active_button == 'alphabetical' } btn btn-default", role: "button" %>
       <% if !@years.nil? %>
         <div class="btn-group">
@@ -84,6 +84,8 @@
           </ul>
         </div>
       <% end %>
+      <%= link_to 'Audio', "/stories/sort?sort=has_recordings", id: "recordings_button", class: "#{'active' if @active_button == 'has_recordings' } btn btn-default", role: "button" %>
+      <%= link_to 'Comments', "/stories/sort?sort=has_comments", id: "comments_button", class: "#{'active' if @active_button == 'has_comments' } btn btn-default", role: "button" %>
       <div class="btn-group">
         <button type="button" id="tags_button" class="<%= 'active' if @active_button == 'tag' %> btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Tags <span class="caret"></span>
