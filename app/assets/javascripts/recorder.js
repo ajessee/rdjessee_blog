@@ -25,12 +25,9 @@ if (showRecorderButton) {
           var mediaRecorder = new MediaRecorder(stream);
       
           recordButton.onclick = function() {
-            let existingAudio = document.querySelectorAll('article.clip > audio');
+            let existingAudio = document.querySelectorAll('div.audio-clip > audio');
             if (existingAudio.length) {
-                let userConfirm = confirm("By starting a new recording you will delete the old one. Are you sure?");
-                if (userConfirm) {
-                  document.querySelector('#delete-audio-button').click();
-                }
+              document.querySelector('#delete-audio-button').click();
             }
             recordButton.textContent = "Recording";
             audioButtonsContainer.classList.add('fixed-audio-buttons');
@@ -39,8 +36,8 @@ if (showRecorderButton) {
             stopButton.style.display = "inline-block";
             document.documentElement.scrollTop = 0
             mediaRecorder.start();
-            console.log(mediaRecorder.state);
-            console.log("recorder started");
+            console.info(mediaRecorder.state);
+            console.info("Audio Recorder Started");
           }
       
           stopButton.onclick = function() {
@@ -51,15 +48,15 @@ if (showRecorderButton) {
             stopButton.style.display = "none";
             recordButton.textContent = "Start New Recording";
             mediaRecorder.stop();
-            console.log(mediaRecorder.state);
-            console.log("recorder stopped");
+            console.info(mediaRecorder.state);
+            console.info("Audio Recorder Stopped");
           }
   
           submitRecordingButton.onclick = async function(e) {
             e.preventDefault();
             let submitRecordingForm = document.querySelector('#new_recording');
             let formData = new FormData(submitRecordingForm);
-            let existingAudio = document.querySelectorAll('article.clip > audio')[0];
+            let existingAudio = document.querySelectorAll('div.audio-clip > audio')[0];
             let audioUrl = existingAudio.src;
             let recordingCaption = document.querySelector('#recording-caption').textContent;
             try {
@@ -68,7 +65,7 @@ if (showRecorderButton) {
                     formData.append('recording[caption]', recordingCaption); 
                 })
             } catch (err) {
-                console.log("what")
+                console.info("what")
             } finally {
                 $.ajax({
                     url: submitRecordingForm.getAttribute('action'),
@@ -83,41 +80,44 @@ if (showRecorderButton) {
           }
       
           mediaRecorder.onstop = function(e) {
-            console.log("data available after MediaRecorder.stop() called.");
   
             submitRecordingButton.style.display = "inline-block";
       
-            var clipName = prompt('Please enter a title for your recording. Preferably in the format of: "[Your Name]\'s reading of "[Title Of Story]" ');
+            var audioClipName = prompt('Please enter a title for your recording. Preferably in the format of: "[Your Name]\'s reading of "[Title Of Story]" ');
       
-            var clipContainer = document.createElement('article');
-            var clipLabel = document.createElement('p');
-            clipLabel.setAttribute('id', 'recording-caption');
+            var audioContainer = document.createElement('div');
+            var audioClipLabel = document.createElement('p');
+            audioClipLabel.setAttribute('id', 'recording-caption');
             var audio = document.createElement('audio');
             var deleteButton = document.createElement('button');
             deleteButton.classList.add('btn', 'btn-danger');
             deleteButton.setAttribute('id', 'delete-audio-button');
            
-            clipContainer.classList.add('clip');
+            audioContainer.classList.add('audio-clip');
             audio.setAttribute('controls', '');
             deleteButton.innerHTML = "Delete Current Recording";
-            clipLabel.innerHTML = clipName;
+            audioClipLabel.innerHTML = audioClipName;
+            audioClipLabel.setAttribute('contenteditable', true)
       
-            clipContainer.appendChild(audio);
-            clipContainer.appendChild(clipLabel);
+            audioContainer.appendChild(audio);
+            audioContainer.appendChild(audioClipLabel);
             audioButtonsContainer.appendChild(deleteButton);
-            audioButtonsContainer.appendChild(clipContainer);
+            audioButtonsContainer.appendChild(audioContainer);
       
             audio.controls = true;
             var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
             chunks = [];
             var audioURL = URL.createObjectURL(blob);
             audio.src = audioURL;
-            console.log("recorder stopped");
+            console.info("recorder stopped");
       
             deleteButton.onclick = function(e) {
-              submitRecordingButton.style.display = "none";
-              clipContainer.remove();
-              deleteButton.remove();
+              let userConfirm = confirm("This will delete the current recording. You sure you want to do that?");
+              if (userConfirm) {
+                submitRecordingButton.style.display = "none";
+                audioContainer.remove();
+                deleteButton.remove();
+              }
             }
           }
       
@@ -126,10 +126,10 @@ if (showRecorderButton) {
           }
         })
         .catch(function(err) {
-          console.log('The following error occurred: ' + err);
+          alert("We are unable to access the microphone. Please allow access and try again. Error:" + err)
         })
       } else {
-        alert("You'll need to allow us to use the microphone to enable this feature.")
+        alert("Your browser does not have the ability to record audio.")
       }
   }
 }
