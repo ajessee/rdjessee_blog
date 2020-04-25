@@ -40,7 +40,7 @@
       <%= form_for [current_user, Comment.new] do |f| %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.text_area :content, placeholder: "Type comment here...", class: "comment-area", cols: "100", rows: "5" %><br/>
-      <%= f.submit "Submit Comment", class: "btn btn-default btn-lg buttonDropShadow" %>
+      <%= f.submit "Submit Comment", class: "btn btn-default btn-lg buttonDropShadow", "data-toggle" => "tooltip", "title" => "Click to submit your comment"  %>
       <% end %>
       <% end %>
     </div>

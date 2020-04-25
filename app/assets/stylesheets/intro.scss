@@ -8,11 +8,16 @@
 
 .droid-serif {
   font-family: 'Droid Serif', serif;
-  font-size: 1.7em;
+  font-size: 2.5em;
+  line-height: 1.8em;
   letter-spacing: 0px;
   margin-bottom: 5px;
   text-transform: none;
   text-align: left;
+}
+
+#intro {
+  height: 100vh;
 }
 
 #donSmiles {

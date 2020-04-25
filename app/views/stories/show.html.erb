@@ -1,5 +1,5 @@
 <% provide(:title, @story.title.html_safe) %>
-<section id="blog">
+<section id="show-blog">
   <div class="container">
     <!-- Flash Section -->
     <% if !flash.empty? %>
@@ -69,14 +69,14 @@
               </div>
               <%= form_for [@story, Recording.new] do |f| %>
               <%= f.hidden_field :story_id, value: @story.id %>
-              <%= f.submit "Submit Current Recording", id: "submit-recording-button", class: "btn btn-default btn-lg buttonDropShadow" %>
+              <%= f.submit "Submit Current Recording", id: "submit-recording-button", class: "btn btn-default btn-lg buttonDropShadow", "data-toggle" => "tooltip", "title" => "Click to submit your audio recording"  %>
             <% end %>
             </div>
           <% end %>
         </div>
         <div class="text-center top-margin-1-percent">
           <% if logged_in? && current_user.admin? %>
-            <%= link_to "Edit this story", edit_story_path(@story.id), class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
+            <%= link_to "Edit this story", edit_story_path(@story.id), class: "btn btn-default btn-lg buttonDropShadow", role: "button", "data-toggle" => "tooltip", "title" => "Click to edit this story"  %>
           <% end %>
         </div>
       </div>

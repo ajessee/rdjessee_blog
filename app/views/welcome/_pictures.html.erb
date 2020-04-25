@@ -3,7 +3,7 @@
     <h4>Pictures</h4>
     <hr class="pageLine" />
     <div>
-      <a href=" <%= pictures_path %> " class="btn btn-default btn-lg buttonDropShadow" id="picturesButton" role="button">Full List</a>
+      <a href=" <%= pictures_path %> " class="btn btn-default btn-lg buttonDropShadow" id="picturesButton" role="button" data-toggle="tooltip" title="Click to see the full list of pictures">Full List</a>
     </div>
     <div class="row">
       <% @pictures.each do |picture| %>

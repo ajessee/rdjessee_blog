@@ -3,7 +3,7 @@
     <h4>Stories</h4>
     <hr class="pageLine" />
     <div>
-      <a href=" <%= stories_path %> " class="btn btn-default btn-lg buttonDropShadow" id="storiesButton" role="button">Full List</a>
+      <a href=" <%= stories_path %> " class="btn btn-default btn-lg buttonDropShadow" id="storiesButton" role="button" data-toggle="tooltip" title="Click to see the full list of stories">Full List</a>
     </div>
     <% @stories.each do |story| %>
       <a href="<%= story_path(story.id) %>" class="blog_links">
@@ -24,6 +24,12 @@
                     <%= truncate(story.content.html_safe, length: 200, omission: '...(click to continue reading)', escape: false) %>
                   </div>
                 </div>
+                 <% if story.recordings.length > 0 %>
+                  <div class="text-left" data-toggle="tooltip" title="This story has an audio recording"><i class="far fa-file-audio fa-2x"></i></div>
+                <% end %>
+                <% if story.comments.length > 0 %>
+                  <div class="text-left" data-toggle="tooltip" title="This story has comments"><i class="far fa-comments fa-2x"></i></div>
+                <% end %>
               </div>
             <% else %>
               <div class="col-md-12">
@@ -35,6 +41,12 @@
                     <%= truncate(story.content.html_safe, length: 350, omission: '...(click to continue reading)', escape: false) %>
                   </p>
                 </div>
+                 <% if story.recordings.length > 0 %>
+                  <div class="text-left" data-toggle="tooltip" title="This story has an audio recording"><i class="far fa-file-audio fa-2x"></i></div>
+                <% end %>
+                <% if story.comments.length > 0 %>
+                  <div class="text-left" data-toggle="tooltip" title="This story has comments"><i class="far fa-comments fa-2x"></i></div>
+                <% end %>
               </div>
             <% end %> <% if story.word_count != nil %>
               <div class="col-md-12">
