@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Story < ApplicationRecord
   belongs_to :user
   has_many :taggings, dependent: :destroy
@@ -13,27 +15,29 @@ class Story < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   has_one_attached :picture
+  has_rich_text :content
+  has_rich_text :title
+
 
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
   def self.search(query)
-
     search_definition = {
       from: 0,
       size: 500,
       query: {
         multi_match: {
           query: query,
-          fields: ['title', 'content']
+          fields: ['title_searchable', 'content_searchable']
         }
       },
       highlight: {
         pre_tags: ['<mark>'],
         post_tags: ['</mark>'],
         fields: {
-          title: {number_of_fragments: 0},
-          content: {},
+          title_searchable: { number_of_fragments: 0 },
+          content_searchable: {}
         }
       },
       suggest: {
@@ -41,13 +45,13 @@ class Story < ApplicationRecord
         title: {
           term: {
             size: 1,
-            field: :title
+            field: :title_searchable
           }
         },
         content: {
           term: {
             size: 1,
-            field: :content
+            field: :content_searchable
           }
         }
       }
@@ -60,8 +64,8 @@ class Story < ApplicationRecord
     __elasticsearch__.search(search_definition)
   end
 
-  def as_indexed_json(options = nil)
-    self.as_json( only: [ :title, :content ] )
+  def as_indexed_json(_options = nil)
+    as_json(only: %i[title_searchable content_searchable])
   end
 
   @@year_array = []
@@ -75,51 +79,51 @@ class Story < ApplicationRecord
     Story.find_each do |story|
       @@year_array.push(story.year_written)
       @@decade_array.push(story.decade)
-      @@location_array.push(story.location) if story.location != nil
-      @@genre_array.push(story.genre) if story.genre != nil
-      @@category_array.push(story.category) if story.category != nil
-      @@life_stage_array.push(story.life_stage) if story.life_stage != nil
+      @@location_array.push(story.location) unless story.location.nil?
+      @@genre_array.push(story.genre) unless story.genre.nil?
+      @@category_array.push(story.category) unless story.category.nil?
+      @@life_stage_array.push(story.life_stage) unless story.life_stage.nil?
     end
   end
 
   def self.get_stories(page)
-    Story.all.order(title: :asc).paginate(:page => page, :per_page => 6)
+    Story.order(title_searchable: :asc).paginate(page: page, per_page: 6)
   end
 
   def self.order_by_year(year, page)
-    Story.where(year_written: year.to_i).paginate(:page => page, :per_page => 6)
+    Story.where(year_written: year.to_i).paginate(page: page, per_page: 6)
   end
 
   def self.order_by_decade(decade, page)
-    Story.where(decade: decade.to_i).paginate(:page => page, :per_page => 6)
+    Story.where(decade: decade.to_i).paginate(page: page, per_page: 6)
   end
 
   def self.order_by_location(location, page)
-    Story.where(location: location).paginate(:page => page, :per_page => 6)
+    Story.where(location: location).paginate(page: page, per_page: 6)
   end
 
   def self.order_by_genre(genre, page)
-    Story.where(genre: genre).paginate(:page => page, :per_page => 6)
+    Story.where(genre: genre).paginate(page: page, per_page: 6)
   end
 
   def self.order_by_category(category, page)
-    Story.where(category: category).paginate(:page => page, :per_page => 6)
+    Story.where(category: category).paginate(page: page, per_page: 6)
   end
 
   def self.order_by_life_stage(life_stage, page)
-    Story.where(life_stage: life_stage).paginate(:page => page, :per_page => 6)
+    Story.where(life_stage: life_stage).paginate(page: page, per_page: 6)
   end
 
   def self.get_stories_with_recordings(page)
-    Story.joins(:recordings).paginate(:page => page, :per_page => 6)
+    Story.joins(:recordings).paginate(page: page, per_page: 6)
   end
 
   def self.get_stories_with_comments(page)
-    Story.joins(:comments).paginate(:page => page, :per_page => 6)
+    Story.joins(:comments).paginate(page: page, per_page: 6)
   end
 
   def self.order_by_tag(tag, page)
-    Tag.find_by_name!(tag.strip).stories.paginate(:page => page, :per_page => 6)
+    Tag.find_by_name!(tag.strip).stories.paginate(page: page, per_page: 6)
   end
 
   def self.all_years
@@ -150,29 +154,37 @@ class Story < ApplicationRecord
   def self.all_life_stages
     @@life_stage_array.compact!
     @@life_stage_array = @@life_stage_array.sort.uniq!
-    @@life_stage_array[1], @@life_stage_array[2] = @@life_stage_array[2], @@life_stage_array[1] 
+    @@life_stage_array[1], @@life_stage_array[2] = @@life_stage_array[2], @@life_stage_array[1]
     @@life_stage_array
   end
 
-  def strip_divs
-    self.title.gsub!("<div>", "")
-    self.title.gsub!("</div>", "")
-    self.content.gsub!("<div>", "")
-    self.content.gsub!("</div>", "")
+  # def strip_divs
+  #   title.gsub!('<div>', '')
+  #   title.gsub!('</div>', '')
+  #   content.gsub!('<div>', '')
+  #   content.gsub!('</div>', '')
+  # end
+
+  def replace_breaks
+    content_old.gsub!('<div>', '')
+    content_old.gsub!('<br>', "\n")
+    content_old.gsub!('</div>', '')
+    title_old.gsub!('<div>', '')
+    title_old.gsub!('</div>', '')
+    title_old.gsub!("\n", "")
   end
 
   def all_tags=(names)
-    self.tags = names.split(",").map do |name|
+    self.tags = names.split(',').map do |name|
       Tag.where(name: name.strip).first_or_create!
     end
   end
 
   def all_tags
-    self.tags.map(&:name).join(", ")
+    tags.map(&:name).join(', ')
   end
 
   def get_wordcount
-    self.word_count = self.content.scan(/[\w-]+/).size
+    self.word_count = content.scan(/[\w-]+/).size
   end
-
 end

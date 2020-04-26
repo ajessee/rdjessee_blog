@@ -7,11 +7,13 @@
           <%= render 'shared/error_messages', object: f.object %>
           <div>
             <%= f.label :title %>
-            <%= f.trix_editor :title, class: 'form-control' %>
+            <%= f.rich_text_area :title, class: "form-control" %>
+
           </div>
           <div>
             <%= f.label :content %>
-            <%= f.trix_editor :content, size: "30x10", class: 'form-control make-big' %>
+            <%= f.rich_text_area :content, class: "form-control" %>
+
           </div>
           <br/>
           <div>

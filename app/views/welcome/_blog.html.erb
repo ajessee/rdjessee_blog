@@ -18,10 +18,10 @@
               <div class="col-md-7">
                 <div class="caption black">
                   <h3 class="MajestiBannerBookPartial">
-                    <%= story.title.html_safe %>
+                    <%= story.title %>
                   </h3>
                   <div class="MajestiBannerBookParaPartial text-left">
-                    <%= truncate(story.content.html_safe, length: 200, omission: '...(click to continue reading)', escape: false) %>
+                    <%= raw Truncato.truncate(story.content.body.to_html, max_length: 400) %>
                   </div>
                 </div>
                  <% if story.recordings.length > 0 %>
@@ -35,11 +35,11 @@
               <div class="col-md-12">
                 <div class="caption black">
                   <h3 class="MajestiBannerBookPartial">
-                    <%= story.title.html_safe %>
+                    <%= story.title %>
                   </h3>
-                  <p class="MajestiBannerBookParaPartial text-left">
-                    <%= truncate(story.content.html_safe, length: 350, omission: '...(click to continue reading)', escape: false) %>
-                  </p>
+                  <div class="MajestiBannerBookParaPartial text-left">
+                    <%= raw Truncato.truncate(story.content.body.to_html, max_length: 400) %>
+                  </div>
                 </div>
                  <% if story.recordings.length > 0 %>
                   <div class="text-left" data-toggle="tooltip" title="This story has an audio recording"><i class="far fa-file-audio fa-2x"></i></div>

@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_233609) do
+ActiveRecord::Schema.define(version: 2020_04_26_172649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -83,8 +93,6 @@ ActiveRecord::Schema.define(version: 2020_03_30_233609) do
   end
 
   create_table "stories", id: :serial, force: :cascade do |t|
-    t.string "title"
-    t.text "content"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,6 +106,8 @@ ActiveRecord::Schema.define(version: 2020_03_30_233609) do
     t.string "path"
     t.string "content_type"
     t.string "file_name"
+    t.text "content_searchable"
+    t.text "title_searchable"
     t.index ["user_id", "created_at"], name: "index_stories_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_stories_on_user_id"
   end

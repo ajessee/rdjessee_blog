@@ -23,3 +23,5 @@ require("@rails/actiontext")
 require("channels")
 
 
+
+require("trix")

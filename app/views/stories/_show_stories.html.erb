@@ -66,10 +66,10 @@
               <div class="col-md-7">
                 <div class="caption black">
                   <h3 class="MajestiBannerBookPartial">
-                    <%= result_hash[:title] %>
+                    <%= raw result_hash[:title] %>
                   </h3>
                   <div class="MajestiBannerBookParaPartial text-left">
-                    <%= result_hash[:content] %>
+                    <%= raw result_hash[:content] %>
                   </div>
                 </div>
                 <% if story.recordings.length > 0 %>
@@ -83,10 +83,10 @@
               <div class="col-md-12">
                 <div class="caption black">
                   <h3 class="MajestiBannerBookPartial">
-                    <%= result_hash[:title] %>
+                    <%= raw result_hash[:title] %>
                   </h3>
                   <div class="MajestiBannerBookParaPartial text-left">
-                    <%= result_hash[:content] %>
+                    <%= raw result_hash[:content] %>
                   </div>
                 </div>
                 <% if story.recordings.length > 0 %>
