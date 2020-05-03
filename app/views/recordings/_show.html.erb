@@ -53,7 +53,7 @@
   <div class="col-lg-8">
     <% if full  %>
       <div>
-        <%= will_paginate @story_recordings, param_name: "user_recordings" %>
+        <%= will_paginate @story_recordings, param_name: "story_recordings" %>
       </div>
     <% end %>
     <% @story_recordings.each do |recording| %>
