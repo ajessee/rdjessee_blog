@@ -1,0 +1,39 @@
+#show_recordings, #recording_full{
+
+    button#show-recorder {
+        margin: 4%;
+    }
+
+    form[data-id="new-audio-upload-form"] {
+        
+        input[type="file"]{
+            -webkit-appearance: none;
+            text-align: left;
+            -webkit-rtl-ordering:  left;
+            width: 100%;
+         }
+
+        input[type="file"]::-webkit-file-upload-button{
+            -webkit-appearance: none;
+            float: right;
+            margin: 2% 15% 0 0;
+            border: 1px solid #aaaaaa;
+            border-radius: 4px;
+            background-image: -webkit-gradient(linear, left bottom, left top, from(#d2d0d0), to(#f0f0f0));
+            background-image: -moz-linear-gradient(90deg, #d2d0d0 0%, #f0f0f0 100%);
+         }
+
+         #upload-audio-main-page {
+             margin: 4%;
+         }
+    }
+
+    button#start-audio-recorder, button#stop-audio-recorder {
+        margin: 2%;
+    }
+
+    #flash {
+        margin: 0%;
+        padding: 0%;
+    }
+}

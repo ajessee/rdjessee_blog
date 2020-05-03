@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-lg-4">
+    <h6>Audio Recordings</h6>
+    <% if @user_recordings %>
+      <% if full %>
+        <div>
+          <%= will_paginate @user_recordings, param_name: "user_recordings" %>
+        </div>
+      <% end %>
+      <% @user_recordings.each do |recording| %>
+        <div class="panel panel-default box-shadow">
+          <div class="panel-body">
+            <div id="recording-id-<%= recording.id %>">
+              <%= audio_tag (rails_blob_url recording.audio_file), controls: true %>
+              <p><%= recording.caption %></p>
+              <% if full && current_user.admin? %>
+                <span class="audio-file-delete"><%= link_to "Delete", recording, method: :delete, class: "btn btn-danger",
+                                  data: { confirm: "Are you sure?" } %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="text-center">
+      <% if !logged_in? %>
+        <h6>Would You Like To Record Or Upload Your Own Audio?</h6>
+        <%= link_to "Please log in", login_path, class: "btn btn-default btn-lg buttonDropShadow", role: "button" %>
+      <% else %>
+        <p>Record Your Own Audio</p>
+        <button id="show-recorder" data-toggle="tooltip" type="button" class="btn btn-default btn-lg buttonDropShadow" title="Click to record a reading of this story">Record Audio</button>
+        <div id="audio-recorder">
+          <div id="recording-buttons">
+            <button id="start-audio-recorder" type="button" class="btn btn-success">Start Recording</button>
+            <button id="stop-audio-recorder" type="button" class="btn btn-secondary" disabled>Stop Recording</button>
+          </div>
+          <%= form_for [@user, Recording.new], html: {"data-id" => "new-audio-recording-form"} do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.submit "Submit Current Recording", id: "submit-recording-button", class: "btn btn-default btn-lg buttonDropShadow", "data-toggle" => "tooltip", "title" => "Click to submit your audio recording"  %>
+          <% end %>
+        </div>
+        <p>Or Upload An Audio File</p>
+        <%= form_for [@user, Recording.new], html: {"data-id" => "new-audio-upload-form"} do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.text_field :caption, placeholder: "Enter caption for recording...", class: 'form-control' %>
+          <%= f.file_field :audio_file %>
+          <%= f.submit "Upload Audio File", id: "upload-audio-main-page", class: "btn btn-default btn-lg buttonDropShadow" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <h6>Stories With Recorded Readings</h6>
+  <div class="col-lg-8">
+    <% if full  %>
+      <div>
+        <%= will_paginate @story_recordings, param_name: "user_recordings" %>
+      </div>
+    <% end %>
+    <% @story_recordings.each do |recording| %>
+      <% story = Story.find(recording.recordable_id) %>
+      <a href="<%= story_path(story.id) %>" class="blog_links">
+        <div class="row panel panel-default box-shadow">
+          <div class="panel-body">
+            <% if story.picture.attached? %>
+              <div class="col-md-5">
+                <div>
+                  <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="caption black">
+                  <h3 class="MajestiBannerBookPartial">
+                    <%= story.title.html_safe %>
+                  </h3>
+                  <div class="MajestiBannerBookParaPartial text-left">
+                    <%= truncate(story.content.html_safe, length: 100, omission: '...(click to continue reading)', escape: false) %>
+                  </div>
+                </div>
+                <% if story.recordings.length > 0 %>
+                  <div class="text-left" data-toggle="tooltip" title="This story has an audio recording"><i class="far fa-file-audio fa-2x"></i></div>
+                <% end %>
+                <% if story.comments.length > 0 %>
+                  <div class="text-left" data-toggle="tooltip" title="This story has comments"><i class="far fa-comments fa-2x"></i></div>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="col-md-12">
+                <div class="caption black">
+                  <h3 class="MajestiBannerBookPartial">
+                    <%= story.title.html_safe %>
+                  </h3>
+                  <p class="MajestiBannerBookParaPartial text-left">
+                    <%= truncate(story.content.html_safe, length: 250, omission: '...(click to continue reading)', escape: false) %>
+                  </p>
+                </div>
+                <% if story.recordings.length > 0 %>
+                  <div class="text-left" data-toggle="tooltip" title="This story has an audio recording"><i class="far fa-file-audio fa-2x"></i></div>
+                <% end %>
+                <% if story.comments.length > 0 %>
+                  <div class="text-left" data-toggle="tooltip" title="This story has comments"><i class="far fa-comments fa-2x"></i></div>
+                <% end %>
+              </div>
+            <% end %> <% if story.word_count != nil %>
+              <div class="col-md-12">
+                <div class="float-right black">
+                  <p class="MajestiBannerBookPartial">
+                    Estimated Reading Time: <% if (story.word_count / 130.0) > 1 %> <%= (story.word_count / 130.0).round(1) %> minutes <% else %> 1 minute <% end %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <% if story.all_tags != "" %>
+            <div class="panel-footer">
+              <% story.all_tags.split(",").each do |tag| %>
+                <span><%= link_to tag.strip, "/stories/sort?sort=tag&tag=#{tag.strip}", class: "btn btn-primary", role: "button" %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </a>
+    <% end %>
+  </div>
+</div>

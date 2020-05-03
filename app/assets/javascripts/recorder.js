@@ -9,6 +9,9 @@ if (showRecorderButton) {
     let containerDiv = document.querySelector('#audio-recorder');
     let audioButtonsContainer = document.querySelector('#recording-buttons');
     let submitRecordingButton = document.querySelector('#submit-recording-button');
+    let submitUploadButton = document.querySelector('#upload-audio-main-page');
+    let onMainPage = recordButton.closest('#show_recordings');
+    let onRecordingPage = recordButton.closest('#recording_full');
   
     containerDiv.style.display = "inline-block";
     submitRecordingButton.style.display = "none";
@@ -23,6 +26,24 @@ if (showRecorderButton) {
         .then(function(stream) {
       
           var mediaRecorder = new MediaRecorder(stream);
+
+          if (onMainPage || onRecordingPage) {
+            submitUploadButton.onclick = async function(e) {
+              e.preventDefault();
+              let submitUploadForm = document.querySelector('[data-id="new-audio-upload-form"]');
+              let formData = new FormData(submitUploadForm);
+              $.ajax({
+                url: submitUploadForm.getAttribute('action'),
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {},
+                error: function(data) {}
+            })         
+            
+            }
+          }
       
           recordButton.onclick = function() {
             let existingAudio = document.querySelectorAll('div.audio-clip > audio');
@@ -30,21 +51,27 @@ if (showRecorderButton) {
               document.querySelector('#delete-audio-button').click();
             }
             recordButton.textContent = "Recording";
-            audioButtonsContainer.classList.add('fixed-audio-buttons');
             recordButton.classList.add('recording-pulse');
-            stopButton.removeAttribute('disabled');
+            recordButton.disabled = true;
             stopButton.style.display = "inline-block";
-            document.documentElement.scrollTop = 0
+            stopButton.removeAttribute('disabled');
+            if (!onMainPage && !onRecordingPage) {
+              audioButtonsContainer.classList.add('fixed-audio-buttons');
+              document.documentElement.scrollTop = 0;
+            }
             mediaRecorder.start();
             console.info(mediaRecorder.state);
             console.info("Audio Recorder Started");
           }
       
           stopButton.onclick = function() {
-            containerDiv.scrollIntoView();
-            audioButtonsContainer.classList.remove('fixed-audio-buttons');
+            if (!onMainPage && !onRecordingPage) {
+              containerDiv.scrollIntoView();
+              audioButtonsContainer.classList.remove('fixed-audio-buttons');
+            }
             recordButton.classList.remove('recording-pulse');
             stopButton.disabled = true;
+            recordButton.removeAttribute('disabled');
             stopButton.style.display = "none";
             recordButton.textContent = "Start New Recording";
             mediaRecorder.stop();
@@ -54,7 +81,7 @@ if (showRecorderButton) {
   
           submitRecordingButton.onclick = async function(e) {
             e.preventDefault();
-            let submitRecordingForm = document.querySelector('#new_recording');
+            let submitRecordingForm = document.querySelector('[data-id="new-audio-recording-form"]');
             let formData = new FormData(submitRecordingForm);
             let existingAudio = document.querySelectorAll('div.audio-clip > audio')[0];
             let audioUrl = existingAudio.src;
@@ -65,7 +92,7 @@ if (showRecorderButton) {
                     formData.append('recording[caption]', recordingCaption); 
                 })
             } catch (err) {
-                console.info("what")
+                console.info(err)
             } finally {
                 $.ajax({
                     url: submitRecordingForm.getAttribute('action'),
@@ -73,7 +100,11 @@ if (showRecorderButton) {
                     data: formData,
                     processData: false,
                     contentType: false,
-                    success: function(data) {},
+                    success: function(data) {
+                      if (onMainPage || onRecordingPage) {
+                        window.location.href = "/recordings"
+                      }
+                    },
                     error: function(data) {}
                 })         
             }

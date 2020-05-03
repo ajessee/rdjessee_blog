@@ -67,7 +67,7 @@
                 <button id="start-audio-recorder" type="button" class="btn btn-success">Start Recording</button>
                 <button id="stop-audio-recorder" type="button" class="btn btn-secondary" disabled>Stop Recording</button>
               </div>
-              <%= form_for [@story, Recording.new] do |f| %>
+              <%= form_for [@story, Recording.new], html: {"data-id" => "new-audio-recording-form"} do |f| %>
               <%= f.hidden_field :story_id, value: @story.id %>
               <%= f.submit "Submit Current Recording", id: "submit-recording-button", class: "btn btn-default btn-lg buttonDropShadow", "data-toggle" => "tooltip", "title" => "Click to submit your audio recording"  %>
             <% end %>

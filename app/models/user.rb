@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :stories, dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :recordings, as: :recordable, dependent: :destroy
   has_many :videos, as: :videoable, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

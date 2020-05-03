@@ -1,73 +1,11 @@
 <section id="show_recordings">
   <div class="container text-center wow fadeIn">
-    <h4>Stories With Readings</h4>
+    <h4>Audio Recordings</h4>
     <hr class="pageLine" />
     <div>
-      <a href="/stories/sort?sort=has_recordings" class="btn btn-default btn-lg buttonDropShadow" id="recordingsButton" role="button" data-toggle="tooltip" title="Click to see the full list of stories with recorded readings">Full List</a>
+      <a href="<%= recordings_path %>" class="btn btn-default btn-lg buttonDropShadow" id="recordingsButton" role="button" data-toggle="tooltip" title="Click to see the full list of stories with recorded readings">Full List</a>
     </div>
-    <% @recordings.each do |recording| %>
-      <% story = Story.find(recording.recordable_id) %>
-      <a href="<%= story_path(story.id) %>" class="blog_links">
-        <div class="row panel panel-default box-shadow">
-          <div class="panel-body">
-            <% if story.picture.attached? %>
-              <div class="col-md-5">
-                <div>
-                  <%= image_tag story.picture, alt: "Thumbnail", class: "img-responsive center-picture" %>
-                </div>
-              </div>
-              <div class="col-md-7">
-                <div class="caption black">
-                  <h3 class="MajestiBannerBookPartial">
-                    <%= story.title.html_safe %>
-                  </h3>
-                  <div class="MajestiBannerBookParaPartial text-left">
-                    <%= truncate(story.content.html_safe, length: 200, omission: '...(click to continue reading)', escape: false) %>
-                  </div>
-                </div>
-                 <% if story.recordings.length > 0 %>
-                  <div class="text-left" data-toggle="tooltip" title="This story has an audio recording"><i class="far fa-file-audio fa-2x"></i></div>
-                <% end %>
-                <% if story.comments.length > 0 %>
-                  <div class="text-left" data-toggle="tooltip" title="This story has comments"><i class="far fa-comments fa-2x"></i></div>
-                <% end %>
-              </div>
-            <% else %>
-              <div class="col-md-12">
-                <div class="caption black">
-                  <h3 class="MajestiBannerBookPartial">
-                    <%= story.title.html_safe %>
-                  </h3>
-                  <p class="MajestiBannerBookParaPartial text-left">
-                    <%= truncate(story.content.html_safe, length: 350, omission: '...(click to continue reading)', escape: false) %>
-                  </p>
-                </div>
-                 <% if story.recordings.length > 0 %>
-                  <div class="text-left" data-toggle="tooltip" title="This story has an audio recording"><i class="far fa-file-audio fa-2x"></i></div>
-                <% end %>
-                <% if story.comments.length > 0 %>
-                  <div class="text-left" data-toggle="tooltip" title="This story has comments"><i class="far fa-comments fa-2x"></i></div>
-                <% end %>
-              </div>
-            <% end %> <% if story.word_count != nil %>
-              <div class="col-md-12">
-                <div class="float-right black">
-                  <p class="MajestiBannerBookPartial">
-                    Estimated Reading Time: <% if (story.word_count / 130.0) > 1 %> <%= (story.word_count / 130.0).round(1) %> minutes <% else %> 1 minute <% end %>
-                  </p>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <% if story.all_tags != "" %>
-            <div class="panel-footer">
-              <% story.all_tags.split(",").each do |tag| %>
-                <span><%= link_to tag.strip, "/stories/sort?sort=tag&tag=#{tag.strip}", class: "btn btn-primary", role: "button" %></span>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </a>
-    <% end %>
+   <%= render partial: 'recordings/show', locals: {full: false} %>
   </div>
+</div>
 </section>
