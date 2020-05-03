@@ -33,11 +33,25 @@
   color: white;
 }
 
+#quote_3 {
+  font-family: MajestiBannerBold;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: 2.5em;
+  text-align: left;
+}
+
+#quote_3_author {
+  font-family: MajestiBannerBold;
+  font-size: 2.5em;
+  color: white;
+}
+
 /* Mobile */
 @media (max-width: 767px) {
 
   #quote_1, #quote_1_2 {
-    font-size: 1.8em;
+    font-size: 1.5em;
     text-align: center;
     color: white;
   }
@@ -47,7 +61,7 @@
   }
 
   #quote_1_2 {
-    margin-top: 22%
+    margin-top: 25%
   }
 
   #quote_1_author {
@@ -61,7 +75,7 @@
   }
 
   #quote_2 {
-    font-size: 1.8em;
+    font-size: 1.5em;
     text-align: center;
     color: white;
   }
@@ -70,5 +84,33 @@
     font-size: 1.5em;
     color: white;
     color: white;
+  }
+
+  #quote_3 {
+    font-size: 1.8em;
+    text-align: center;
+    color: white;
+  }
+
+  #quote_3_author {
+    font-size: 1.5em;
+    color: white;
+    color: white;
+  }
+
+  #quote-3-background-image {
+    background-position: right;
+  }
+
+  aside.cta-quote {
+    padding: 10% 0 10% 0;
+  }
+
+  #quote-2-background-image, #quote-3-background-image {
+    height: 100vh;
+  }
+
+  #quote-2-background-image div.container-fluid, #quote-3-background-image div.container-fluid {
+    padding: 20% 5% 20% 5%;
   }
 }

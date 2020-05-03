@@ -5,7 +5,7 @@
 
 namespace :db do
     desc 'Pull production database from Heroku and restore to development environment'
-    task pull_prod_db: %i[dump_prod_db restore_dev_db config_dev_db]
+    task pull_prod_db: %i[dump_prod_db restore_dev_db config_dev_db reindex_elasticsearch]
   
     task :dump_prod_db do
       puts 'Starting capture and download from Heroku...'
@@ -34,6 +34,13 @@ namespace :db do
       puts 'Reconfiguring development environment...'
       puts 'rails db:environment:set RAILS_ENV=development'
       system 'rails db:environment:set RAILS_ENV=development'
+      puts 'Done'
+    end
+
+    task :reindex_elasticsearch do
+      puts 'Reindexing elasticsearch...'
+      puts 'bundle exec rake environment elasticsearch:import:model CLASS="Story"'
+      system 'bundle exec rake environment elasticsearch:import:model CLASS="Story"'
       puts 'Done'
     end
   end
