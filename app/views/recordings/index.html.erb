@@ -2,12 +2,11 @@
   <div class="container text-center wow fadeIn">
     <h4>Audio Recordings</h4>
     <hr class="pageLine" />
-      <!-- Flash Section -->
-  <% if !flash.empty? %>
-    <%= render 'shared/flash' %>
-  <% end %>
-   <%= render partial: 'recordings/show', locals: {full: true} %>
+    <!-- Flash Section -->
+    <% if !flash.empty? %>
+      <%= render 'shared/flash' %>
+    <% end %>
+    <%= render partial: 'recordings/show', locals: {full: true} %>
   </div>
 </div>
 </section>
- 
