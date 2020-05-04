@@ -8,7 +8,7 @@
         </div>
       <% end %>
       <% @user_recordings.each do |recording| %>
-        <div class="panel panel-default box-shadow">
+        <div class="panel panel-default">
           <div class="panel-body">
             <div id="recording-id-<%= recording.id %>">
               <%= audio_tag (rails_blob_url recording.audio_file), controls: true %>
