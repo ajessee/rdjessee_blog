@@ -13,7 +13,7 @@
             <div id="recording-id-<%= recording.id %>">
               <%= audio_tag (rails_blob_url recording.audio_file), controls: true %>
               <p><%= recording.caption %></p>
-              <% if full && current_user.admin? %>
+              <% if full && logged_in? && current_user.admin? %>
                 <span class="audio-file-delete"><%= link_to "Delete", recording, method: :delete, class: "btn btn-danger",
                                   data: { confirm: "Are you sure?" } %></span>
               <% end %>
