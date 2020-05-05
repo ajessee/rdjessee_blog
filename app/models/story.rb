@@ -111,7 +111,7 @@ class Story < ApplicationRecord
   end
 
   def self.get_stories_with_recordings(page)
-    Story.joins(:recordings).paginate(:page => page, :per_page => 6)
+    Story.joins(:recordings).order(title: :asc).paginate(:page => page, :per_page => 6)
   end
 
   def self.get_stories_with_comments(page)

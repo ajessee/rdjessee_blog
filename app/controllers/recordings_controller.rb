@@ -5,7 +5,7 @@ class RecordingsController < ApplicationController
   end
 
   def index
-    @story_recordings = Recording.where(recordable_type: "Story").paginate(:page => params[:story_recordings], :per_page => 3)
+    @stories_with_recordings = Story.joins(:recordings).order(title: :asc).paginate(:page => params[:story_recordings], :per_page => 3)
     @user_recordings = Recording.where(recordable_type: "User").paginate(:page => params[:user_recordings], :per_page => 6)
   end
 
