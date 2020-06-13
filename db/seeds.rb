@@ -51,7 +51,6 @@ end
   year = Faker::Number.between(from: 1921, to: 2016)
   dec = Faker::Number.number(digits: 2)
   ager = Faker::Number.between(from: 20, to: 93)
-  thumb = Faker::LoremPixel.image
   cat = Faker::Color.color_name
   location = Faker::Nation.capital_city
   genre = Faker::Book.genre
@@ -62,7 +61,6 @@ end
                         content: content,
                         year_written: year,
                         decade: dec,
-                        thumbnail: thumb,
                         genre: genre,
                         location: location,
                         word_count: wordcount,

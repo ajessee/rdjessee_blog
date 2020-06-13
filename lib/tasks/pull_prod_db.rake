@@ -24,9 +24,9 @@ namespace :db do
       dev = Rails.application.config.database_configuration['development']
       puts 'PG_RESTORE on development database'
       # For mac:
-      # system "pg_restore --verbose --clean --no-privileges --no-owner -h 127.0.0.1 -U #{dev['username']} -d #{dev['database']} latest.dump"
+      system "pg_restore --verbose --clean --no-privileges --no-owner -h 127.0.0.1 -U #{dev['username']} -d #{dev['database']} latest.dump"
       # For Windows WSL:
-      system "pg_restore --verbose --clean --no-privileges --no-owner -U andre -d rdjessee_blog_development latest.dump"
+      # system "pg_restore --verbose --clean --no-privileges --no-owner -U andre -d rdjessee_blog_development latest.dump"
       puts 'Done'
     end
   

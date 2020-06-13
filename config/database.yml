@@ -29,7 +29,8 @@ development:
   <<: *default
   database: rdjessee_blog_development
   username: andre
-  port: 5433
+  # TODO: Change postgres port to 5432 (from 5433) on home computer
+  port: 5432
   host: localhost
 
   # The specified database role being used to connect to postgres.
@@ -66,7 +67,8 @@ test:
   <<: *default
   database: rdjessee_blog_test
   username: andre
-  port: 5433
+  # TODO: Change postgres port to 5432 (from 5433) on home computer
+  port: 5432
   host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,
