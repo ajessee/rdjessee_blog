@@ -7,6 +7,8 @@ namespace :es do
     desc 'Run Es'
 
     task :run do
+      # make sure you run this command in the console first to create the index:
+      # Product.__elasticsearch__.create_index!
       puts 'Start import...'
       system "bundle exec rake environment elasticsearch:import:model CLASS='Story'"
       puts 'Done'
