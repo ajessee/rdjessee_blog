@@ -55,8 +55,8 @@ class PicturesController < ApplicationController
   end
 
   def correct_user
-    @story = current_user.stories.find_by(id: params[:id])
-    redirect_to root_url if @story.nil?
+    @picture = Picture.find_by(id: params[:id])
+    redirect_to(root_url) unless @picture.user_id == current_user.id || current_user.admin?
   end
 
 end
