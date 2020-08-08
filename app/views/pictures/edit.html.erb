@@ -19,7 +19,9 @@
               </div>
               <div>
                 <h5>If you want to change this picture:</h5>
-                <%= image_tag(@picture.url) %>
+                 <% if @picture.picture.attached? %>
+                  <%= image_tag @picture.picture.variant(resize: "800x800", auto_orient: true), alt: "Picture", class: "img-responsive center-picture" %>
+                 <% end %>
                 <h5>Upload a new one below</h5>
               </div>
               <div class="picture">
