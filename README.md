@@ -18,7 +18,7 @@ The app is written in Rails 6 and currently deployed in production using Heroku.
 * Story filtering feature to organize alphabetically, by year written, decade story takes place in, location of story, genre of story, category of story, Don's life stage (early/mid/late), or stories with audio recordings
 * Search story for words or phrases using Elasticsearch
 * Tags to organize stories by categories or phrases
-* Tag cloud which show most used tags, sortable tag list to show all tags and stories with that tag
+* Tag cloud which shows most used tags, sortable tag list to show all tags and stories with that tag
 * Pictures page, with feature to allow users to upload their own pictures and comment on existing pictures
 * Pagination for story and pictures index pages
 * Rotating carousel feature for obituary
