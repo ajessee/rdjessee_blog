@@ -41,11 +41,11 @@ The app is written in Rails 6 and currently deployed in production using Heroku.
 
 ## Change Log
 
-# Major Refactoring May 2020
+### Major Refactoring May 2020
 * Upgraded to Rails 6 
 * Migrate from AWS to Heroku for hosting
 * Added feature to allow users to record story readings in-browser
 * Added Elasticsearch to allow users to search stories for specific text
 * Add table sorting feature to user admin table, story admin table, tags table
-# August 2020
+### August 2020
 * Update all yarn package and Rails gems
